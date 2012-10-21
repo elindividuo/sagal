@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tvViewFarmsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.01"
+        android:gravity="center_horizontal"
+        android:text="@string/tvMainActivityTitle"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/lvFarms"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.00" >
+    </ListView>
+    
+        <Button
+        android:id="@+id/bCreateFarm_MainView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="@string/bCreateFarm"
+        android:onClick="createFarm"
+        />
+
+</LinearLayout>

@@ -1,0 +1,70 @@
+<resources>
+
+    <string name="app_name">SAGAL</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main_activity_view_farms">SAGAL</string>
+    <string name="tvMainActivityTitle">Tus haciendas</string>
+    <string name="bCreateFarm">Crear hacienda</string>
+    <string name="title_activity_farm_details">FarmDetails</string>
+    <string name="tvFarmDetailsTitle">Detalles de hacienda</string>
+    <string name="tvFarmNameTitle">Nombre: </string>
+    <string name="tvFarmAddressTitle">Ubicación: </string>
+    <string name="tvFarmOwnerTitle">Propietario: </string>
+    <string name="bviewCattle">Ver ganado</string>
+    <string name="bFoothbath">Pediluvios</string>
+    <string name="bStatistics">Estadísticas</string>
+    
+    
+    <string name="tvCreateFarmTitle">Crear hacienda</string>
+    <string name="etFarmName">Nombre</string>
+    <string name="etFarmOwner">Propietario</string>
+    <string name="etFarmAddress">Ubicación</string>
+    
+    <string name="bOK">OK</string>
+    
+    <string name="tvViewCattleTitle">Ganado hacienda \'nombre\'</string>
+    <string name="bCreateCow">Nuevo ejemplar</string>
+    
+    <string name="tvCattleDetailsTitle">Detalles del ganado:</string>
+    <string name="tvCowName">Nombre: </string>
+    <string name="etCowName">Nombre</string>
+    <string name="tvCowNumber">Número:</string>
+    <string name="etCowNumber">Número</string>
+    <string name="tvCowOwner">Propietario:</string>
+    <string name="etCowOwner">Propietario</string>
+    <string name="tvCowBreed">Raza:</string>
+    <string name="etCowBreed">Raza</string>
+    <string name="tvCowBirthday">Fecha de nacimiento:</string>
+    <string name="etCowBirthday">dd-mm-aaaa</string>
+    <string name="bReset">Borrar todo</string>
+    
+    <string name="bEditCowDetails">Editar ejemplar</string>
+    <string name="bDeleteCow">Borrar ejemplar</string>
+    <string name="bLocomotionScoring">Registrar puntaje de locomoción</string>
+    <string name="bHoofInjury">Registrar lesiones</string>
+    
+    <string name="tvFrontLeft">Anterior izquierda</string>
+    <string name="tvFrontRight">Anterior derecha</string>
+    <string name="tvRearLeft">Posterior izquierda</string>
+    <string name="tvRearRight">Posterior derecha</string>
+    
+    <string name="tvActivityInjuryTitle">Zonas y enfermedad</string>
+
+    
+    
+    <string name="spinnerHoofSections">Zona</string>
+    <string-array name="hoofSections">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+		<item>7</item>
+		<item>8</item>
+		<item>9</item>
+		<item>10</item>
+    </string-array>
+
+</resources>

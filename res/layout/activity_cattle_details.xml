@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableCattleDetails"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/tvCattleDetailsTitle"
+        android:gravity="center"
+        android:text="@string/tvCattleDetailsTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:width="100dp" />
+
+    <TableRow android:id="@+id/TableRow01" >
+
+        <TextView
+            android:id="@+id/tvCowName_DetailsView"
+            android:gravity="center"
+            android:text="@string/tvCowName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:width="100dp" />
+
+        <TextView
+            android:id="@+id/tvCowName_DetailsViewValue"
+            android:text="@string/tvCowName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:width="220dp" />
+    </TableRow>
+
+    <TableRow android:id="@+id/TableRow02" >
+
+        <TextView
+            android:id="@+id/tvCowNumber_DetailsView"
+            android:gravity="center"
+            android:text="@string/tvCowNumber"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:width="100dp" />
+
+        <TextView
+            android:id="@+id/tvCowNumber_DetailsViewValue"
+            android:text="@string/tvCowNumber"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:width="220dp" />
+    </TableRow>
+
+    <TableRow android:id="@+id/TableRow03" >
+
+        <TextView
+            android:id="@+id/tvCowOwner_DetailsView"
+            android:gravity="center"
+            android:text="@string/tvCowOwner"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:width="100dp" />
+
+        <TextView
+            android:id="@+id/tvCowOwner_DetailsViewValue"
+            android:text="@string/tvCowOwner"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:width="220dp" />
+    </TableRow>
+
+    <TableRow android:id="@+id/TableRow04" >
+
+        <TextView
+            android:id="@+id/tvCowBreed_DetailsView"
+            android:gravity="center"
+            android:text="@string/tvCowBreed"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:width="100dp" />
+
+        <TextView
+            android:id="@+id/tvCowBreed_DetailsViewValue"
+            android:text="@string/tvCowBreed"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:width="220dp" />
+    </TableRow>
+
+    <TableRow android:id="@+id/TableRow05" >
+
+        <TextView
+            android:id="@+id/tvCowBirthday_DetailsView"
+            android:gravity="center"
+            android:height="45dp"
+            android:text="@string/tvCowBirthday"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:width="100dp" />
+
+        <TextView
+            android:id="@+id/tvCowBirthday_DetailsViewValue"
+            android:text="@string/tvCowBirthday"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:width="220dp" />
+    </TableRow>
+
+    <Button
+        android:id="@+id/bOkDetailsCow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="ok"
+        android:text="@string/bOK" />
+
+    <Button
+        android:id="@+id/bLocomotionScoring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="registerLocomotionScoring"
+        android:text="@string/bLocomotionScoring" />
+
+    <Button
+        android:id="@+id/bHoofInjury"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="registerHoofInjury"
+        android:text="@string/bHoofInjury" />
+
+    <Button
+        android:id="@+id/bEditCowDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="editCowDetails"
+        android:text="@string/bEditCowDetails" />
+
+    <Button
+        android:id="@+id/bDeleteCow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="deleteCow"
+        android:text="@string/bDeleteCow" />
+
+</TableLayout>

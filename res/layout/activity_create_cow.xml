@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout android:id="@+id/tableCreateCow"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<TableRow
+	    android:id="@+id/TableRow01">
+		<TextView
+		    android:id="@+id/tvCowName_CreateView" android:gravity="center"
+		    android:text="@string/tvCowName" android:textStyle="bold"
+		    android:width="100dp" />
+		<EditText android:id="@+id/etCowName" android:width="220dp" android:inputType="textPersonName"  android:hint="@string/etCowName"/>
+	</TableRow>
+	<TableRow
+	    android:id="@+id/TableRow02">
+		<TextView 
+		    android:id="@+id/tvCowNumber_CreateView" android:text="@string/tvCowNumber"
+			android:textStyle="bold" android:gravity="center" android:width="100dp" />
+		<EditText
+		    android:id="@+id/etCowNumber" android:width="220dp"
+		    android:inputType="number"  android:hint="@string/etCowNumber"/>
+	</TableRow>
+	<TableRow
+	    android:id="@+id/TableRow03">
+		<TextView
+		    android:id="@+id/tvCowOwner_CreateView" android:text="@string/tvCowOwner"
+			android:textStyle="bold" android:gravity="center" android:width="100dp" />
+		<EditText 
+		    android:id="@+id/etCowOwner" android:width="220dp"
+		    android:inputType="textPersonName"  android:hint="@string/etCowOwner"/>
+	</TableRow>
+	<TableRow
+	    android:id="@+id/TableRow04">
+		<TextView 
+		    android:id="@+id/tvCowBreed_CreateView" android:text="@string/tvCowBreed"
+			android:textStyle="bold" android:gravity="center" android:width="100dp" />
+		<EditText 
+		    android:id="@+id/etCowBreed" android:width="220dp"
+		    android:inputType="text"  android:hint="@string/etCowBreed"/>
+	</TableRow>
+	
+	<TableRow
+	    android:id="@+id/TableRow05">
+		<TextView
+		    android:id="@+id/tvCowBirthday_CreateView" android:text="@string/tvCowBirthday"
+			android:textStyle="bold" android:gravity="center" android:width="100dp"
+			android:height="45dp"/>
+		<EditText 
+		    android:id="@+id/etCowBirthday" android:width="220dp"
+		    android:inputType="text"  android:hint="@string/etCowBirthday"/>
+	</TableRow>
+	
+	<TableRow
+	    android:id="@+id/TableRow06">
+		<Button android:id="@+id/bOkCreateCow"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="@string/bOK"
+		android:onClick="ok"/>
+		<Button android:id="@+id/bResetCreateCow"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="@string/bReset"
+		android:width="100dp" />
+	</TableRow>
+</TableLayout>

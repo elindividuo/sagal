@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tvViewCattleTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/tvViewCattleTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/lvCattle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.00" >
+    </ListView>
+    
+    <Button
+        android:id="@+id/bCreateCow_CreateCowView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="@string/bCreateCow"
+        android:onClick="createCow"
+        />
+
+</LinearLayout>

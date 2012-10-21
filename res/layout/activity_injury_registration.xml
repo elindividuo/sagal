@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+	<TextView
+	    android:id="@+id/tvActivityInjuryTitle"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:textStyle="bold" 
+	    android:text="@string/tvActivityInjuryTitle"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
+	<ImageView
+	    android:id="@+id/ivHoofSections"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:src="@drawable/bighoof3" />
+
+	<TextView
+	    android:id="@+id/tvHoof"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textStyle="bold"
+	    android:layout_gravity="center"
+	    android:text="Pezuña posterior izquierda"
+	    android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	<Spinner 
+	    android:id="@+id/spinnerHoofSections"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:entries="@array/hoofSections"
+	    android:prompt="@string/spinnerHoofSections" />
+		
+    
+</LinearLayout>
