@@ -1,39 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-	<TextView
-	    android:id="@+id/tvActivityInjuryTitle"
-	    android:layout_width="wrap_content"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_gravity="center"
-	    android:textStyle="bold" 
-	    android:text="@string/tvActivityInjuryTitle"
-	    android:textAppearance="?android:attr/textAppearanceLarge" />
-	<ImageView
-	    android:id="@+id/ivHoofSections"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="center"
-	    android:src="@drawable/bighoof3" />
-
-	<TextView
-	    android:id="@+id/tvHoof"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:textStyle="bold"
-	    android:layout_gravity="center"
-	    android:text="Pezuña posterior izquierda"
-	    android:textAppearance="?android:attr/textAppearanceMedium" />
+	    android:orientation="vertical" >
 	
-	<Spinner 
-	    android:id="@+id/spinnerHoofSections"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:entries="@array/hoofSections"
-	    android:prompt="@string/spinnerHoofSections" />
+		<TextView
+		    android:id="@+id/tvActivityInjuryTitle"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="center"
+		    android:padding="5dp"
+		    android:text="@string/tvActivityInjuryTitle"
+		    android:textAppearance="?android:attr/textAppearanceLarge"
+		    android:textStyle="bold" />
+		
+		<ImageView
+		    android:id="@+id/ivHoofSections"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:padding="5dp"
+		    android:src="@drawable/bighoof3"
+		    android:layout_below="@+id/tvActivityInjuryTitle" />
+		
+		<TextView
+		    android:id="@+id/tvHoof"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dp"
+		    android:textStyle="bold"
+		    android:gravity="center"
+		    android:text="Pezuña posterior izquierda"
+		    android:textAppearance="?android:attr/textAppearanceMedium"
+		    android:layout_below="@+id/ivHoofSections"/>
 		
-    
-</LinearLayout>
+		<Spinner 
+		    android:id="@+id/spinnerHoofSections"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:entries="@array/hoofSections"
+		    android:prompt="@string/spinnerHoofSections"
+		    android:spinnerMode="dropdown"
+		    android:padding="5dp"
+		    android:layout_below="@+id/tvHoof" />
+			
+
+		<Button
+		    android:id="@+id/bSelectInjuries"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:text="@string/bSelectInjuries"
+		    android:padding="5dp"
+		    android:layout_toRightOf="@+id/spinnerHoofSections"
+		    android:layout_below="@+id/tvHoof" />
+		
+		<Button 
+		    android:id="@+id/bAddNotes"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:text="@string/bAddNotes"
+		    android:padding="5dp"
+		    android:layout_below="@+id/bSelectInjuries"
+		    android:gravity="center"
+		    android:onClick="addNotes" />
+		
+		<Button 
+		    android:id="@+id/bOkInjuryRegistration"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:text="@string/bOK"
+		    android:padding="5dp"
+		    android:layout_below="@+id/bAddNotes"
+		    android:gravity="center"
+		    android:onClick="ok"/>
+
+			    
+	</RelativeLayout>
+	
+</ScrollView>

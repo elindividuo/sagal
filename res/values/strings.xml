@@ -22,6 +22,7 @@
     <string name="etFarmAddress">Ubicación</string>
     
     <string name="bOK">OK</string>
+    <string name="bCancel">Cancelar</string>
     
     <string name="tvViewCattleTitle">Ganado hacienda \'nombre\'</string>
     <string name="bCreateCow">Nuevo ejemplar</string>
@@ -51,7 +52,17 @@
     
     <string name="tvActivityInjuryTitle">Zonas y enfermedad</string>
 
+    <string name="bSelectInjuries">Seleccionar enfermedades</string>
+    <string name="bAddNotes">Agregar notas</string>
     
+    <string name="tvActivityAddNotesTitle">Agregar notas</string>
+    <string name="tvListOfFindings">Lista de hallazgos</string>
+    <string name="tvListOfProblems">Lista de problemas</string>
+    <string name="tvDifferentialDiagnoses">Diag. diferenciales</string>
+    <string name="tvRegimens">Plan terapéutico</string>
+    
+    <string name="tvLocomotionScoringTitle">Puntaje de locomoción</string>
+    <string name="tvLocSocoring">Puntaje de locomoción</string>
     
     <string name="spinnerHoofSections">Zona</string>
     <string-array name="hoofSections">
@@ -67,4 +78,14 @@
 		<item>10</item>
     </string-array>
 
+    <string name="spinnerLocomotionScoring">Puntaje de locomoción</string>
+    <string-array name="locScoring">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>    
+
+    
 </resources>

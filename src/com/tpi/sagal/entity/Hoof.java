@@ -5,7 +5,7 @@ public class Hoof {
 	String findings;
 	String problems;
 	String differentialDiagnoses;
-	String regimens;
+	String regimens;//Planes terapeuricos
 	
 	
 	public String getFindings() {

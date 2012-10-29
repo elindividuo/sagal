@@ -1,69 +1,75 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:android1="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tableSelectHoof"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-    
-    <TableRow android1:id="@+id/TableRow00" >
-       <TextView android:id="@+id/tvRearLeft"
-       		android:gravity="center"
-        	android:text="@string/tvRearLeft"
-        	android:textAppearance="?android:attr/textAppearanceMedium"/>
-       
-       <TextView android:id="@+id/tvFrontRight"
-       		android:gravity="center"
-        	android:text="@string/tvRearRight"
-        	android:textAppearance="?android:attr/textAppearanceMedium"/>
-    </TableRow>
-    
-    <TableRow android1:id="@+id/TableRow01" >            
-        <ImageButton
-            android1:id="@+id/ibfFrontLeftHoof"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:onClick="selectHoof"
-            android1:src="@drawable/hoof" />
-        
-        <ImageButton
-            android1:id="@+id/ibFrontRightHoof"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:src="@drawable/hoof" />        
-    </TableRow>
+    android:layout_height="wrap_content">
 
-    
-    <TableRow android1:id="@+id/TableRow02" >
-       <TextView android:id="@+id/tvFrontLeft"
-       		android:gravity="center"
-        	android:text="@string/tvFrontLeft"
-        	android:textAppearance="?android:attr/textAppearanceMedium"/>
-       
-       <TextView android:id="@+id/tvFrontRight"
-       		android:gravity="center"
-        	android:text="@string/tvFrontRight"
-        	android:textAppearance="?android:attr/textAppearanceMedium"/>
-        
-    </TableRow>    
-    
-    
-    <TableRow android1:id="@+id/TableRow03" >
+	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:android1="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/tableSelectHoof"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	    
+	    <TableRow android1:id="@+id/TableRow00">
+	       <TextView android:id="@+id/tvRearLeft"
+	       		android:gravity="center"
+	        	android:text="@string/tvRearLeft"
+	        	android:textAppearance="?android:attr/textAppearanceMedium"/>
+	       
+	       <TextView android:id="@+id/tvFrontRight"
+	       		android:gravity="center"
+	        	android:text="@string/tvRearRight"
+	        	android:textAppearance="?android:attr/textAppearanceMedium"/>
+	    </TableRow>
+	    
+	    <TableRow android1:id="@+id/TableRow01" >            
+	        <ImageButton
+	            android1:id="@+id/ibFrontLeftHoof"
+	            android1:layout_width="wrap_content"
+	            android1:layout_height="wrap_content"
+	            android1:onClick="selectHoof"
+	            android1:src="@drawable/hoof" />
+	        
+	        <ImageButton
+	            android1:id="@+id/ibFrontRightHoof"
+	            android1:layout_width="wrap_content"
+	            android1:layout_height="wrap_content"
+	            android1:src="@drawable/hoof" />        
+	    </TableRow>
+	
+	    
+	    <TableRow android1:id="@+id/TableRow02" >
+	       <TextView android:id="@+id/tvFrontLeft"
+	       		android:gravity="center"
+	        	android:text="@string/tvFrontLeft"
+	        	android:textAppearance="?android:attr/textAppearanceMedium"/>
+	       
+	       <TextView android:id="@+id/tvFrontRight"
+	       		android:gravity="center"
+	        	android:text="@string/tvFrontRight"
+	        	android:textAppearance="?android:attr/textAppearanceMedium"/>
+	        
+	    </TableRow>    
+	    
+	    
+	    <TableRow android1:id="@+id/TableRow03" >
+	
+	        <ImageButton
+	            android1:id="@+id/ibRearLeftHoof"
+	            android1:layout_width="wrap_content"
+	            android1:layout_height="wrap_content"
+	            android1:src="@drawable/hoof" />
+	        
+	        <ImageButton
+	            android1:id="@+id/ibRearRightHoof"
+	            android1:layout_width="wrap_content"
+	            android1:layout_height="wrap_content"
+	            android1:src="@drawable/hoof" />        
+	    </TableRow>    
+	    
+	     <ImageView
+	        android:id="@+id/imCowHead"
+	        android:gravity="center"
+	        android:src="@drawable/head"/>  
+	    
+	</TableLayout>
 
-        <ImageButton
-            android1:id="@+id/ibRearLeftHoof"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:src="@drawable/hoof" />
-        
-        <ImageButton
-            android1:id="@+id/ibRearRightHoof"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:src="@drawable/hoof" />        
-    </TableRow>    
-    
-     <ImageView
-        android:id="@+id/imCowHead"
-        android:gravity="center"
-        android:src="@drawable/head"/>  
-    
-</TableLayout>
+</ScrollView>

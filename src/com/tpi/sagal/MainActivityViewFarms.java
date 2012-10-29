@@ -26,7 +26,7 @@ public class MainActivityViewFarms extends Activity {
         
         createFarm = (Button)findViewById(R.id.bCreateFarm_MainView);
         listViewFarms = (ListView) findViewById(R.id.lvFarms);
-        String[] values = new String[] { "Rosales", "La Pintada", "Casa Vieja" };
+        String[] values = new String[] { "Rosales", "La Pintada", "Casa Vieja", "Las Palmas", "Mi Finca", "El Rancho"};
         
         // First paramenter - Context
         // Second parameter - Layout for the row

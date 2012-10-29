@@ -1,91 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/tvCreateFarmTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top|center"
-        android:text="@string/tvCreateFarmTitle"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvFarmName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tvCreateFarmTitle"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="83dp"
-        android:text="@string/tvFarmNameTitle"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/tvFarmOwner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvFarmName"
-        android:layout_below="@+id/tvFarmName"
-        android:layout_marginTop="66dp"
-        android:text="@string/tvFarmOwnerTitle"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/tvFarmAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvFarmOwner"
-        android:layout_below="@+id/tvFarmOwner"
-        android:layout_marginTop="70dp"
-        android:text="@string/tvFarmAddressTitle"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/etFarmName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvFarmName"
-        android:layout_alignBottom="@+id/tvFarmName"
-        android:layout_marginLeft="25dp"
-        android:layout_toRightOf="@+id/tvFarmOwner"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/etFarmName" >
-		
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/etFarmOwner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvFarmOwner"
-        android:layout_alignBottom="@+id/tvFarmOwner"
-        android:layout_alignLeft="@+id/etFarmName"
-        android:ems="10"
-        android:inputType="textPersonName" 
-        android:hint="@string/etFarmOwner"/>
-
-    <EditText
-        android:id="@+id/etFarmAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tvFarmAddress"
-        android:layout_alignLeft="@+id/etFarmOwner"
-        android:ems="10" 
-        android:hint="@string/etFarmAddress" />
-
-    <Button
-        android:id="@+id/bOkCreateFarmView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="50dp"
-        android:text="@string/bOK"
-        android:onClick="ok"/>
-
-</RelativeLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent" >
+	
+	    <TextView
+	        android:id="@+id/tvCreateFarmTitle"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="top|center"
+	        android:text="@string/tvCreateFarmTitle"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+	        android:textStyle="bold" />
+	
+	    <TextView
+	        android:id="@+id/tvFarmName"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@+id/tvCreateFarmTitle"
+	        android:layout_marginLeft="20dp"
+	        android:layout_marginTop="83dp"
+	        android:text="@string/tvFarmNameTitle"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	    <TextView
+	        android:id="@+id/tvFarmOwner"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/tvFarmName"
+	        android:layout_below="@+id/tvFarmName"
+	        android:layout_marginTop="66dp"
+	        android:text="@string/tvFarmOwnerTitle"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+		
+	    <TextView
+	        android:id="@+id/tvFarmAddress"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/tvFarmOwner"
+	        android:layout_below="@+id/tvFarmOwner"
+	        android:layout_marginTop="70dp"
+	        android:text="@string/tvFarmAddressTitle"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+		
+	    <EditText
+	        android:id="@+id/etFarmName"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignBaseline="@+id/tvFarmName"
+	        android:layout_alignBottom="@+id/tvFarmName"
+	        android:layout_marginLeft="25dp"
+	        android:layout_toRightOf="@+id/tvFarmOwner"
+	        android:ems="10"
+	        android:inputType="textPersonName"
+	        android:hint="@string/etFarmName" >
+			
+	        <requestFocus />
+	    </EditText>
+		
+	    <EditText
+	        android:id="@+id/etFarmOwner"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignBaseline="@+id/tvFarmOwner"
+	        android:layout_alignBottom="@+id/tvFarmOwner"
+	        android:layout_alignLeft="@+id/etFarmName"
+	        android:ems="10"
+	        android:inputType="textPersonName" 
+	        android:hint="@string/etFarmOwner"/>
+		
+	    <EditText
+	        android:id="@+id/etFarmAddress"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignBottom="@+id/tvFarmAddress"
+	        android:layout_alignLeft="@+id/etFarmOwner"
+	        android:ems="10" 
+	        android:hint="@string/etFarmAddress" />
+					
+	    <Button
+	        android:id="@+id/bOkCreateFarmView"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/etFarmAddress"
+	        android:layout_alignParentBottom="true"
+	        android:layout_alignParentLeft="true"
+	        android:layout_marginBottom="50dp"
+	        android:text="@string/bOK"
+	        android:onClick="ok"/>
+	
+	</RelativeLayout>
+	
+</ScrollView>

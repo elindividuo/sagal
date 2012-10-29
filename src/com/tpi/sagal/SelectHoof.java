@@ -9,6 +9,9 @@ import android.widget.ImageButton;
 public class SelectHoof extends Activity{
 
 	ImageButton ibFrontLeftHoof;
+	ImageButton ibFrontRightHoof;
+	ImageButton ibRearLeftHoof;
+	ImageButton ibRearRightHoof;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +19,12 @@ public class SelectHoof extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_hoof);
 		
-		ibFrontLeftHoof = (ImageButton)findViewById(R.id.ibfFrontLeftHoof);
+		ibFrontLeftHoof = (ImageButton)findViewById(R.id.ibFrontLeftHoof);
+		ibFrontRightHoof = (ImageButton)findViewById(R.id.ibFrontRightHoof);
+		ibRearLeftHoof = (ImageButton)findViewById(R.id.ibRearLeftHoof);
+		ibRearRightHoof = (ImageButton)findViewById(R.id.ibRearRightHoof);
+		
+		
 		ibFrontLeftHoof.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -24,6 +32,28 @@ public class SelectHoof extends Activity{
 				selectHoof(v);
 			}
 		});
+		ibFrontRightHoof.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				selectHoof(v);
+			}
+		});
+		ibRearLeftHoof.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				selectHoof(v);
+			}
+		});
+		ibRearRightHoof.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				selectHoof(v);
+			}
+		});
+		
 	}
 	
 	public void selectHoof(View view){

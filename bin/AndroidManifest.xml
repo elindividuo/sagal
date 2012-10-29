@@ -87,6 +87,32 @@
             </intent-filter>
         </activity>
         
+        <activity
+            android:name=".AddNotes"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.ADDNOTES" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>   
+        
+        <activity
+            android:name=".LocomotionScoring"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.LOCOMOTIONSCORING" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".EditCow"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.EDITCOW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>         
         
     </application>
 
