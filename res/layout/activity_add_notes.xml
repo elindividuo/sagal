@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <TextView
+			    android:id="@+id/tvAddNotesTitle"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:gravity="center"
+			    android:padding="5dp"
+			    android:text="@string/tvActivityAddNotesTitle"
+			    android:textAppearance="?android:attr/textAppearanceLarge"
+			    android:textStyle="bold" />
+        
+        <TableRow 
+            android:gravity="center_horizontal">
+			<TextView
+			    android:id="@+id/tvListOfFindings"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:padding="5dp"
+			    android:text="@string/tvListOfFindings"
+			    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			<TextView
+			    android:id="@+id/tvListOfProblems"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:padding="5dp"
+			    android:text="@string/tvListOfProblems"
+			    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		</TableRow>
+		
+        <TableRow 
+            android:gravity="center_horizontal">
+            <EditText 
+			    android:id="@+id/etListOfFindings"
+			    android:layout_width="0dp"
+			    android:layout_weight="1"
+			    android:layout_height="wrap_content"
+			    android:inputType="text"
+			    android:padding="15dp"
+			    android:hint="Hallazgos"
+			    />
+            
+            <EditText 
+			    android:id="@+id/etListOfProblems"
+			    android:layout_width="0dp"
+			    android:layout_weight="1"
+			    android:layout_height="wrap_content"
+			    android:inputType="text"
+			    android:padding="15dp"
+			    android:hint="Problemas"/>            
+        </TableRow>
+		
+        <TableRow 
+            android:gravity="center_horizontal">
+
+			<TextView
+			    android:id="@+id/tvDifferentialDiagnoses"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:padding="5dp"
+			    android:text="@string/tvDifferentialDiagnoses"
+			    android:textAppearance="?android:attr/textAppearanceMedium" />
+			
+			<TextView
+			    android:id="@+id/tvRegimens"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:padding="5dp"
+			    android:text="@string/tvRegimens"
+			    android:textAppearance="?android:attr/textAppearanceMedium" />  			
+            
+        </TableRow>
+        
+        <TableRow 
+            android:gravity="center_horizontal">            
+
+            <EditText
+                android:id="@+id/etDifferentialDiagnoses"
+			    android:layout_width="0dp"
+			    android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:padding="15dp"
+                android:hint="Diagnósticos" />
+
+            <EditText
+                android:id="@+id/etRegimens"
+			    android:layout_width="0dp"
+			    android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:padding="15dp"
+                android:hint="Planes" />
+            
+        </TableRow>
+        
+        <Button 
+            android:id="@+id/bOkAddNotes"
+            android:text="@string/bOK"
+            android:padding="5dp"
+            android:gravity="center"
+            android:onClick="ok" />"
+        
+    </TableLayout>
+
+</ScrollView>

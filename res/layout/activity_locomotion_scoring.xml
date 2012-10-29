@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+	
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+	    
+		<TextView 
+		        android:id="@+id/tvLocomotionScoringTitle"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+		        android:padding="15dp"
+		        android:text="@string/tvLocomotionScoringTitle"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textStyle="bold" />
+
+		<TextView 
+		        android:id="@+id/tvCowName_LocScoring"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+		        android:padding="5dp"
+		        android:layout_below="@+id/tvLocomotionScoringTitle"
+		        android:text="Nombre vaca"
+		        android:textAppearance="?android:attr/textAppearanceMedium"
+		        />
+		
+		<TextView 
+		        android:id="@+id/tvLocScoring"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:gravity="center"
+		        android:padding="15dp"
+		        android:layout_below="@+id/tvCowName_LocScoring"
+		        android:text="@string/tvLocSocoring"
+		        
+		        />		
+		
+		<Spinner
+		    android:id="@+id/spinnerLocScoring"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:padding="15dp"
+		    android:layout_toRightOf="@+id/tvLocScoring"
+		    android:layout_below="@+id/tvCowName_LocScoring"/>
+		<Button
+		    android:id="@+id/bOkLocScoring"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dp"
+		    android:layout_below="@+id/spinnerLocScoring"
+		    android:text="@string/bOK"
+		    android:onClick="ok" />
+
+		<Button
+		    android:id="@+id/bCancelLocScoring"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dp"
+			android:layout_below="@+id/bOkLocScoring"
+		    android:text="@string/bCancel"
+		    android:onClick="cancel" />
+	
+	</RelativeLayout>
+	
+</ScrollView>
