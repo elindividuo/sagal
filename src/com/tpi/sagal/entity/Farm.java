@@ -1,16 +1,16 @@
 package com.tpi.sagal.entity;
 
 public class Farm {
+	
 	String name;
-
-	String adress;
+	String address;
 	String ownerName;
 	
 	public String getAdress() {
-		return adress;
+		return address;
 	}
 	public void setAdress(String adress) {
-		this.adress = adress;
+		this.address = address;
 	}
 	public String getOwnerName() {
 		return ownerName;

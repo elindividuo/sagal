@@ -6,28 +6,31 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class FarmDetails extends Activity{
+public class FarmDetails extends Activity implements View.OnClickListener{
 
 	Button viewCattle;
+	Intent i;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_farm_details);
-		
-		viewCattle = (Button)findViewById(R.id.bViewCattle);
-		viewCattle.setOnClickListener(new View.OnClickListener() {		
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				viewCattle(v);
-			}
-		});
+		initialize();
 	}
 	
-	public void viewCattle(View view){
-		Intent intent = new Intent("com.tpi.sagal.VIEWCATTLE");
-		startActivity(intent);
+	public void initialize(){
+		viewCattle = (Button)findViewById(R.id.bViewCattle);
+		viewCattle.setOnClickListener(this);
+	}
+	
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()){
+		case R.id.bViewCattle:
+			i = new Intent("com.tpi.sagal.VIEWCATTLE");
+			startActivity(i);
+			break;
+		}
 	}
 }

@@ -10,20 +10,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class ViewCattle extends Activity{
+public class ViewCattle extends Activity implements View.OnClickListener{
 
 	Button createCow;
 	ListView listViewCows;
+	Intent i;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_cattle);
+		initialize();
 		
-		createCow=(Button)findViewById(R.id.bCreateCow_CreateCowView);
-		listViewCows=(ListView)findViewById(R.id.lvCattle);
-		String[] values = new String[] { "Paquita", "Pecas", "Lulú" };
-		listViewCows.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_2, android.R.id.text1,values));
 		listViewCows.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int position,
@@ -34,19 +32,24 @@ public class ViewCattle extends Activity{
 			}
 			
 		});
-		
-		createCow.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				createCow(v);
-			}
-		});
 	}
 	
-	public void createCow(View view){
-		Intent intent = new Intent("com.tpi.sagal.CREATECOW");
-		startActivity(intent);
+	public void initialize(){
+		createCow=(Button)findViewById(R.id.bCreateCow_CreateCowView);
+		listViewCows=(ListView)findViewById(R.id.lvCattle);
+		String[] values = new String[] { "Paquita", "Pecas", "Lulú" };
+		listViewCows.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_2, android.R.id.text1,values));
+		
+		createCow.setOnClickListener(this);
 	}
 
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()){
+		case R.id.bCreateCow_CreateCowView:
+			i = new Intent("com.tpi.sagal.CREATECOW");
+			startActivity(i);
+			break;
+		}	
+	}	
 }
