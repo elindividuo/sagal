@@ -4,84 +4,85 @@
     android:layout_height="wrap_content" >
 
     <TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/tableFarmEdit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/tvCreateFarmTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top|center"
-            android:text="@string/tvCreateFarmTitle"
+            android:id="@+id/tvFarmEditTitle"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:text="@string/tvFarmEditTitle"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
         <TableRow android:id="@+id/tableRow1" >
 
             <TextView
-                android:id="@+id/tvFarmOwner"
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tvFarmOwnerTitle"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/etFarmOwner"
+                android:id="@+id/etFarmOwnerEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/etFarmOwner"
                 android:capitalize="words" />
 
             <requestFocus />
         </TableRow>
 
-        <TableRow android:id="@+id/tableRow3" >
+        <TableRow android:id="@+id/tableRow2" >
 
             <TextView
-                android:id="@+id/tvFarmName"
+                android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tvFarmNameTitle"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/etFarmName"
+                android:id="@+id/etFarmNameEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/etFarmName"
                 android:capitalize="words" >
             </EditText>
         </TableRow>
 
-        <TableRow android:id="@+id/tableRow2" >
+        <TableRow android:id="@+id/tableRow3" >
 
             <TextView
-                android:id="@+id/tvFarmAddress"
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tvFarmAddressTitle"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/etFarmAddress"
+                android:id="@+id/etFarmAddressEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/etFarmAddress"
                 android:capitalize="words" />
         </TableRow>
 
-        <Button
-            android:id="@+id/bOkCreateFarmView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="ok"
-            android:text="@string/bOK" />
+        <TableRow android:id="@+id/tableRow4" >
+
+            <Button
+                android:id="@+id/bOkFarmEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bOK" />
+
+            <Button
+                android:id="@+id/bCancelFarmEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bCancel" />
+        </TableRow>
     </TableLayout>
 
 </ScrollView>

@@ -68,13 +68,13 @@
 		        android:text="@string/tvFarmAddressTitle"
 		        android:textAppearance="?android:attr/textAppearanceMedium"
 		        android:textStyle="bold" />
-		
+
 		    <TextView
 		        android:id="@+id/tvFarmAddress"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:text="FarmAddress"
-		        android:textAppearance="?android:attr/textAppearanceMedium" />		    
+		        android:textAppearance="?android:attr/textAppearanceMedium" />
 		    
 		</TableRow>
 		
@@ -84,10 +84,25 @@
 		    android:layout_height="match_parent"
 		    android:orientation="vertical" >
 		    
-		    
+		    <Button
+		        android:id="@+id/bEditFarm"
+		        android:layout_width="250dp"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center"
+		        android:text="@string/bEditFarm"
+		        android:onClick="viewCattle"/>
+			
+		    <Button
+		        android:id="@+id/bDeleteFarm"
+		        android:layout_width="250dp"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center"
+		        android:text="@string/bDeleteFarm"
+		        android:onClick="viewCattle"/>
+				    
 			<Button
 		        android:id="@+id/bViewCattle"
-		        android:layout_width="wrap_content"
+		        android:layout_width="250dp"
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center"
 		        android:text="@string/bviewCattle"
@@ -95,14 +110,14 @@
 			
 			<Button
 		        android:id="@+id/bFoothbath"
-		        android:layout_width="wrap_content"
+		        android:layout_width="250dp"
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center"
 		        android:text="@string/bFoothbath" />
 			
 			<Button
 		        android:id="@+id/bStatistics"
-		        android:layout_width="wrap_content"
+		        android:layout_width="250dp"
 		        android:layout_height="wrap_content"
 		        android:layout_gravity="center"
 		        android:text="@string/bStatistics" />		    

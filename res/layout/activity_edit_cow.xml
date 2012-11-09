@@ -3,74 +3,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tableCreateCow"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
-<TableLayout android:id="@+id/tableCreateCow"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		xmlns:android="http://schemas.android.com/apk/res/android">
-		
-		<TableRow
-		    android:id="@+id/TableRow01">
-			<TextView
-			    android:id="@+id/tvCowName_EditView" android:gravity="center"
-			    android:text="@string/tvCowName" android:textStyle="bold"
-			    android:width="100dp" />
-			<EditText android:id="@+id/etCowName_EditView" android:width="220dp" android:inputType="textPersonName"  android:hint="@string/etCowName"/>
-		</TableRow>
-		<TableRow
-		    android:id="@+id/TableRow02">
-			<TextView 
-			    android:id="@+id/tvCowNumber_EditView" android:text="@string/tvCowNumber"
-				android:textStyle="bold" android:gravity="center" android:width="100dp" />
-			<EditText
-			    android:id="@+id/etCowNumber_EditView" android:width="220dp"
-			    android:inputType="number"  android:hint="@string/etCowNumber"/>
-		</TableRow>
-		<TableRow
-		    android:id="@+id/TableRow03">
-			<TextView
-			    android:id="@+id/tvCowOwner_EditView" android:text="@string/tvCowOwner"
-				android:textStyle="bold" android:gravity="center" android:width="100dp" />
-			<EditText 
-			    android:id="@+id/etCowOwner_EditView" android:width="220dp"
-			    android:inputType="textPersonName"  android:hint="@string/etCowOwner"/>
-		</TableRow>
-		<TableRow
-		    android:id="@+id/TableRow04">
-			<TextView 
-			    android:id="@+id/tvCowBreed_EditView" android:text="@string/tvCowBreed"
-				android:textStyle="bold" android:gravity="center" android:width="100dp" />
-			<EditText 
-			    android:id="@+id/etCowBreed_EditView" android:width="220dp"
-			    android:inputType="text"  android:hint="@string/etCowBreed"/>
-		</TableRow>
-		
-		<TableRow
-		    android:id="@+id/TableRow05">
-			<TextView
-			    android:id="@+id/tvCowBirthday_EditView" android:text="@string/tvCowBirthday"
-				android:textStyle="bold" android:gravity="center" android:width="100dp"
-				android:height="45dp"/>
-			<EditText 
-			    android:id="@+id/etCowBirthday_EditView" android:width="220dp"
-			    android:inputType="text"  android:hint="@string/etCowBirthday"/>
-		</TableRow>
-		
-		<TableRow
-		    android:id="@+id/TableRow06">
-			<Button android:id="@+id/bOkEditCow"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="@string/bOK"
-			android:onClick="ok"/>
-			<Button android:id="@+id/bCancelEditCow"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="@string/bCancel"
-			android:width="100dp"
-			android:onClick="cancel" />
-		</TableRow>
-	</TableLayout>    
-    
-    
-    
+        <TableRow android:id="@+id/TableRow01" >
+
+            <TextView
+                android:id="@+id/tvCowName_EditView"
+                android:gravity="center"
+                android:text="@string/tvCowName"
+                android:textStyle="bold"
+                android:width="100dp" />
+
+            <EditText
+                android:id="@+id/etCowName_EditView"
+                android:hint="@string/etCowName"
+                android:capitalize="words"
+                android:width="220dp" />
+        </TableRow>
+
+        <TableRow android:id="@+id/TableRow02" >
+
+            <TextView
+                android:id="@+id/tvCowNumber_EditView"
+                android:gravity="center"
+                android:text="@string/tvCowNumber"
+                android:textStyle="bold"
+                android:width="100dp" />
+
+            <EditText
+                android:id="@+id/etCowNumber_EditView"
+                android:hint="@string/etCowNumber"
+                android:inputType="number"
+                android:width="220dp" />
+        </TableRow>
+
+        <TableRow android:id="@+id/TableRow03" >
+
+            <TextView
+                android:id="@+id/tvCowOwner_EditView"
+                android:gravity="center"
+                android:text="@string/tvCowOwner"
+                android:textStyle="bold"
+                android:width="100dp" />
+
+            <EditText
+                android:id="@+id/etCowOwner_EditView"
+                android:hint="@string/etCowOwner"
+                android:capitalize="words"
+                android:width="220dp" />
+        </TableRow>
+
+        <TableRow android:id="@+id/TableRow04" >
+
+            <TextView
+                android:id="@+id/tvCowBreed_EditView"
+                android:gravity="center"
+                android:text="@string/tvCowBreed"
+                android:textStyle="bold"
+                android:width="100dp" />
+
+            <EditText
+                android:id="@+id/etCowBreed_EditView"
+                android:hint="@string/etCowBreed"
+                android:capitalize="words"
+                android:width="220dp" />
+        </TableRow>
+
+        <TableRow android:id="@+id/TableRow05" >
+
+            <TextView
+                android:id="@+id/tvCowBirthday_EditView"
+                android:gravity="center"
+                android:height="45dp"
+                android:text="@string/tvCowBirthday"
+                android:textStyle="bold"
+                android:width="100dp" />
+
+            <EditText
+                android:id="@+id/etCowBirthday_EditView"
+                android:hint="@string/etCowBirthday"
+                android:inputType="text"
+                android:width="220dp" />
+        </TableRow>
+
+        <TableRow android:id="@+id/TableRow06" >
+
+            <Button
+                android:id="@+id/bOkEditCow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="ok"
+                android:text="@string/bOK" />
+
+            <Button
+                android:id="@+id/bCancelEditCow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="cancel"
+                android:text="@string/bCancel"
+                android:width="100dp" />
+        </TableRow>
+    </TableLayout>
 
 </ScrollView>

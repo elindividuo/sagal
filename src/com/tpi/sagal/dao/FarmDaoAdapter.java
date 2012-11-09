@@ -2,6 +2,7 @@ package com.tpi.sagal.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -17,6 +18,7 @@ public class FarmDaoAdapter {
 	private static final String KEY_NAME ="farm_name";
 	private static final String KEY_ADDRESS ="farm_address";
 	private static final String KEY_OWNERNAME ="farm_owner";
+	private static final String[] columns = {KEY_ID,KEY_NAME,KEY_ADDRESS, KEY_OWNERNAME};
 	
 	private static final String FARM_TABLE_CREATE = "CREATE TABLE " + DATABASE_TABLE +" (" +
 			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -62,11 +64,32 @@ public class FarmDaoAdapter {
 		ourHelper.close();
 	}
 	
-	public long createFarm(String name, String address, String ownerName) throws SQLException {
+	public long createFarm(String name, String address, String ownerName) throws SQLException{
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, name);
 		cv.put(KEY_ADDRESS, address);
 		cv.put(KEY_OWNERNAME, ownerName);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
+
+	public Cursor readFarm() throws SQLException{
+		return ourDatabase.query(DATABASE_TABLE, columns, null,null,null,null,null);
+	}
+	
+	public Cursor searchFarm(int id) throws SQLException{
+		return ourDatabase.query(DATABASE_TABLE, columns, KEY_ID + "=" + id,null,null,null,null);
+	}
+	
+	public void deleteFarm(int id) throws SQLException{
+		ourDatabase.delete(DATABASE_TABLE, KEY_ID + "=" + id,null);
+	}
+	
+	public void updateFarm(int id, String name, String address, String ownerName) throws SQLException{
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_NAME, name);
+		cv.put(KEY_ADDRESS, address);
+		cv.put(KEY_OWNERNAME, ownerName);
+		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
+	}
+	
 }

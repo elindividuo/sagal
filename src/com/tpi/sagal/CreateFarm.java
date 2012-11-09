@@ -15,10 +15,10 @@ import android.widget.Toast;
 public class CreateFarm extends Activity implements View.OnClickListener {
 
 	Button ok;
-	EditText farmName, farmOwner,farmAddress;
+	EditText farmName, farmOwner, farmAddress;
 	Intent i;
+	ManageFarm mf;
 	boolean diditwork;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +30,15 @@ public class CreateFarm extends Activity implements View.OnClickListener {
 
 	public void initialize() {
 		ok = (Button) findViewById(R.id.bOkCreateFarmView);
-		
+
 		farmName = (EditText) findViewById(R.id.etFarmName);
 		farmOwner = (EditText) findViewById(R.id.etFarmOwner);
 		farmAddress = (EditText) findViewById(R.id.etFarmAddress);
-		
+
 		ok.setOnClickListener(this);
 		
-		diditwork=true;
+		mf = new ManageFarm(this);
+		diditwork = true;
 	}
 
 	@Override
@@ -48,20 +49,20 @@ public class CreateFarm extends Activity implements View.OnClickListener {
 			String address = farmAddress.getText().toString();
 			String owner = farmOwner.getText().toString();
 			try {
-			ManageFarm mf = new ManageFarm (this);
-			mf.createFarm(name, address, owner);
-			}
-			catch(Exception e){
+				mf.createFarm(name, address, owner);
+			} catch (Exception e) {
 				diditwork = false;
-			}finally{
+			} finally {
 				if (diditwork) {
-					Toast.makeText(getApplicationContext(), "¡Listo! Hacienda creada.",
-							Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(),
+							"¡Listo! Hacienda creada.", Toast.LENGTH_LONG)
+							.show();
 					i = new Intent(this, MainActivityViewFarms.class);
 					startActivity(i);
 				}
 				if (diditwork == false) {
-					Toast.makeText(getApplicationContext(), "Error! La hacienda no fue creada",
+					Toast.makeText(getApplicationContext(),
+							"Error! La hacienda no fue creada",
 							Toast.LENGTH_LONG).show();
 				}
 			}
