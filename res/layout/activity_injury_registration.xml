@@ -2,10 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-
-	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ 	<RelativeLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
+	    android:gravity="center"
 	    android:orientation="vertical" >
 	
 		<TextView
@@ -17,16 +18,16 @@
 		    android:text="@string/tvActivityInjuryTitle"
 		    android:textAppearance="?android:attr/textAppearanceLarge"
 		    android:textStyle="bold" />
-		
-		<ImageView
-		    android:id="@+id/ivHoofSections"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_gravity="center"
-		    android:padding="5dp"
-		    android:src="@drawable/bighoof3"
-		    android:layout_below="@+id/tvActivityInjuryTitle" />
-		
+	
+	 		<ImageButton
+		    android:id="@+id/ibHoofSections"
+		    android:layout_below="@+id/tvActivityInjuryTitle"
+		    android:layout_centerHorizontal="true"
+		    android:layout_width="400px"
+	        android:layout_height="361px"
+	        android:background="@drawable/cross" />
+	
+	
 		<TextView
 		    android:id="@+id/tvHoof"
 		    android:layout_width="match_parent"
@@ -34,20 +35,10 @@
 		    android:padding="5dp"
 		    android:textStyle="bold"
 		    android:gravity="center"
-		    android:text="Pezuña posterior izquierda"
+		    android:text="PezuÃ±a posterior izquierda"
 		    android:textAppearance="?android:attr/textAppearanceMedium"
-		    android:layout_below="@+id/ivHoofSections"/>
-		
-		<Spinner 
-		    android:id="@+id/spinnerHoofSections"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:entries="@array/hoofSections"
-		    android:prompt="@string/spinnerHoofSections"
-		    android:spinnerMode="dropdown"
-		    android:padding="5dp"
-		    android:layout_below="@+id/tvHoof" />
-			
+		    android:layout_below="@+id/ibHoofSections"/>
+				
 
 		<Button
 		    android:id="@+id/bSelectInjuries"
@@ -55,7 +46,7 @@
 		    android:layout_height="wrap_content"
 		    android:text="@string/bSelectInjuries"
 		    android:padding="5dp"
-		    android:layout_toRightOf="@+id/spinnerHoofSections"
+		    android:layout_toRightOf="@+id/bSectionNumber"
 		    android:layout_below="@+id/tvHoof" />
 		
 		<Button 
@@ -77,6 +68,13 @@
 		    android:layout_below="@+id/bAddNotes"
 		    android:gravity="center"
 		    android:onClick="ok"/>
+		
+		<Button
+		    android:id="@+id/bSectionNumber"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Button"
+		    android:layout_below="@+id/tvHoof" />
 
 			    
 	</RelativeLayout>
