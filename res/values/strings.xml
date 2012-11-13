@@ -89,6 +89,8 @@
         <item>5</item>
     </string-array>
     <string name="tvFarmEditTitle">Editar Hacienda</string>
+    <string name="tvCreateFootbathTitle">Crear Pediluvio</string>
+    <string name="porcentaje">"Porcentaje de \nconcentración: "</string>
          
 
     

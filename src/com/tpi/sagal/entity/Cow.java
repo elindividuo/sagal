@@ -3,17 +3,21 @@ package com.tpi.sagal.entity;
 import java.util.Date;
 
 public class Cow {
-
+	
+	int registration;
 	String name;
 	String breed;
-	String registration;
 	Date birthday;
-	String tatuaje;
+	String tattoo;
 	int earNumber;
 	Cow father;
 	Cow mother;
-	Cow[] grandparentsPaternal;
-	Cow[] grandparentsMaternal;
+	String finalDestination;
+	int locomotionScoring;
+	Hoof hoofFR;
+	Hoof hoofFL;
+	Hoof hoofBR;
+	Hoof hoofBL;
 	String[] vaccination;
 	
 	public String getName() {
@@ -28,10 +32,10 @@ public class Cow {
 	public void setBreed(String breed) {
 		this.breed = breed;
 	}
-	public String getRegistration() {
+	public int getRegistration() {
 		return registration;
 	}
-	public void setRegistration(String registration) {
+	public void setRegistration(int registration) {
 		this.registration = registration;
 	}
 	public Date getBirthday() {
@@ -40,11 +44,11 @@ public class Cow {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	public String getTatuaje() {
-		return tatuaje;
+	public String getTattoo() {
+		return tattoo;
 	}
 	public void setTatuaje(String tatuaje) {
-		this.tatuaje = tatuaje;
+		this.tattoo = tatuaje;
 	}
 	public int getEarNumber() {
 		return earNumber;
@@ -64,18 +68,7 @@ public class Cow {
 	public void setMother(Cow mother) {
 		this.mother = mother;
 	}
-	public Cow[] getGrandparentsPaternal() {
-		return grandparentsPaternal;
-	}
-	public void setGrandparentsPaternal(Cow[] grandparentsPaternal) {
-		this.grandparentsPaternal = grandparentsPaternal;
-	}
-	public Cow[] getGrandparentsMaternal() {
-		return grandparentsMaternal;
-	}
-	public void setGrandparentsMaternal(Cow[] grandparentsMaternal) {
-		this.grandparentsMaternal = grandparentsMaternal;
-	}
+
 	public String[] getVaccination() {
 		return vaccination;
 	}
@@ -94,7 +87,4 @@ public class Cow {
 	public void setLocomotionScoring(int locomotionScoring) {
 		this.locomotionScoring = locomotionScoring;
 	}
-	String finalDestination;
-	int locomotionScoring;
-
 }

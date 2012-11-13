@@ -141,6 +141,42 @@
             </intent-filter>
         </activity>   
         
+         <activity
+            android:name=".ViewFootbaths"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.VIEWFOOTBATHS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>  
+        
+         <activity
+            android:name=".CreateFootbath"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.CREATEFOOTBATH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>  
+        
+         <activity
+            android:name=".FootbathDetails"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.FOOTBATHDETAILS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>  
+        
+         <activity
+            android:name=".EditFootbath"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.EDITFOOTBATH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>  
+        
     </application>
 
 </manifest>

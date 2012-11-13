@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class FarmDaoAdapter {
 
 	private static final String DATABASE_NAME = "sagal.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	private static final String DATABASE_TABLE = "farm";
 	
 	private static final String KEY_ID ="_id";
@@ -20,7 +20,7 @@ public class FarmDaoAdapter {
 	private static final String KEY_OWNERNAME ="farm_owner";
 	private static final String[] columns = {KEY_ID,KEY_NAME,KEY_ADDRESS, KEY_OWNERNAME};
 	
-	private static final String FARM_TABLE_CREATE = "CREATE TABLE " + DATABASE_TABLE +" (" +
+	private static final String FARM_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS " + DATABASE_TABLE +" (" +
 			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
 			KEY_NAME + " TEXT NOT NULL," +
 			KEY_ADDRESS + " TEXT NOT NULL," +
@@ -47,7 +47,19 @@ public class FarmDaoAdapter {
 		public void onUpgrade(SQLiteDatabase db, int arg1, int arg2) {
 			db.execSQL("DROP TABLE IF EXISTS "+ DATABASE_TABLE);
 			onCreate(db);
-		}	
+		}
+		
+		@Override
+		public void onOpen(SQLiteDatabase _db) {
+		    _db.execSQL(FARM_TABLE_CREATE);
+		}
+		
+		@Override
+		public void onDowngrade(SQLiteDatabase db, int oldVersion,int newVersion) {
+			db.execSQL("DROP TABLE IF EXISTS "+ DATABASE_TABLE);
+			onCreate(db);
+		}
+		
 	}
 	
 	public FarmDaoAdapter(Context c){

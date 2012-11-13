@@ -9,9 +9,13 @@ public class Footbath {
 	double height;
 	String medicineType;
 	float percentage;
+	Farm farm;
 	
-
-	public Footbath(int id, String name, double width, double deep, double height, String medicineType, float percentage) {
+	public Footbath(){
+		
+	}
+	
+	public Footbath(int id, String name, double width, double deep, double height, String medicineType, float percentage, Farm farm) {
 		this.id = id;
 		this.name = name;
 		this.width = width;
@@ -19,6 +23,13 @@ public class Footbath {
 		this.height = height;
 		this.medicineType = medicineType;
 		this.percentage = percentage;
+		this.farm= farm;
+	}
+	public Farm getFarm() {
+		return farm;
+	}
+	public void setFarm(Farm farm) {
+		this.farm = farm;
 	}
 	public float getPercentage() {
 		return percentage;

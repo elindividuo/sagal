@@ -11,18 +11,17 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
-import com.tpi.sagal.control.ManageFarm;
 import com.tpi.sagal.control.ManageFootbath;
-import com.tpi.sagal.entity.Farm;
 import com.tpi.sagal.entity.Footbath;
 
 public class ViewFootbaths extends Activity implements View.OnClickListener{
 
 	ListView listViewFootbaths;
-	Button createFootbath, editFootbath;
-	ArrayList<Footbath> footbaths = new ArrayList<Footbath>();
+	Button createFootbath;
+	ArrayList<Footbath> footbaths;
+	ArrayList<String> fbNames;
 	ManageFootbath mft;
+	int id;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +31,20 @@ public class ViewFootbaths extends Activity implements View.OnClickListener{
 	}
 	
 	private void initialize(){
+		
 		createFootbath = (Button) findViewById(R.id.bCreateFootbath);
-		editFootbath = (Button) findViewById(R.id.bEditFootbath);
 		listViewFootbaths = (ListView) findViewById(R.id.lvFoothbath);
 		
-		ArrayList<String> fbNames = new ArrayList<String>();
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			id = extras.getInt("FARM_ID");
+		}
+		
+		fbNames = new ArrayList<String>();
+		footbaths = new ArrayList<Footbath>();
+		
 		mft = new ManageFootbath(this);
-		footbaths = mft.readAllFootbath();
+		footbaths = mft.readAllFootbathFromFarm(id);
 		
 		for(Footbath f : footbaths){
 			fbNames.add(f.getName());
@@ -47,7 +53,7 @@ public class ViewFootbaths extends Activity implements View.OnClickListener{
 		listViewFootbaths.setAdapter(new ArrayAdapter<String>(this,
 						android.R.layout.simple_list_item_2,
 						android.R.id.text1, fbNames));
-		createFootbath.setOnClickListener(this);
+		
 
 		listViewFootbaths.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -56,23 +62,23 @@ public class ViewFootbaths extends Activity implements View.OnClickListener{
 				
 				footbaths = mft.readAllFootbath();
 				int id_footbath = footbaths.get(position).getId();
-				Intent footbathDetails = new Intent("com.tpi.sagal.FOOTBATHDETAILS"); //No existe aun
-				footbathDetails.putExtra("FOOTBATH_NAME",id_footbath);
+				Intent footbathDetails = new Intent(ViewFootbaths.this,FootbathDetails.class);
+				footbathDetails.putExtra("FOOTBATH_ID",id_footbath);
 				startActivity(footbathDetails);
 			}
 		});
+		
+		
+		createFootbath.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.bCreateFootbath:
-			Intent i = new Intent("com.tpi.sagal.CREATEFOOTBATH"); //No existe aun
+			Intent i = new Intent(ViewFootbaths.this,CreateFootbath.class);
+			i.putExtra("FARM_ID", id);
 			startActivity(i);
-			break;
-		case R.id.bEditFootbath:
-			
 			break;
 		}
 	}

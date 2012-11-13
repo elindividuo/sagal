@@ -82,14 +82,12 @@ public class InjuryRegistration extends Activity implements View.OnTouchListener
 		addNotes.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				addNotes(v);
 			}
 		});
 		ok.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Toast.makeText(getApplicationContext(),
 						"¡Listo! Enfermedades registradas.", Toast.LENGTH_LONG)
 					    .show();
@@ -125,7 +123,6 @@ public class InjuryRegistration extends Activity implements View.OnTouchListener
 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub
 				dialog.dismiss();
 			}
 		});

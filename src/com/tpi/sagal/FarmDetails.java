@@ -108,7 +108,9 @@ public class FarmDetails extends Activity implements View.OnClickListener {
 
 			break;
 		case R.id.bFoothbath:
-
+			i = new Intent(FarmDetails.this,ViewFootbaths.class);
+			i.putExtra("FARM_ID", id);
+			startActivity(i);
 			break;
 		case R.id.bStatistics:
 

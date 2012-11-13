@@ -1,34 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical" >
 
     <TextView
         android:id="@+id/tvViewFootbathTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.01"
         android:gravity="center_horizontal"
         android:text="Pediluvios de la Hacienda"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ListView
         android:id="@+id/lvFoothbath"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="0dp"
+        android:layout_weight="2.00" >
     </ListView>
     <Button
         android:id="@+id/bCreateFootbath"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Crear nuevo pediluvio" />
-
-    <Button
-        android:id="@+id/bEditFootbath"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Editar pediluvio existente" />
+        android:layout_gravity="center_vertical"
+        android:text="Crear pediluvio" />
 
 </LinearLayout>

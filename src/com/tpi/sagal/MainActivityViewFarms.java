@@ -18,6 +18,8 @@ import com.tpi.sagal.entity.Farm;
 
 public class MainActivityViewFarms extends Activity implements View.OnClickListener {
 
+	ArrayList<Farm> farms;
+	ArrayList<String> farmNames;
 	ListView listViewFarms;
 	Button createFarm;
 	Intent i;
@@ -34,8 +36,10 @@ public class MainActivityViewFarms extends Activity implements View.OnClickListe
 	public void initialize() {
 		createFarm = (Button) findViewById(R.id.bCreateFarm_MainView);
 		listViewFarms = (ListView) findViewById(R.id.lvFarms);
-		ArrayList<Farm> farms = new ArrayList<Farm>();
-		ArrayList<String> farmNames = new ArrayList<String>();
+		
+		farms = new ArrayList<Farm>();
+		farmNames = new ArrayList<String>();
+		
 		mf = new ManageFarm(this);
 		farms = mf.readAllFarm();
 		
