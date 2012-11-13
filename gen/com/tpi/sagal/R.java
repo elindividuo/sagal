@@ -37,12 +37,14 @@ public final class R {
         public static final int bCancelEditCow=0x7f080045;
         public static final int bCancelFarmEdit=0x7f08004f;
         public static final int bCancelLocScoring=0x7f080066;
-        public static final int bCreateCow_CreateCowView=0x7f080076;
+        public static final int bCreateCow_CreateCowView=0x7f080077;
         public static final int bCreateFarm_MainView=0x7f080069;
+        public static final int bCreateFootbath=0x7f08007a;
         public static final int bDeleteCow=0x7f08001f;
         public static final int bDeleteFarm=0x7f080056;
         public static final int bEditCowDetails=0x7f08001e;
         public static final int bEditFarm=0x7f080055;
+        public static final int bEditFootbath=0x7f08007b;
         public static final int bFoothbath=0x7f080058;
         public static final int bHoofInjury=0x7f08001d;
         public static final int bLocomotionScoring=0x7f08001c;
@@ -85,9 +87,11 @@ public final class R {
         public static final int ibRearLeftHoof=0x7f080071;
         public static final int ibRearRightHoof=0x7f080072;
         public static final int imCowHead=0x7f080073;
-        public static final int lvCattle=0x7f080075;
+        public static final int lvCattle=0x7f080076;
         public static final int lvFarms=0x7f080068;
-        public static final int menu_settings=0x7f080077;
+        public static final int lvFoothbath=0x7f080079;
+        public static final int menu_settings=0x7f08007c;
+        public static final int mySimpleXYPlot=0x7f080074;
         public static final int spinnerLocScoring=0x7f080064;
         public static final int tableCattleDetails=0x7f08000a;
         public static final int tableCreateCow=0x7f080020;
@@ -144,8 +148,9 @@ public final class R {
         public static final int tvLocomotionScoringTitle=0x7f080061;
         public static final int tvRearLeft=0x7f08006c;
         public static final int tvRegimens=0x7f080006;
-        public static final int tvViewCattleTitle=0x7f080074;
+        public static final int tvViewCattleTitle=0x7f080075;
         public static final int tvViewFarmsTitle=0x7f080067;
+        public static final int tvViewFootbathTitle=0x7f080078;
     }
     public static final class layout {
         public static final int activity_add_notes=0x7f030000;
@@ -159,9 +164,11 @@ public final class R {
         public static final int activity_locomotion_scoring=0x7f030008;
         public static final int activity_main_activity_view_farms=0x7f030009;
         public static final int activity_select_hoof=0x7f03000a;
-        public static final int activity_view_cattle=0x7f03000b;
-        public static final int hoof_sections_resources=0x7f03000c;
-        public static final int splash=0x7f03000d;
+        public static final int activity_show_statistics=0x7f03000b;
+        public static final int activity_view_cattle=0x7f03000c;
+        public static final int activity_view_footbaths=0x7f03000d;
+        public static final int hoof_sections_resources=0x7f03000e;
+        public static final int splash=0x7f03000f;
     }
     public static final class menu {
         public static final int activity_farm_details=0x7f070000;

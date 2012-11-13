@@ -130,6 +130,15 @@
                 <action android:name="com.tpi.sagal.EDITFARM" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        
+         <activity
+            android:name=".ShowStatistics"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.SHOWSTATISTICS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>   
         
     </application>
