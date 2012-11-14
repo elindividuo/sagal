@@ -95,5 +95,4 @@ public class EditFootbath extends Activity implements View.OnClickListener{
 		
 		}
 	}
-
 }

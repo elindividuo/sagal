@@ -18,9 +18,9 @@ private ManageFarm mf;
 		mf = new ManageFarm(context);
 	}
 	
-	public void createFootbath(String name, double width, double deep, double height, String medicine, float percentage, int farmId){
+	public void createFootbath(String name, double width, double deep, double height, String medicine, double quantity, int farmId){
 		footbathDao.open();
-		footbathDao.createFootbath(name, width, deep, height, medicine, percentage, farmId);
+		footbathDao.createFootbath(name, width, deep, height, medicine, quantity, farmId);
 		footbathDao.close();
 	}
 	
@@ -44,11 +44,11 @@ private ManageFarm mf;
                double deep = cursor.getDouble(cursor.getColumnIndex("footbath_deep"));
                double height = cursor.getDouble(cursor.getColumnIndex("footbath_height"));
                String medicine = cursor.getString(cursor.getColumnIndex("footbath_medicine_type"));
-               float percentage = cursor.getFloat(cursor.getColumnIndex("footbath_percentage"));
+               double quantity = cursor.getDouble(cursor.getColumnIndex("footbath_medicine_quantity"));
                int farm_id = cursor.getInt(cursor.getColumnIndex("farm_id"));
                Farm farm = mf.searchFarm(farm_id);
                
-               Footbaths.add( new Footbath(id, name, width, deep, height, medicine, percentage, farm));             
+               Footbaths.add( new Footbath(id, name, width, deep, height, medicine, quantity, farm));             
 			} while ( cursor.moveToNext());
 
        }
@@ -70,11 +70,11 @@ private ManageFarm mf;
                double deep = cursor.getDouble(cursor.getColumnIndex("footbath_deep"));
                double height = cursor.getDouble(cursor.getColumnIndex("footbath_height"));
                String medicine = cursor.getString(cursor.getColumnIndex("footbath_medicine_type"));
-               float percentage = cursor.getFloat(cursor.getColumnIndex("footbath_percentage"));
+               double quantity = cursor.getDouble(cursor.getColumnIndex("footbath_medicine_quantity"));
                int farm_id = cursor.getInt(cursor.getColumnIndex("farm_id"));
                Farm farm = mf.searchFarm(farm_id);
                
-               Footbaths.add( new Footbath(fid, name, width, deep, height, medicine, percentage, farm));             
+               Footbaths.add( new Footbath(fid, name, width, deep, height, medicine, quantity, farm));             
 			} while ( cursor.moveToNext());
 
        }
@@ -93,12 +93,12 @@ private ManageFarm mf;
             double deep = cursor.getDouble(cursor.getColumnIndex("footbath_deep"));
             double height = cursor.getDouble(cursor.getColumnIndex("footbath_height"));
             String medicine = cursor.getString(cursor.getColumnIndex("footbath_medicine_type"));
-            float percentage = cursor.getFloat(cursor.getColumnIndex("footbath_percentage"));
+            double quantity = cursor.getDouble(cursor.getColumnIndex("footbath_medicine_quantity"));
 	        int farm_id = cursor.getInt(cursor.getColumnIndex("farm_id"));
             cursor.close();
 	        footbathDao.close();
             Farm farm = mf.searchFarm(farm_id);          
-	        return new Footbath(fid, name, width, deep, height, medicine, percentage,farm);
+	        return new Footbath(fid, name, width, deep, height, medicine, quantity,farm);
 		}
 		return null;
 	}
@@ -109,9 +109,9 @@ private ManageFarm mf;
 		footbathDao.close();
 	}
 	
-	public void updateFootbath(int id, String name, double width, double deep, double height, String medicine, float percentage){
+	public void updateFootbath(int id, String name, double width, double deep, double height, String medicine, double quantity){
 		footbathDao.open();
-		footbathDao.updateFootbath(id, name, width, deep, height, medicine, percentage);
+		footbathDao.updateFootbath(id, name, width, deep, height, medicine, quantity);
 		footbathDao.close();
 	}
 	

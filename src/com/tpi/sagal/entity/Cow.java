@@ -3,22 +3,41 @@ package com.tpi.sagal.entity;
 import java.util.Date;
 
 public class Cow {
-	
-	int registration;
+
+	int id;
 	String name;
 	String breed;
 	Date birthday;
 	String tattoo;
-	int earNumber;
 	Cow father;
 	Cow mother;
 	String finalDestination;
+	String problems;
 	int locomotionScoring;
-	Hoof hoofFR;
-	Hoof hoofFL;
-	Hoof hoofBR;
-	Hoof hoofBL;
 	String[] vaccination;
+	Farm farm;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getProblems() {
+		return problems;
+	}
+	public void setProblems(String problems) {
+		this.problems = problems;
+	}
+	public Farm getFarm() {
+		return farm;
+	}
+	public void setFarm(Farm farm) {
+		this.farm = farm;
+	}
+	public void setTattoo(String tattoo) {
+		this.tattoo = tattoo;
+	}
 	
 	public String getName() {
 		return name;
@@ -32,12 +51,7 @@ public class Cow {
 	public void setBreed(String breed) {
 		this.breed = breed;
 	}
-	public int getRegistration() {
-		return registration;
-	}
-	public void setRegistration(int registration) {
-		this.registration = registration;
-	}
+
 	public Date getBirthday() {
 		return birthday;
 	}
@@ -50,12 +64,7 @@ public class Cow {
 	public void setTatuaje(String tatuaje) {
 		this.tattoo = tatuaje;
 	}
-	public int getEarNumber() {
-		return earNumber;
-	}
-	public void setEarNumber(int earNumber) {
-		this.earNumber = earNumber;
-	}
+
 	public Cow getFather() {
 		return father;
 	}

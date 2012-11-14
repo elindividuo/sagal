@@ -12,6 +12,24 @@
         <TableRow android:id="@+id/TableRow01" >
 
             <TextView
+                android:id="@+id/tvCowId_CreateView"
+                android:gravity="center"
+                android:text="Registro"
+                android:textStyle="bold"
+                android:width="100dp" />
+
+            <EditText
+                android:id="@+id/etCowId"
+                android:hint="Registro"
+                android:inputType="number"
+                android:width="220dp" />
+
+            <requestFocus />
+        </TableRow>
+
+        <TableRow android:id="@+id/TableRow02" >
+
+            <TextView
                 android:id="@+id/tvCowName_CreateView"
                 android:gravity="center"
                 android:text="@string/tvCowName"
@@ -20,44 +38,12 @@
 
             <EditText
                 android:id="@+id/etCowName"
-                android:hint="@string/etCowName"
                 android:capitalize="words"
-                android:width="220dp" />
-        </TableRow>
-
-        <TableRow android:id="@+id/TableRow02" >
-
-            <TextView
-                android:id="@+id/tvCowNumber_CreateView"
-                android:gravity="center"
-                android:text="@string/tvCowNumber"
-                android:textStyle="bold"
-                android:width="100dp" />
-
-            <EditText
-                android:id="@+id/etCowNumber"
-                android:hint="@string/etCowNumber"
-                android:inputType="number"
+                android:hint="@string/etCowName"
                 android:width="220dp" />
         </TableRow>
 
         <TableRow android:id="@+id/TableRow03" >
-
-            <TextView
-                android:id="@+id/tvCowOwner_CreateView"
-                android:gravity="center"
-                android:text="@string/tvCowOwner"
-                android:textStyle="bold"
-                android:width="100dp" />
-
-            <EditText
-                android:id="@+id/etCowOwner"
-                android:hint="@string/etCowOwner"
-                android:capitalize="words"
-                android:width="220dp" />
-        </TableRow>
-
-        <TableRow android:id="@+id/TableRow04" >
 
             <TextView
                 android:id="@+id/tvCowBreed_CreateView"
@@ -68,8 +54,24 @@
 
             <EditText
                 android:id="@+id/etCowBreed"
-                android:hint="@string/etCowBreed"
                 android:capitalize="words"
+                android:hint="@string/etCowBreed"
+                android:width="220dp" />
+        </TableRow>
+
+        <TableRow android:id="@+id/TableRow04" >
+
+            <TextView
+                android:id="@+id/tvCowTattooCreate"
+                android:gravity="center"
+                android:text="Tatuaje"
+                android:textStyle="bold"
+                android:width="100dp" />
+
+            <EditText
+                android:id="@+id/etCowTattoo"
+                android:capitalize="words"
+                android:hint="Tautaje"
                 android:width="220dp" />
         </TableRow>
 
@@ -84,10 +86,13 @@
                 android:width="100dp" />
 
             <EditText
-                android:id="@+id/etCowBirthday"
-                android:hint="@string/etCowBirthday"
-                android:inputType="text"
-                android:width="220dp" />
+                android:id="@+id/etCowDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="dd/mm/aaaa"
+                android:inputType="date" >
+            </EditText>
         </TableRow>
 
         <TableRow android:id="@+id/TableRow06" >

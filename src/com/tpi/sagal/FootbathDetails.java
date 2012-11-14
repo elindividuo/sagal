@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class FootbathDetails extends Activity implements View.OnClickListener{
 
-	TextView fbName, fbWidth, fbDeep, fbHeight, fbMedicine, fbPercentage;
+	TextView fbName, fbWidth, fbDeep, fbHeight, fbMedicine, fbQuantity;
 	Button deleteFootbath, editFootbath, setMedicine; 
 	ManageFootbath mft;
 	int id,farmid;
@@ -34,7 +34,7 @@ public class FootbathDetails extends Activity implements View.OnClickListener{
 		fbDeep = (TextView) findViewById(R.id.tvFootbathDeep);
 		fbHeight = (TextView) findViewById(R.id.tvFootbathHeight);
 		fbMedicine = (TextView) findViewById(R.id.tvFootbathMedicine);
-		fbPercentage = (TextView) findViewById(R.id.tvFootbathPercentage);
+		fbQuantity = (TextView) findViewById(R.id.tvFootbathQuantity);
 		
 		editFootbath = (Button) findViewById(R.id.bEditFB);
 		deleteFootbath = (Button) findViewById(R.id.bDeleteFB);
@@ -59,7 +59,7 @@ public class FootbathDetails extends Activity implements View.OnClickListener{
 		fbDeep.setText(""+fb.getDeep());
 		fbHeight.setText(""+fb.getHeight());
 		fbMedicine.setText(fb.getMedicineType());
-		fbPercentage.setText(""+fb.getPercentage());
+		fbQuantity.setText(""+fb.getQuantity());
 		farmid=fb.getFarm().getId();
 	}
 	

@@ -8,21 +8,21 @@ public class Footbath {
 	double deep;
 	double height;
 	String medicineType;
-	float percentage;
+	double medicineQuantity;
 	Farm farm;
 	
 	public Footbath(){
 		
 	}
 	
-	public Footbath(int id, String name, double width, double deep, double height, String medicineType, float percentage, Farm farm) {
+	public Footbath(int id, String name, double width, double deep, double height, String medicineType, double quantity, Farm farm) {
 		this.id = id;
 		this.name = name;
 		this.width = width;
 		this.deep = deep;
 		this.height = height;
 		this.medicineType = medicineType;
-		this.percentage = percentage;
+		this.medicineQuantity = quantity;
 		this.farm= farm;
 	}
 	public Farm getFarm() {
@@ -31,11 +31,11 @@ public class Footbath {
 	public void setFarm(Farm farm) {
 		this.farm = farm;
 	}
-	public float getPercentage() {
-		return percentage;
+	public double getQuantity() {
+		return medicineQuantity;
 	}
-	public void setPercentage(float percentage) {
-		this.percentage = percentage;
+	public void setQuantity(double quantity) {
+		this.medicineQuantity = quantity;
 	}
 	public double getWidth() {
 		return width;

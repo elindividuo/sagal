@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class FootbathDaoAdapter {
 	
 	private static final String DATABASE_NAME = "sagal.db";
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 1;
 	private static final String DATABASE_TABLE = "footbath";
 	private static final String DATABASE_FOREIGN_TABLE = "farm";
 	
@@ -20,9 +20,9 @@ public class FootbathDaoAdapter {
 	private static final String KEY_DEEP ="footbath_deep";
 	private static final String KEY_HEIGHT ="footbath_height";
 	private static final String KEY_MEDICINE ="footbath_medicine_type";
-	private static final String KEY_PERCENTAGE ="footbath_percentage";
+	private static final String KEY_QUANTITY ="footbath_medicine_quantity";
 	private static final String KEY_FARM ="farm_id";
-	private static final String[] columns = {KEY_ID,KEY_NAME,KEY_WIDTH, KEY_DEEP, KEY_HEIGHT, KEY_MEDICINE, KEY_PERCENTAGE,KEY_FARM};
+	private static final String[] columns = {KEY_ID,KEY_NAME,KEY_WIDTH, KEY_DEEP, KEY_HEIGHT, KEY_MEDICINE, KEY_QUANTITY,KEY_FARM};
 	
 	private static final String FOOTBATH_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS " + DATABASE_TABLE +" (" +
 			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -31,7 +31,7 @@ public class FootbathDaoAdapter {
 			KEY_DEEP + " DOUBLE NOT NULL," +
 			KEY_HEIGHT + " DOUBLE NOT NULL," +
 			KEY_MEDICINE + " TEXT," +
-			KEY_PERCENTAGE + " FLOAT," +
+			KEY_QUANTITY + " DOUBLE," +
 			KEY_FARM + " INTEGER NOT NULL,"+
 			" FOREIGN KEY ("+KEY_FARM+") REFERENCES "+DATABASE_FOREIGN_TABLE+" (_id));";
 
@@ -86,14 +86,14 @@ public class FootbathDaoAdapter {
 		ourHelper.close();
 	}
 		
-	public long createFootbath(String name, double width, double deep, double height, String medicine, float percentage, int farmId) throws SQLException{
+	public long createFootbath(String name, double width, double deep, double height, String medicine, double quantity, int farmId) throws SQLException{
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, name);
 		cv.put(KEY_WIDTH, width);
 		cv.put(KEY_DEEP, deep);
 		cv.put(KEY_HEIGHT, height);
 		cv.put(KEY_MEDICINE, medicine);
-		cv.put(KEY_PERCENTAGE, percentage);
+		cv.put(KEY_QUANTITY, quantity);
 		cv.put(KEY_FARM, farmId);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
@@ -120,14 +120,14 @@ public class FootbathDaoAdapter {
 		ourDatabase.delete(DATABASE_TABLE, KEY_ID + "=" + id,null);
 	}
 	
-	public void updateFootbath(int id, String name, double width, double deep, double height, String medicine, float percentage) throws SQLException{
+	public void updateFootbath(int id, String name, double width, double deep, double height, String medicine, double quantity) throws SQLException{
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, name);
 		cv.put(KEY_WIDTH, width);
 		cv.put(KEY_DEEP, deep);
 		cv.put(KEY_HEIGHT, height);
 		cv.put(KEY_MEDICINE, medicine);
-		cv.put(KEY_PERCENTAGE, percentage);
+		cv.put(KEY_QUANTITY, quantity);
 		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
 	}
 	

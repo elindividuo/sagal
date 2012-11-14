@@ -21,7 +21,6 @@ public class ManageFarm {
 		farmDao.close();
 	}
 	
-	
 	public ArrayList<Farm> readAllFarm(){
 		farmDao.open();
 		Cursor cursor = farmDao.readFarm();

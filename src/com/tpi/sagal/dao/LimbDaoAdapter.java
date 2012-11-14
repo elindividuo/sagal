@@ -7,39 +7,34 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class FarmDaoAdapter {
-
+public class LimbDaoAdapter {
 	private static final String DATABASE_NAME = "sagal.db";
 	private static final int DATABASE_VERSION = 1;
-	private static final String DATABASE_TABLE = "farm";
+	private static final String DATABASE_TABLE = "limb";
 	
-	private static final String KEY_ID ="_id";
-	private static final String KEY_NAME ="farm_name";
-	private static final String KEY_ADDRESS ="farm_address";
-	private static final String KEY_OWNERNAME ="farm_owner";
-	private static final String[] columns = {KEY_ID,KEY_NAME,KEY_ADDRESS, KEY_OWNERNAME};
+	private static final String KEY_ID = "_id";
+	private static final String KEY_NAME = "limb_name";
+
+	private static final String[] columns = { KEY_ID, KEY_NAME};
 	
-	private static final String FARM_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS " + DATABASE_TABLE +" (" +
-			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-			KEY_NAME + " TEXT NOT NULL," +
-			KEY_ADDRESS + " TEXT NOT NULL," +
-			KEY_OWNERNAME + " TEXT NOT NULL);";
+	private static final String VACCINE_TABLE_CREATE ="CREATE TABLE IF NOT EXISTS "+DATABASE_TABLE+" ("+
+			KEY_ID + " INTEGER NOT NULL AUTOINCREMENT"+
+			KEY_NAME + " TEXT NOT NULL);";
 	
-	
-	private FarmDBHelper ourHelper;
+	private LimbDBHelper ourHelper;
 	private final Context ourContext;
 	private SQLiteDatabase ourDatabase;
 	
 	
-	private static class FarmDBHelper extends SQLiteOpenHelper{
+	private static class LimbDBHelper extends SQLiteOpenHelper{
 
-		public FarmDBHelper(Context context) {
+		public LimbDBHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		}
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-			db.execSQL(FARM_TABLE_CREATE);
+			db.execSQL(VACCINE_TABLE_CREATE);
 		}
 
 		@Override
@@ -50,7 +45,7 @@ public class FarmDaoAdapter {
 		
 		@Override
 		public void onOpen(SQLiteDatabase _db) {
-		    _db.execSQL(FARM_TABLE_CREATE);
+		    _db.execSQL(VACCINE_TABLE_CREATE);
 		}
 		
 		@Override
@@ -61,12 +56,12 @@ public class FarmDaoAdapter {
 		
 	}
 	
-	public FarmDaoAdapter(Context c){
+	public LimbDaoAdapter(Context c){
 		ourContext = c; 
 	}
 	
-	public FarmDaoAdapter open() throws SQLException{
-		ourHelper = new FarmDBHelper(ourContext);
+	public LimbDaoAdapter open() throws SQLException{
+		ourHelper = new LimbDBHelper(ourContext);
 		ourDatabase = ourHelper.getWritableDatabase();
 		return this;
 	}
@@ -75,31 +70,27 @@ public class FarmDaoAdapter {
 		ourHelper.close();
 	}
 	
-	public long createFarm(String name, String address, String ownerName) throws SQLException{
+	public long createLimb(String name) throws SQLException{
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, name);
-		cv.put(KEY_ADDRESS, address);
-		cv.put(KEY_OWNERNAME, ownerName);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 
-	public Cursor readFarm() throws SQLException{
+	public Cursor readLimb() throws SQLException{
 		return ourDatabase.query(DATABASE_TABLE, columns, null,null,null,null,null);
 	}
 	
-	public Cursor searchFarm(int id) throws SQLException{
+	public Cursor searchLimb(int id) throws SQLException{
 		return ourDatabase.query(DATABASE_TABLE, columns, KEY_ID + "=" + id,null,null,null,null);
 	}
 	
-	public void deleteFarm(int id) throws SQLException{
+	public void deleteLimb(int id) throws SQLException{
 		ourDatabase.delete(DATABASE_TABLE, KEY_ID + "=" + id,null);
 	}
 	
-	public void updateFarm(int id, String name, String address, String ownerName) throws SQLException{
+	public void updateLimb(int id, String name) throws SQLException{
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, name);
-		cv.put(KEY_ADDRESS, address);
-		cv.put(KEY_OWNERNAME, ownerName);
 		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
 	}
 	

@@ -41,7 +41,7 @@ public class Farm {
 	public String getAdress() {
 		return address;
 	}
-	public void setAdress(String adress) {
+	public void setAdress(String address) {
 		this.address = address;
 	}
 	public String getOwnerName() {
