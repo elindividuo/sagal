@@ -20,6 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name="org.achartengine.GraphicalActivity"></activity>
+        
         <activity
             android:name=".MainActivityViewFarms"
             android:label="@string/title_activity_main_activity_view_farms" >

@@ -2,6 +2,7 @@ package com.tpi.sagal;
 
 import com.tpi.sagal.control.ManageFarm;
 import com.tpi.sagal.entity.Farm;
+import com.tpi.sagal.graphs.LocomotionScoringGraph;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -113,7 +114,9 @@ public class FarmDetails extends Activity implements View.OnClickListener {
 			startActivity(i);
 			break;
 		case R.id.bStatistics:
-
+			LocomotionScoringGraph bar = new LocomotionScoringGraph();
+			i = bar.getIntent(this);
+			startActivity(i);
 			break;
 		case R.id.bViewCattle:
 			i = new Intent("com.tpi.sagal.VIEWCATTLE");
