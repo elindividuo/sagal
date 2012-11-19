@@ -1,82 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
- 	<RelativeLayout
-	    xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:gravity="center"
-	    android:orientation="vertical" >
-	
-		<TextView
-		    android:id="@+id/tvActivityInjuryTitle"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:gravity="center"
-		    android:padding="5dp"
-		    android:text="@string/tvActivityInjuryTitle"
-		    android:textAppearance="?android:attr/textAppearanceLarge"
-		    android:textStyle="bold" />
-	
-	 		<ImageButton
-		    android:id="@+id/ibHoofSections"
-		    android:layout_below="@+id/tvActivityInjuryTitle"
-		    android:layout_centerHorizontal="true"
-		    android:layout_width="400px"
-	        android:layout_height="361px"
-	        android:background="@drawable/cross" />
-	
-	
-		<TextView
-		    android:id="@+id/tvHoof"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:padding="5dp"
-		    android:textStyle="bold"
-		    android:gravity="center"
-		    android:text="PezuÃ±a posterior izquierda"
-		    android:textAppearance="?android:attr/textAppearanceMedium"
-		    android:layout_below="@+id/ibHoofSections"/>
-				
+    android:layout_height="wrap_content" >
 
-		<Button
-		    android:id="@+id/bSelectInjuries"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:text="@string/bSelectInjuries"
-		    android:padding="5dp"
-		    android:layout_toRightOf="@+id/bSectionNumber"
-		    android:layout_below="@+id/tvHoof" />
-		
-		<Button 
-		    android:id="@+id/bAddNotes"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:text="@string/bAddNotes"
-		    android:padding="5dp"
-		    android:layout_below="@+id/bSelectInjuries"
-		    android:gravity="center"
-		    android:onClick="addNotes" />
-		
-		<Button 
-		    android:id="@+id/bOkInjuryRegistration"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:text="@string/bOK"
-		    android:padding="5dp"
-		    android:layout_below="@+id/bAddNotes"
-		    android:gravity="center"
-		    android:onClick="ok"/>
-		
-		<Button
-		    android:id="@+id/bSectionNumber"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="Button"
-		    android:layout_below="@+id/tvHoof" />
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
 
-			    
-	</RelativeLayout>
-	
+        <TextView
+            android:id="@+id/tvActivityInjuryTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/tvActivityInjuryTitle"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:id="@+id/lHoofSections"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvActivityInjuryTitle"
+            android:layout_centerHorizontal="true" >
+
+            <ImageView
+                android:id="@+id/zone0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g0" />
+
+            <ImageView
+                android:id="@+id/zone1L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g1l" />
+
+            <ImageView
+                android:id="@+id/zone1R"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g1r" />
+
+            <ImageView
+                android:id="@+id/zone2R"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g2r" />
+
+            <ImageView
+                android:id="@+id/zone2L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g2l" />
+
+            <ImageView
+                android:id="@+id/zone3R"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g3r" />
+
+            <ImageView
+                android:id="@+id/zone3L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g3l" />
+
+            <ImageView
+                android:id="@+id/zone4R"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g4r" />
+
+            <ImageView
+                android:id="@+id/zone4L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g4l" />
+
+            <ImageView
+                android:id="@+id/zone5R"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g5r" />
+
+            <ImageView
+                android:id="@+id/zone5L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g5l" />
+
+            <ImageView
+                android:id="@+id/zone6R"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g6r" />
+
+            <ImageView
+                android:id="@+id/zone6L"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g6l" />
+
+            <ImageView
+                android:id="@+id/zone10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/g10" />
+
+            <ImageButton
+                android:id="@+id/ibHoofSections"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/hoof_shape" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvHoof"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lHoofSections"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Pezuña posterior izquierda"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bSelectInjuries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvHoof"
+            android:layout_toRightOf="@+id/bSectionNumber"
+            android:padding="5dp"
+            android:text="@string/bSelectInjuries" />
+
+        <Button
+            android:id="@+id/bAddNotes"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bSelectInjuries"
+            android:gravity="center"
+            android:onClick="addNotes"
+            android:padding="5dp"
+            android:text="@string/bAddNotes" />
+
+        <Button
+            android:id="@+id/bOkInjuryRegistration"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bAddNotes"
+            android:gravity="center"
+            android:onClick="ok"
+            android:padding="5dp"
+            android:text="@string/bOK" />
+
+        <Button
+            android:id="@+id/bSectionNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvHoof"
+            android:text="Button" />
+    </RelativeLayout>
+
 </ScrollView>

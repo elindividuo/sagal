@@ -2,6 +2,7 @@ package com.tpi.sagal;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,22 +31,33 @@ public class InjuryRegistration extends Activity implements View.OnTouchListener
 	Button selectInjuries, addNotes, ok;
 	ImageButton hoof;
 	TextView sectionNumber;
+	ImageView hoofZone;
 	
-	int[][] matrizXY = {{184,25,175,238,214,238,209,25},//Zona 0
-            {184,25,132,13,78,70,99,82,156,38,174,112},//Zona 1
-            {209,26,217,113,230,32,297,83,316,69,255,13},
-            {6,171,78,70,99,82,28,175},//Zona 2
-            {297,83,316,69,389,175,365,170},
-            {6,171,28,175,48,190,50,260,5,277},// Zona 3
-            {349,189,365,170,389,175,390,282,342,261},
-            {50,260,48,190,110,136,174,183,175,238},//Zona 4
-            {214,237,217,185,288,136,349,189,342,260},
-            {28,175,99,82,156,38,174,113,174,182,109,136,48,190},//Zona 5
-            {217,186,217,113,230,32,297,83,365,170,349,189,288,136},
-            {5,277,50,260,175,238,176,308,56,334},//Zona 6
-            {219,309,214,237,342,261,389,282,340,335},
-            {56,334,176,308,175,238,214,237,219,309,340,335} //Zona 10
-	};
+	int[][] matrizXY = {{184,25,174,112,175,238,214,237,217,185,217,113,209,25},//Zona 0
+			            {184,25,164,9,132,13,78,70,99,82,156,38,174,112},//Zona 1 LEFT
+			            {209,26,217,113,230,32,297,83,316,69,255,13,220,11},//Zona 1 RIGHT
+			            {6,171,78,70,99,82,28,175},//Zona 2 LEFT
+			            {297,83,316,69,389,175,365,170},//Zona 1 RIGHT
+			            {6,171,28,175,48,190,50,260,5,277},//Zona 3 LEFT
+			            {349,189,365,170,389,175,390,282,342,261},//Zona 3 RIGHT
+			            {50,260,48,190,110,136,174,183,175,238},//Zona 4 LEFT
+			            {214,237,217,185,288,136,349,189,342,260},//Zona 4 RIGHT
+			            {28,175,99,82,156,38,174,113,174,182,109,136,48,190},//Zona 5 LEFT
+			            {217,186,217,113,230,32,297,83,365,170,349,189,288,136},//Zona 5 RIGHT
+			            {5,277,50,260,175,238,176,308,56,334},//Zona 6 LEFT
+			            {219,309,214,237,342,261,389,282,340,335},//Zona 6 RIGHT
+			            {56,334,176,308,175,238,214,237,219,309,340,335} //Zona 10
+						};
+	
+	
+	// El orden de los elementos de los arreglos es igual que el de la matrizXY:
+	// 0, 1L, 1R, 2L, 2R, 3L, 3R, 4L, 4R, 5L, 5R, 6L, 6R, 10
+	boolean[] lesiones = {false, false, false, true, false, false, true, false, false, true, false, false, false, false};
+	int[] zones = {R.id.zone0, R.id.zone1L, R.id.zone1R, R.id.zone2L, R.id.zone2R, R.id.zone3L, R.id.zone3R, R.id.zone4L, R.id.zone4R, R.id.zone5L, R.id.zone5R, R.id.zone6L, R.id.zone6R, R.id.zone10};
+	int green[] = {R.drawable.g0, R.drawable.g1l, R.drawable.g1r, R.drawable.g2l, R.drawable.g2r, R.drawable.g3l, R.drawable.g3r, R.drawable.g4l, R.drawable.g4r, R.drawable.g5l, R.drawable.g5r, R.drawable.g6l, R.drawable.g6r, R.drawable.g10};
+	int red[] = {R.drawable.r0, R.drawable.r1l, R.drawable.r1r, R.drawable.r2l, R.drawable.r2r, R.drawable.r3l, R.drawable.r3r, R.drawable.r4l, R.drawable.r4r, R.drawable.r5l, R.drawable.r5r, R.drawable.r6l, R.drawable.r6r, R.drawable.r10};
+	
+	
 	ArrayList<Poligono> poligonos = new ArrayList<Poligono>(); //Los poligonos de las zonas
 	
 	@Override
@@ -63,6 +76,13 @@ public class InjuryRegistration extends Activity implements View.OnTouchListener
 		sectionNumber = (TextView) findViewById(R.id.bSectionNumber);
 		
 		hoof.setOnTouchListener(this);
+		
+		
+		//Aquí se deben leer las lesiones de cada zona de la pezuña: lesiones[i] = ?
+		
+		for (int i = 0; i <= 13 ; i++) {
+			changeColor(i, zones[i], green[i], red[i]);
+		}
 		
 		for (int i = 0; i < matrizXY.length; i++) {
 			ArrayList<Punto> puntos = new ArrayList<Punto>();
@@ -155,34 +175,49 @@ public class InjuryRegistration extends Activity implements View.OnTouchListener
 	
 	public boolean onTouch(View view, MotionEvent event) {
 		//int eventPadTouch = event.getAction();
-		int iX = (int)event.getX();
-		int iY = (int)event.getY();
-		int i;
-		sectionNumber.setText(iX + " " + iY);
-		for (i = 0; i < poligonos.size(); i++) {
-			if (poligonos.get(i).rellenar(iX, iY)) break;
-		}
-		switch (i) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			int iX = (int)event.getX();
+			int iY = (int)event.getY();
+			int i;
+			sectionNumber.setText(iX + " " + iY);
+			for (i = 0; i < poligonos.size(); i++) {
+				if (poligonos.get(i).rellenar(iX, iY)) break;
+			}
+			
+			//Aquí se cambia el color de la zona sólo por hacerle click, pero debe depender de las lesiones que se registren
+			if (i <= 13) changeColor(i, zones[i], green[i], red[i]);
+			
+			switch (i) {
 			case 0: sectionNumber.setText("CERO"); break;
-			case 1: sectionNumber.setText("1"); break;
-			case 2: sectionNumber.setText("1"); break;
-			case 3: sectionNumber.setText("2"); break;
-			case 4: sectionNumber.setText("2"); break;
-			case 5: sectionNumber.setText("3"); break;
-			case 6: sectionNumber.setText("3"); break;
-			case 7: sectionNumber.setText("4"); break;
-			case 8: sectionNumber.setText("4"); break;
-			case 9: sectionNumber.setText("5"); break;
-			case 10: sectionNumber.setText("5"); break;
-			case 11: sectionNumber.setText("6"); break;
-			case 12: sectionNumber.setText("6"); break;
-			case 13: sectionNumber.setText("10"); break;
+			case 1: sectionNumber.setText("1L"); break;
+			case 2: sectionNumber.setText("1R"); break;
+			case 3: sectionNumber.setText("2L"); break;
+			case 4: sectionNumber.setText("2R"); break;
+			case 5: sectionNumber.setText("3L"); break;
+			case 6: sectionNumber.setText("3R"); break;
+			case 7: sectionNumber.setText("4L"); break;
+			case 8: sectionNumber.setText("4R"); break;
+			case 9: sectionNumber.setText("5L"); break;
+			case 10: sectionNumber.setText("5R"); break;
+			case 11: sectionNumber.setText("6L"); break;
+			case 12: sectionNumber.setText("6R"); break;
+			case 13:sectionNumber.setText("10"); break;
 			default: sectionNumber.setText("NO"); break;
+			}
+			return true;
 		}
 		return false;
 	}
+	
+	private void changeColor(int i, int zone, int green, int red) {
+		hoofZone = (ImageView) findViewById(zone);
+		if (lesiones[i]) { hoofZone.setImageResource(red); lesiones[i] = false; } 
+		else { hoofZone.setImageResource(green); lesiones[i] = true; }
+	}
 
 }
+
+
 
 class Arista implements Comparable{
 
@@ -390,25 +425,24 @@ class Poligono{
 	      AET.add(e);
 	    }
 
-	    for (int i = coordY.get(y); i < coordY.get(y+1); i+=1) {
+	    
 	      
 	      Collections.sort(AET);
 	           
 	      for (int k = 0; k < AET.size(); k++) {
-	        if (AET.get(k).y == i) {
+	        if (AET.get(k).y == coordY.get(y)) {
 	          AET.remove(k);
 	          k--;
 	        }
 	      }
 	      
+	      for (int i = coordY.get(y); i < coordY.get(y+1); i+=1) {
+	      
 	        boolean bit = true;
 	        for (int k = 0; k < AET.size()-1; k++) {
 	          if(bit)
-	        	if (mouseX >= (int)(AET.get(k).x) && mouseX <= AET.get(k+1).x && mouseY == i)  return true;
-	            //for (int j = (int)(AET.get(k).x); j < AET.get(k+1).x; j++) {
-	              //if (mouseX == j && mouseY == i) { return true;}
-	              //point (j, i);
-	            //}
+	        	if (mouseX >= (int)(AET.get(k).x) && mouseX <= AET.get(k+1).x && mouseY == i)
+	        		return true;
 	          bit = !bit;
 	        }   
 	            
