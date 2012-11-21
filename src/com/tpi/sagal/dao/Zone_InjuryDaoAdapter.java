@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Zone_InjuryDaoAdapter {
 	private static final String DATABASE_NAME = "sagal.db";
 	private static final int DATABASE_VERSION = 1;
-	private static final String DATABASE_TABLE = "cow_has_vaccine";
+	private static final String DATABASE_TABLE = "zone_has_injury";
 	private static final String DATABASE_FOREIGN_TABLE1 = "zone";
 	private static final String DATABASE_FOREIGN_TABLE2 = "injury";
 	
@@ -22,7 +22,7 @@ public class Zone_InjuryDaoAdapter {
 	private static final String[] columns = { KEY_ZONE, KEY_INJURY};
 	
 	private static final String ZONE_INJURY_TABLE_CREATE ="CREATE TABLE IF NOT EXISTS "+DATABASE_TABLE+" ("+
-			KEY_ZONE + " INTEGER NOT NULL"+
+			KEY_ZONE + " INTEGER NOT NULL,"+
 			KEY_INJURY + " INTEGER NOT NULL," +
 			" FOREIGN KEY ("+KEY_ZONE+") REFERENCES "+DATABASE_FOREIGN_TABLE1+" (_id),"+
 			" FOREIGN KEY ("+KEY_INJURY+") REFERENCES "+DATABASE_FOREIGN_TABLE2+" (_id));";

@@ -21,7 +21,7 @@ public class Cow_VaccineDaoAdapter {
 	private static final String[] columns = { KEY_COW, KEY_VACCINE};
 	
 	private static final String COW_VACCINE_TABLE_CREATE ="CREATE TABLE IF NOT EXISTS "+DATABASE_TABLE+" ("+
-			KEY_COW + " INTEGER NOT NULL"+
+			KEY_COW + " INTEGER NOT NULL,"+
 			KEY_VACCINE + " INTEGER NOT NULL," +
 			" FOREIGN KEY ("+KEY_COW+") REFERENCES "+DATABASE_FOREIGN_TABLE1+" (_id),"+
 			" FOREIGN KEY ("+KEY_VACCINE+") REFERENCES "+DATABASE_FOREIGN_TABLE2+" (_id));";

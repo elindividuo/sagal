@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class FarmDetails extends Activity implements View.OnClickListener {
 	int id;
 	ManageFarm mf;
 	boolean diditwork;
+	ImageButton backButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class FarmDetails extends Activity implements View.OnClickListener {
 		statistics = (Button) findViewById(R.id.bStatistics);
 		viewCattle = (Button) findViewById(R.id.bViewCattle);
 
+		backButton = (ImageButton) findViewById(R.id.ibBack_FarmDetails);
+		
 		farmName = (TextView) findViewById(R.id.tvFarmName);
 		farmAddress = (TextView) findViewById(R.id.tvFarmAddress);
 		farmOwner = (TextView) findViewById(R.id.tvFarmOwner);
@@ -60,6 +64,8 @@ public class FarmDetails extends Activity implements View.OnClickListener {
 		foothBath.setOnClickListener(this);
 		statistics.setOnClickListener(this);
 		viewCattle.setOnClickListener(this);
+		
+		backButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -115,11 +121,16 @@ public class FarmDetails extends Activity implements View.OnClickListener {
 			break;
 		case R.id.bStatistics:
 			LocomotionScoringGraph bar = new LocomotionScoringGraph();
-			i = bar.getIntent(this);
+			i = bar.getIntent(this,id);
 			startActivity(i);
 			break;
 		case R.id.bViewCattle:
-			i = new Intent("com.tpi.sagal.VIEWCATTLE");
+			i = new Intent(FarmDetails.this,ViewCattle.class);
+			i.putExtra("FARM_ID", id);
+			startActivity(i);
+			break;
+		case R.id.ibBack_FarmDetails:
+			i = new Intent(FarmDetails.this,MainActivityViewFarms.class);
 			startActivity(i);
 			break;
 		}

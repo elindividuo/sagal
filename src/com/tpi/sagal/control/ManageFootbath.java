@@ -16,7 +16,9 @@ private ManageFarm mf;
 	{
 		footbathDao = new FootbathDaoAdapter(context);
 		mf = new ManageFarm(context);
-	}
+		footbathDao.open();
+		footbathDao.close();
+}
 	
 	public void createFootbath(String name, double width, double deep, double height, String medicine, double quantity, int farmId){
 		footbathDao.open();

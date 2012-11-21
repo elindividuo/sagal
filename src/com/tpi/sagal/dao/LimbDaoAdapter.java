@@ -18,7 +18,7 @@ public class LimbDaoAdapter {
 	private static final String[] columns = { KEY_ID, KEY_NAME};
 	
 	private static final String VACCINE_TABLE_CREATE ="CREATE TABLE IF NOT EXISTS "+DATABASE_TABLE+" ("+
-			KEY_ID + " INTEGER NOT NULL AUTOINCREMENT"+
+			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			KEY_NAME + " TEXT NOT NULL);";
 	
 	private LimbDBHelper ourHelper;

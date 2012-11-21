@@ -28,8 +28,8 @@
                 android:id="@+id/etFarmOwnerEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:capitalize="words" />
+                android:capitalize="words"
+                android:ems="10" />
 
             <requestFocus />
         </TableRow>
@@ -47,8 +47,8 @@
                 android:id="@+id/etFarmNameEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:capitalize="words" >
+                android:capitalize="words"
+                android:ems="10" >
             </EditText>
         </TableRow>
 
@@ -65,24 +65,33 @@
                 android:id="@+id/etFarmAddressEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:capitalize="words" />
+                android:capitalize="words"
+                android:ems="10" />
         </TableRow>
 
-        <TableRow android:id="@+id/tableRow4" >
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical" >
 
             <Button
                 android:id="@+id/bOkFarmEdit"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="@string/bOK" />
+                android:layout_gravity="center"
+                android:text="Aceptar" />
 
             <Button
                 android:id="@+id/bCancelFarmEdit"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="@string/bCancel" />
-        </TableRow>
+        </LinearLayout>
+>
     </TableLayout>
 
 </ScrollView>

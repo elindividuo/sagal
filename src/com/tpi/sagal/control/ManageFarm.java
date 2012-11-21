@@ -13,6 +13,8 @@ public class ManageFarm {
 	public ManageFarm(Context context)
 	{
 		farmDao = new FarmDaoAdapter(context);
+		farmDao.open();
+		farmDao.close();
 	}
 	
 	public void createFarm(String name, String address, String owner){

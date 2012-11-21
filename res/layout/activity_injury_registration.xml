@@ -153,21 +153,12 @@
             android:padding="5dp"
             android:text="@string/bSelectInjuries" />
 
-        <Button
-            android:id="@+id/bAddNotes"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/bSelectInjuries"
-            android:gravity="center"
-            android:onClick="addNotes"
-            android:padding="5dp"
-            android:text="@string/bAddNotes" />
 
         <Button
             android:id="@+id/bOkInjuryRegistration"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/bAddNotes"
+            android:layout_below="@+id/bSelectInjuries"
             android:gravity="center"
             android:onClick="ok"
             android:padding="5dp"
@@ -178,7 +169,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvHoof"
-            android:text="Button" />
+            android:text="Zona" />
     </RelativeLayout>
 
 </ScrollView>

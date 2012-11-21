@@ -10,13 +10,15 @@ import org.achartengine.renderer.XYSeriesRenderer;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import com.tpi.sagal.control.ManageCow;
 
 public class LocomotionScoringGraph {
 
-	public Intent getIntent (Context context){
+	public Intent getIntent (Context context, int id_farm){
 		
-		int[] y = {8, 5, 4, 3, 1};
-		
+		ManageCow mc = new ManageCow(context);
+		//int[] y = mc.getLocomotionScoring(id_farm);
+		int[] y = {5,4,7,2,3};
 		//Converting data into a Series Object
 		CategorySeries series = new CategorySeries("Puntaje de locomoción [1-5]");
 		for (int i = 0; i < y.length; i++)

@@ -4,15 +4,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/tvViewFootbathTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.01"
-        android:gravity="center_horizontal"
-        android:text="Pediluvios de la Hacienda"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100" >
+
+            <ImageButton
+                android:id="@+id/ibBack_FootbathView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="88"
+                android:src="@drawable/previousitem" />
+
+            <TextView
+                android:id="@+id/tvViewFootbathTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="12"
+                android:text="Pediluvios de la Hacienda"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     <ListView
         android:id="@+id/lvFoothbath"
@@ -25,6 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:text="Crear pediluvio" />
+        android:text="Nuevo pediluvio" />
 
 </LinearLayout>

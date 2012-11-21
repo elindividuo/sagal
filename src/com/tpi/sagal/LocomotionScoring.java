@@ -14,16 +14,21 @@ public class LocomotionScoring extends Activity implements View.OnClickListener 
 	Button ok, cancel;
 	Spinner spinnerLocScoring;
 	Intent i;
-
+	int cowId, farmId;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_locomotion_scoring);
 		initialize();
 	}
 
 	public void initialize() {
+		
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			cowId = extras.getInt("COW_ID");
+			farmId = extras.getInt("FARM_ID");
+		}
 		spinnerLocScoring = (Spinner) findViewById(R.id.spinnerLocScoring);
 		ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource(this,
 				R.array.locScoring, android.R.layout.simple_spinner_item);
@@ -42,13 +47,20 @@ public class LocomotionScoring extends Activity implements View.OnClickListener 
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bOkLocScoring:
+			
 			Toast.makeText(getApplicationContext(),
-					"¡Listo! Puntaje registrado.", Toast.LENGTH_LONG).show();
-			i = new Intent("com.tpi.sagal.CATTLEDETAILS");
+					"¡Listo! Puntaje registrado y es: "+Integer.parseInt(spinnerLocScoring.getSelectedItem().toString()), Toast.LENGTH_LONG).show();
+			i = new Intent(LocomotionScoring.this,CattleDetails.class);
+			i.putExtra("COW_ID",cowId);
+			i.putExtra("FARM_ID",farmId);
 			startActivity(i);
 			break;
 		case R.id.bCancelLocScoring:
-			i = new Intent("com.tpi.sagal.CATTLEDETAILS");
+			Toast.makeText(getApplicationContext(),
+					"No se ha modificado el puntaje de locomoción", Toast.LENGTH_LONG).show();
+			i = new Intent(LocomotionScoring.this,CattleDetails.class);
+			i.putExtra("COW_ID",cowId);
+			i.putExtra("FARM_ID",farmId);
 			startActivity(i);
 			break;
 		}

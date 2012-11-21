@@ -8,15 +8,21 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content" >
 	    
+	    <ImageView
+	        android:id="@+id/imCowHead"
+	        android:gravity="center"
+	        android:src="@drawable/cowhead"/>  
+	    
+	    
 	    <TableRow android1:id="@+id/TableRow00">
 	       <TextView android:id="@+id/tvRearLeft"
 	       		android:gravity="center"
-	        	android:text="@string/tvRearLeft"
+	        	android:text="Anterior Izquierda"
 	        	android:textAppearance="?android:attr/textAppearanceMedium"/>
 	       
 	       <TextView android:id="@+id/tvFrontRight"
 	       		android:gravity="center"
-	        	android:text="@string/tvRearRight"
+	        	android:text="Anterior Derecha"
 	        	android:textAppearance="?android:attr/textAppearanceMedium"/>
 	    </TableRow>
 	    
@@ -26,25 +32,25 @@
 	            android1:layout_width="wrap_content"
 	            android1:layout_height="wrap_content"
 	            android1:onClick="selectHoof"
-	            android1:src="@drawable/hoof" />
+	            android1:src="@drawable/hoof_color" />
 	        
 	        <ImageButton
 	            android1:id="@+id/ibFrontRightHoof"
 	            android1:layout_width="wrap_content"
 	            android1:layout_height="wrap_content"
-	            android1:src="@drawable/hoof" />        
+	            android1:src="@drawable/hoof_color" />        
 	    </TableRow>
 	
 	    
 	    <TableRow android1:id="@+id/TableRow02" >
 	       <TextView android:id="@+id/tvFrontLeft"
 	       		android:gravity="center"
-	        	android:text="@string/tvFrontLeft"
+	        	android:text="Posterior Izquierda"
 	        	android:textAppearance="?android:attr/textAppearanceMedium"/>
 	       
 	       <TextView android:id="@+id/tvFrontRight"
 	       		android:gravity="center"
-	        	android:text="@string/tvFrontRight"
+	        	android:text="Posterior Derecha"
 	        	android:textAppearance="?android:attr/textAppearanceMedium"/>
 	        
 	    </TableRow>    
@@ -56,20 +62,15 @@
 	            android1:id="@+id/ibRearLeftHoof"
 	            android1:layout_width="wrap_content"
 	            android1:layout_height="wrap_content"
-	            android1:src="@drawable/hoof" />
+	            android1:src="@drawable/hoof_color" />
 	        
 	        <ImageButton
 	            android1:id="@+id/ibRearRightHoof"
 	            android1:layout_width="wrap_content"
 	            android1:layout_height="wrap_content"
-	            android1:src="@drawable/hoof" />        
+	            android1:src="@drawable/hoof_color" />        
 	    </TableRow>    
-	    
-	     <ImageView
-	        android:id="@+id/imCowHead"
-	        android:gravity="center"
-	        android:src="@drawable/head"/>  
-	    
+	        
 	</TableLayout>
 
 </ScrollView>

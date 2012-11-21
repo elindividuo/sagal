@@ -1,16 +1,14 @@
 package com.tpi.sagal;
 
-import com.tpi.sagal.control.ManageFarm;
-
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.tpi.sagal.control.ManageFarm;
 
 public class CreateFarm extends Activity implements View.OnClickListener {
 

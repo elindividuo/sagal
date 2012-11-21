@@ -86,7 +86,7 @@ public class EditFootbath extends Activity implements View.OnClickListener{
 			break;
 		case R.id.bCancelFootbathEdit:
 			Toast.makeText(getApplicationContext(),
-					"Acción cancelada.", Toast.LENGTH_LONG)
+					"No se ha modificado ningún dato.", Toast.LENGTH_LONG)
 					.show();
 			i = new Intent(this, FootbathDetails.class);
 			i.putExtra("FOOTBATH_ID", id);

@@ -13,7 +13,7 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:gravity="center"
-		        android:padding="15dp"
+
 		        android:text="@string/tvLocomotionScoringTitle"
 		        android:textAppearance="?android:attr/textAppearanceLarge"
 		        android:textStyle="bold" />
@@ -49,18 +49,20 @@
 		    android:layout_below="@+id/tvCowName_LocScoring"/>
 		<Button
 		    android:id="@+id/bOkLocScoring"
-		    android:layout_width="match_parent"
+		    android:layout_width="250dp"
 		    android:layout_height="wrap_content"
 		    android:padding="5dp"
+		    android:layout_marginLeft="35dp"
 		    android:layout_below="@+id/spinnerLocScoring"
 		    android:text="@string/bOK"
 		    android:onClick="ok" />
 
 		<Button
 		    android:id="@+id/bCancelLocScoring"
-		    android:layout_width="match_parent"
+		    android:layout_width="250dp"
 		    android:layout_height="wrap_content"
 		    android:padding="5dp"
+		    android:layout_marginLeft="35dp"
 			android:layout_below="@+id/bOkLocScoring"
 		    android:text="@string/bCancel"
 		    android:onClick="cancel" />

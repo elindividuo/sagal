@@ -1,16 +1,38 @@
 package com.tpi.sagal;
 
+import java.util.Calendar;
+
+import com.tpi.sagal.control.ManageCow;
+
+import datepicker.MyDatePickerDialog;
+
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class CreateCow extends Activity implements View.OnClickListener {
 
-	Button ok;
+	Button ok; 
+	ImageButton changeDate;
 	Intent i;
+	EditText cowName, cowId, cowBreed, cowTattoo, cowProblems;
+	TextView cowBirth;
+	boolean diditwork;
+	ManageCow mc;
+	int farmId;
+	static final int DATE_DIALOG_ID = 999;
+	private int year;
+	private int month;
+	private int day;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,19 +42,93 @@ public class CreateCow extends Activity implements View.OnClickListener {
 	}
 
 	public void initialize() {
+		final Calendar c = Calendar.getInstance();
+		year = c.get(Calendar.YEAR);
+		month = c.get(Calendar.MONTH);
+		day = c.get(Calendar.DAY_OF_MONTH);
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			farmId = extras.getInt("FARM_ID");
+		}
+
+		mc = new ManageCow(this);
+
+		diditwork = true;
+
 		ok = (Button) findViewById(R.id.bOkCreateCow);
+		changeDate = (ImageButton) findViewById(R.id.ibChangeDateCreateCow);
+
+		cowName = (EditText) findViewById(R.id.etCowName);
+		cowId = (EditText) findViewById(R.id.etCowId);
+		cowBreed = (EditText) findViewById(R.id.etCowBreed);
+		cowTattoo = (EditText) findViewById(R.id.etCowTattoo);
+		cowProblems = (EditText) findViewById(R.id.etCowProblems);
+
+		cowBirth = (TextView) findViewById(R.id.tvCowDate);
+
 		ok.setOnClickListener(this);
+		changeDate.setOnClickListener(this);
 	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case DATE_DIALOG_ID:
+			// set date picker as current date
+			return new MyDatePickerDialog(this, datePickerListener, year, month,
+					day);
+		}
+		return null;
+	}
+
+	private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+
+		// when dialog box is closed, below method will be called.
+		public void onDateSet(DatePicker view, int selectedYear,
+				int selectedMonth, int selectedDay) {
+			year = selectedYear;
+			month = selectedMonth;
+			day = selectedDay;
+
+			// set selected date into textview
+			cowBirth.setText(new StringBuilder().append(day)
+					.append("/").append(month + 1).append("/").append(year)
+					.append(" "));
+
+		}
+	};
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bOkCreateCow:
-			Toast.makeText(getApplicationContext(), "¡Listo! Ejemplar creado.",
-					Toast.LENGTH_LONG).show();
-			i = new Intent(this, ViewCattle.class);
-			startActivity(i);
+			String name = cowName.getText().toString();
+			int registry = Integer.parseInt(cowId.getText().toString());
+			String breed = cowBreed.getText().toString();
+			String tattoo = cowTattoo.getText().toString();
+			String birth = cowBirth.getText().toString();
+			String problems = cowProblems.getText().toString();
+			try {
+				mc.createCow(registry, name, breed, birth, tattoo, problems,"Ninguno","Ninguno","Ninguno",0,0,0, farmId);
+			} catch (Exception e) {
+				diditwork = false;
+			} finally {
+				if (diditwork) {
+					Toast.makeText(getApplicationContext(),
+							"¡Listo! Vaca creada.", Toast.LENGTH_LONG).show();
+					i = new Intent(this, ViewCattle.class);
+					i.putExtra("FARM_ID", farmId);
+					startActivity(i);
+				}
+				if (diditwork == false) {
+					Toast.makeText(getApplicationContext(),
+							"Error! La vaca no fue creada", Toast.LENGTH_LONG)
+							.show();
+				}
+			}
 			break;
+		case R.id.ibChangeDateCreateCow:
+			showDialog(DATE_DIALOG_ID);
 		}
 	}
 }

@@ -28,7 +28,7 @@ public class InjuryRegistration extends Activity implements View.OnTouchListener
 			"(X) Fisura Axial", "(Z) Suela Delgada"};
 	private ArrayList<CharSequence> selectedInjuries = new ArrayList<CharSequence>();
 
-	Button selectInjuries, addNotes, ok;
+	Button selectInjuries, ok;
 	ImageButton hoof;
 	TextView sectionNumber;
 	ImageView hoofZone;
@@ -71,7 +71,6 @@ public class InjuryRegistration extends Activity implements View.OnTouchListener
 				
 		hoof = (ImageButton) findViewById(R.id.ibHoofSections);
 		selectInjuries = (Button)findViewById(R.id.bSelectInjuries);
-		addNotes = (Button)findViewById(R.id.bAddNotes);
 		ok = (Button)findViewById(R.id.bOkInjuryRegistration);
 		sectionNumber = (TextView) findViewById(R.id.bSectionNumber);
 		
@@ -97,12 +96,6 @@ public class InjuryRegistration extends Activity implements View.OnTouchListener
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				showSelectInjuries();
-			}
-		});
-		addNotes.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				addNotes(v);
 			}
 		});
 		ok.setOnClickListener(new View.OnClickListener() {
