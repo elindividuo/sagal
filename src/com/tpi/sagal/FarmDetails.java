@@ -40,7 +40,7 @@ public class FarmDetails extends Activity implements View.OnClickListener {
 		viewCattle = (Button) findViewById(R.id.bViewCattle);
 
 		backButton = (ImageButton) findViewById(R.id.ibBack_FarmDetails);
-		
+
 		farmName = (TextView) findViewById(R.id.tvFarmName);
 		farmAddress = (TextView) findViewById(R.id.tvFarmAddress);
 		farmOwner = (TextView) findViewById(R.id.tvFarmOwner);
@@ -64,7 +64,7 @@ public class FarmDetails extends Activity implements View.OnClickListener {
 		foothBath.setOnClickListener(this);
 		statistics.setOnClickListener(this);
 		viewCattle.setOnClickListener(this);
-		
+
 		backButton.setOnClickListener(this);
 	}
 
@@ -72,7 +72,7 @@ public class FarmDetails extends Activity implements View.OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bEditFarm:
-			i= new Intent(FarmDetails.this,EditFarm.class);
+			i = new Intent(FarmDetails.this, EditFarm.class);
 			i.putExtra("FARM_ID", id);
 			startActivity(i);
 
@@ -115,22 +115,22 @@ public class FarmDetails extends Activity implements View.OnClickListener {
 
 			break;
 		case R.id.bFoothbath:
-			i = new Intent(FarmDetails.this,ViewFootbaths.class);
+			i = new Intent(FarmDetails.this, ViewFootbaths.class);
 			i.putExtra("FARM_ID", id);
 			startActivity(i);
 			break;
 		case R.id.bStatistics:
 			LocomotionScoringGraph bar = new LocomotionScoringGraph();
-			i = bar.getIntent(this,id);
+			i = bar.getIntent(this, id);
 			startActivity(i);
 			break;
 		case R.id.bViewCattle:
-			i = new Intent(FarmDetails.this,ViewCattle.class);
+			i = new Intent(FarmDetails.this, ViewCattle.class);
 			i.putExtra("FARM_ID", id);
 			startActivity(i);
 			break;
 		case R.id.ibBack_FarmDetails:
-			i = new Intent(FarmDetails.this,MainActivityViewFarms.class);
+			i = new Intent(FarmDetails.this, MainActivityViewFarms.class);
 			startActivity(i);
 			break;
 		}

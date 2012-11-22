@@ -166,20 +166,21 @@ public class CattleDetails extends Activity implements View.OnClickListener {
 			startActivity(i);
 			break;
 		case R.id.bCowNotes_Details:
-				
-			
+
 			AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
 			// Setting Dialog Title
 			alertDialog.setTitle("Notas del ejemplar");
 
 			// Setting Dialog Message
-			alertDialog.setMessage("Diagnóticos Diferenciales: \n"+c.getDifferentialDiagnoses()+"\n"+
-					"Planes Terapéuticos: \n"+c.getRegimens());
+			alertDialog.setMessage("Diagnóticos Diferenciales: \n"
+					+ c.getDifferentialDiagnoses() + "\n"
+					+ "Planes Terapéuticos: \n" + c.getRegimens());
 
 			// Setting OK Button
 			alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-				public void onClick(final DialogInterface dialog, final int which) {
+				public void onClick(final DialogInterface dialog,
+						final int which) {
 				}
 			});
 

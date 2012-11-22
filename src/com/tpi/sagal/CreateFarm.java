@@ -20,7 +20,6 @@ public class CreateFarm extends Activity implements View.OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_farm);
 		initialize();
@@ -34,7 +33,7 @@ public class CreateFarm extends Activity implements View.OnClickListener {
 		farmAddress = (EditText) findViewById(R.id.etFarmAddress);
 
 		ok.setOnClickListener(this);
-		
+
 		mf = new ManageFarm(this);
 		diditwork = true;
 	}
@@ -53,14 +52,14 @@ public class CreateFarm extends Activity implements View.OnClickListener {
 			} finally {
 				if (diditwork) {
 					Toast.makeText(getApplicationContext(),
-							"¡Listo! Hacienda creada.", Toast.LENGTH_LONG)
-							.show();
-					i = new Intent(this, MainActivityViewFarms.class);
+							"¡Listo! Hacienda registrada con éxito.",
+							Toast.LENGTH_LONG).show();
+					i = new Intent(CreateFarm.this, MainActivityViewFarms.class);
 					startActivity(i);
 				}
 				if (diditwork == false) {
 					Toast.makeText(getApplicationContext(),
-							"Error! La hacienda no fue creada",
+							"Error! La hacienda no fue registrada.",
 							Toast.LENGTH_LONG).show();
 				}
 			}

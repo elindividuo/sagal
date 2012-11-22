@@ -40,7 +40,6 @@ public class EditCow extends Activity implements View.OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_cow);
 		initialize();
@@ -217,10 +216,6 @@ public class EditCow extends Activity implements View.OnClickListener {
 				public void onClick(DialogInterface dialog, int item) {
 					idFatherCow = cows.get(item).getId();
 					cowFather.setText(items[item]);
-					Toast.makeText(getApplicationContext(),
-							"ID FATHER: " + idFatherCow, Toast.LENGTH_LONG)
-							.show();
-
 				}
 			});
 			AlertDialog alert = builder.create();
@@ -244,9 +239,6 @@ public class EditCow extends Activity implements View.OnClickListener {
 				public void onClick(DialogInterface dialog, int item) {
 					idMotherCow = cows.get(item).getId();
 					cowMother.setText(items1[item]);
-					Toast.makeText(getApplicationContext(),
-							"ID MOTHER: " + idMotherCow, Toast.LENGTH_LONG)
-							.show();
 				}
 			});
 			AlertDialog alert1 = builder1.create();

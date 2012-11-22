@@ -16,7 +16,7 @@ import android.widget.ListView;
 import com.tpi.sagal.control.ManageCow;
 import com.tpi.sagal.entity.Cow;
 
-public class ViewCattle extends Activity implements View.OnClickListener{
+public class ViewCattle extends Activity implements View.OnClickListener {
 
 	Button createCow;
 	ListView listViewCows;
@@ -26,69 +26,72 @@ public class ViewCattle extends Activity implements View.OnClickListener{
 	ArrayList<String> cowNames;
 	ManageCow mc;
 	ImageButton backButton;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_cattle);
 		initialize();
 	}
-	
-	public void initialize(){
-		
+
+	public void initialize() {
+
 		backButton = (ImageButton) findViewById(R.id.ibBack_CattleView);
-		
+
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			farmId = extras.getInt("FARM_ID");
 		}
-		
+
 		cowNames = new ArrayList<String>();
 		cows = new ArrayList<Cow>();
-		
+
 		mc = new ManageCow(this);
 		cows = mc.readAllCowFromFarm(farmId);
-		
-		for(Cow f : cows){
+
+		for (Cow f : cows) {
 			cowNames.add(f.getName());
 		}
-		
-		createCow=(Button)findViewById(R.id.bCreateCow_CreateCowView);
-		listViewCows=(ListView)findViewById(R.id.lvCattle);
-		listViewCows.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_2, android.R.id.text1,cowNames));
-		
+
+		createCow = (Button) findViewById(R.id.bCreateCow_CreateCowView);
+		listViewCows = (ListView) findViewById(R.id.lvCattle);
+		listViewCows.setAdapter(new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_2, android.R.id.text1,
+				cowNames));
+
 		listViewCows.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> arg0, View view, int position,
-					long id) {
-				
-				cows=mc.readAllCowFromFarm(farmId);
+			public void onItemClick(AdapterView<?> arg0, View view,
+					int position, long id) {
+
+				cows = mc.readAllCowFromFarm(farmId);
 				int idCow = cows.get(position).getId();
-				Intent cattleDetails = new Intent(ViewCattle.this, CattleDetails.class);
+				Intent cattleDetails = new Intent(ViewCattle.this,
+						CattleDetails.class);
 				cattleDetails.putExtra("COW_ID", idCow);
-				cattleDetails.putExtra("FARM_ID",farmId);
+				cattleDetails.putExtra("FARM_ID", farmId);
 				startActivity(cattleDetails);
 			}
-			
+
 		});
-		
-		
+
 		createCow.setOnClickListener(this);
 		backButton.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()){
+		switch (v.getId()) {
 		case R.id.bCreateCow_CreateCowView:
-			i = new Intent(ViewCattle.this,CreateCow.class);
+			i = new Intent(ViewCattle.this, CreateCow.class);
 			i.putExtra("FARM_ID", farmId);
 			startActivity(i);
 			break;
-		
+
 		case R.id.ibBack_CattleView:
-			i = new Intent(ViewCattle.this,FarmDetails.class);
+			i = new Intent(ViewCattle.this, FarmDetails.class);
 			i.putExtra("FARM_ID", farmId);
 			startActivity(i);
 			break;
-		}	
-	}	
+		}
+	}
 }

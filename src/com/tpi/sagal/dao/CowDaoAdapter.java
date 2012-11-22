@@ -1,7 +1,5 @@
 package com.tpi.sagal.dao;
 
-import java.util.Date;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -185,6 +183,12 @@ public class CowDaoAdapter {
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_REGIMENS, regimens);
 		cv.put(KEY_DIF_DIAG, diffDiag);
+		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
+	}
+	
+	public void updateCow(int id, int locomotionScore){
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_LOCOMOTION, locomotionScore);
 		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
 	}
 	

@@ -174,6 +174,12 @@ public class ManageCow {
 		cowDao.updateCow(id,regimens,diffDiag);
 		cowDao.close();
 	}
+	public void updateCow(int id, int locomotionScore){
+		cowDao.open();
+		cowDao.updateCow(id,locomotionScore);
+		cowDao.close();
+	}
+	
 	
  	
 }

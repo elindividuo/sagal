@@ -10,71 +10,80 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.view.View;
 
-public class CreateFootbath extends Activity implements View.OnClickListener{
+public class CreateFootbath extends Activity implements View.OnClickListener {
 
-	Button okButton;
+	Button okButton, cancelButton;
 	EditText fbName, fbWidth, fbDeep, fbHeight;
 	ManageFootbath mft;
 	int id;
 	boolean diditwork;
 	Intent i;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_footbath);
 		initialize();
 	}
-	
-	public void initialize(){
-		
+
+	public void initialize() {
+
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			id = extras.getInt("FARM_ID");
 		}
-		
+
 		mft = new ManageFootbath(this);
-		
+
 		okButton = (Button) findViewById(R.id.bOkCreateFootbathView);
+		cancelButton = (Button) findViewById(R.id.bCancelCreateFootbathView);
 		fbName = (EditText) findViewById(R.id.etFootbathName);
 		fbWidth = (EditText) findViewById(R.id.etFootbathWidth);
 		fbDeep = (EditText) findViewById(R.id.etFootbathDeep);
 		fbHeight = (EditText) findViewById(R.id.etFootbathHeight);
-		
+
 		okButton.setOnClickListener(this);
-		
-		diditwork=true;
+		cancelButton.setOnClickListener(this);
+
+		diditwork = true;
 	}
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
+		switch (v.getId()) {
 		case R.id.bOkCreateFootbathView:
 			String name = fbName.getText().toString();
-			double width = Double.parseDouble(fbWidth.getText().toString()) ;
+			double width = Double.parseDouble(fbWidth.getText().toString());
 			double deep = Double.parseDouble(fbDeep.getText().toString());
 			double height = Double.parseDouble(fbHeight.getText().toString());
 			try {
-				mft.createFootbath(name, width, deep, height, "Ninguno", 0 ,id);
+				mft.createFootbath(name, width, deep, height, "Ninguno", 0, id);
 			} catch (Exception e) {
 				diditwork = false;
 			} finally {
 				if (diditwork) {
 					Toast.makeText(getApplicationContext(),
-							"¡Listo! Pediluvio Creado.", Toast.LENGTH_LONG)
-							.show();
-					i = new Intent(this, ViewFootbaths.class);
+							"¡Listo! Pediluvio registrado con éxito.",
+							Toast.LENGTH_LONG).show();
+					i = new Intent(CreateFootbath.this, ViewFootbaths.class);
 					i.putExtra("FARM_ID", id);
 					startActivity(i);
 				}
 				if (diditwork == false) {
 					Toast.makeText(getApplicationContext(),
-							"Error! El pediluvio no fue creado",
+							"Error! El pediluvio no fue registrado.",
 							Toast.LENGTH_LONG).show();
 				}
 			}
 			break;
+		case R.id.bCancelCreateFootbathView:
+			Toast.makeText(getApplicationContext(), "Registro cancelado.",
+					Toast.LENGTH_LONG).show();
+			i = new Intent(CreateFootbath.this, ViewFootbaths.class);
+			i.putExtra("FARM_ID", id);
+			startActivity(i);
+			break;
 		}
 	}
-	
+
 }

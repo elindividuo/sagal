@@ -14,7 +14,7 @@ public class AddNotes extends Activity implements View.OnClickListener {
 
 	Button ok, cancel;
 	Intent i;
-	int cowId,farmId;
+	int cowId, farmId;
 	ManageCow mc;
 	EditText diffDiag, regimens;
 	boolean diditwork;
@@ -27,7 +27,7 @@ public class AddNotes extends Activity implements View.OnClickListener {
 	}
 
 	public void initialize() {
-		diditwork=true;
+		diditwork = true;
 		mc = new ManageCow(this);
 		Cow c = new Cow();
 		Bundle extras = getIntent().getExtras();
@@ -35,18 +35,18 @@ public class AddNotes extends Activity implements View.OnClickListener {
 			cowId = extras.getInt("COW_ID");
 			farmId = extras.getInt("FARM_ID");
 		}
-		
+
 		diffDiag = (EditText) findViewById(R.id.etDifferentialDiagnoses);
 		regimens = (EditText) findViewById(R.id.etRegimens);
-	
-		c=mc.searchCow(cowId);
-		
+
+		c = mc.searchCow(cowId);
+
 		diffDiag.setText(c.getDifferentialDiagnoses());
 		regimens.setText(c.getRegimens());
-		
+
 		ok = (Button) findViewById(R.id.bOkAddNotes);
 		cancel = (Button) findViewById(R.id.bCancelAddNotes);
-		
+
 		ok.setOnClickListener(this);
 		cancel.setOnClickListener(this);
 	}
@@ -54,8 +54,8 @@ public class AddNotes extends Activity implements View.OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.bOkAddNotes:		
-			
+		case R.id.bOkAddNotes:
+
 			String cDiffDiag = diffDiag.getText().toString();
 			String cRegimens = regimens.getText().toString();
 			try {
@@ -69,7 +69,7 @@ public class AddNotes extends Activity implements View.OnClickListener {
 							.show();
 					i = new Intent(AddNotes.this, CattleDetails.class);
 					i.putExtra("COW_ID", cowId);
-					i.putExtra("FARM_ID",farmId);
+					i.putExtra("FARM_ID", farmId);
 					startActivity(i);
 				}
 				if (diditwork == false) {
@@ -78,7 +78,7 @@ public class AddNotes extends Activity implements View.OnClickListener {
 							Toast.LENGTH_LONG).show();
 				}
 			}
-			
+
 			break;
 		case R.id.bCancelAddNotes:
 			Toast.makeText(getApplicationContext(),
@@ -86,7 +86,7 @@ public class AddNotes extends Activity implements View.OnClickListener {
 					.show();
 			i = new Intent(AddNotes.this, CattleDetails.class);
 			i.putExtra("COW_ID", cowId);
-			i.putExtra("FARM_ID",farmId);
+			i.putExtra("FARM_ID", farmId);
 			startActivity(i);
 			break;
 		}

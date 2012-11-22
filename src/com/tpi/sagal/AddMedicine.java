@@ -22,7 +22,7 @@ public class AddMedicine extends Activity implements View.OnClickListener{
 	RadioButton radioMedicineButton;
 	TextView footbathName, footbathVol, addMedicineDilution;
 	int footbathid, farmid;
-	boolean diditwork;
+	boolean diditwork, done = false;
 	
 	ManageFootbath mfb;
 	Footbath fb;
@@ -30,7 +30,6 @@ public class AddMedicine extends Activity implements View.OnClickListener{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_medicine);
 		initialize();
@@ -38,14 +37,10 @@ public class AddMedicine extends Activity implements View.OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch(v.getId()){
 		case R.id.bComputeQuantity:
 			int selectedId = radioMedicineGroup.getCheckedRadioButtonId(); // get selected radio button from radioGroup
 			radioMedicineButton = (RadioButton)findViewById(selectedId); // find the radioButton by returned id
-			//Toast.makeText(AddMedicine.this,
-			//		radioMedicineButton.getText(), Toast.LENGTH_SHORT).show();
-			
 			String medicineType = radioMedicineButton.getText().toString();
 			double quantity = 0;
 			try{
@@ -53,10 +48,13 @@ public class AddMedicine extends Activity implements View.OnClickListener{
 				quantity = mfb.computeQuantity(fb.getWidth(), fb.getDeep(), fb.getHeight(), radioMedicineButton.getText().toString());
 				//mfb.updateFootbath(selectedId, name, width, deep, height, medicine, quantity)
 				mfb.updateFootbath(footbathid, fb.getName(), fb.getWidth(), fb.getDeep(), fb.getHeight(), radioMedicineButton.getText().toString(), quantity);
+				done = true;
 			}catch(Exception e){
 				diditwork = false;
 			}finally{
 				if (diditwork){
+					Toast.makeText(AddMedicine.this,
+							"Medicamento actualizado.", Toast.LENGTH_SHORT).show();
 					String unidad = "";
 					if (medicineType.equals("Formol") || medicineType.equals("Hipoclorito de Sodio"))
 						unidad = "cc";
@@ -68,8 +66,10 @@ public class AddMedicine extends Activity implements View.OnClickListener{
 
 			break;
 		case R.id.ibBack_AddMedicine:
-			Toast.makeText(AddMedicine.this,
-				"No se agregó ningún medicamento al pediluvio.", Toast.LENGTH_SHORT).show();	
+			if (!done){
+				Toast.makeText(AddMedicine.this,
+						"No se agregó ningún medicamento al pediluvio.", Toast.LENGTH_SHORT).show();
+			}
 			i = new Intent(AddMedicine.this, FootbathDetails.class);
 			i.putExtra("FOOTBATH_ID", footbathid);
 			startActivity(i);
@@ -104,5 +104,4 @@ public class AddMedicine extends Activity implements View.OnClickListener{
 		computeQuantity.setOnClickListener(this);
 		backButton.setOnClickListener(this);
 	}
-
 }

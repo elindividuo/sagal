@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 public class CreateCow extends Activity implements View.OnClickListener {
 
-	Button ok; 
+	Button ok, cancel;
 	ImageButton changeDate;
 	Intent i;
 	EditText cowName, cowId, cowBreed, cowTattoo, cowProblems;
@@ -56,6 +56,8 @@ public class CreateCow extends Activity implements View.OnClickListener {
 		diditwork = true;
 
 		ok = (Button) findViewById(R.id.bOkCreateCow);
+		cancel = (Button) findViewById(R.id.bCancelCreatecow);
+
 		changeDate = (ImageButton) findViewById(R.id.ibChangeDateCreateCow);
 
 		cowName = (EditText) findViewById(R.id.etCowName);
@@ -68,6 +70,7 @@ public class CreateCow extends Activity implements View.OnClickListener {
 
 		ok.setOnClickListener(this);
 		changeDate.setOnClickListener(this);
+		cancel.setOnClickListener(this);
 	}
 
 	@Override
@@ -75,8 +78,8 @@ public class CreateCow extends Activity implements View.OnClickListener {
 		switch (id) {
 		case DATE_DIALOG_ID:
 			// set date picker as current date
-			return new MyDatePickerDialog(this, datePickerListener, year, month,
-					day);
+			return new MyDatePickerDialog(this, datePickerListener, year,
+					month, day);
 		}
 		return null;
 	}
@@ -91,9 +94,8 @@ public class CreateCow extends Activity implements View.OnClickListener {
 			day = selectedDay;
 
 			// set selected date into textview
-			cowBirth.setText(new StringBuilder().append(day)
-					.append("/").append(month + 1).append("/").append(year)
-					.append(" "));
+			cowBirth.setText(new StringBuilder().append(day).append("/")
+					.append(month + 1).append("/").append(year).append(" "));
 
 		}
 	};
@@ -109,26 +111,37 @@ public class CreateCow extends Activity implements View.OnClickListener {
 			String birth = cowBirth.getText().toString();
 			String problems = cowProblems.getText().toString();
 			try {
-				mc.createCow(registry, name, breed, birth, tattoo, problems,"Ninguno","Ninguno","Ninguno",0,0,0, farmId);
+				mc.createCow(registry, name, breed, birth, tattoo, problems,
+						"Ninguno", "Ninguno", "Ninguno", 0, 0, 0, farmId);
 			} catch (Exception e) {
 				diditwork = false;
 			} finally {
 				if (diditwork) {
 					Toast.makeText(getApplicationContext(),
-							"¡Listo! Vaca creada.", Toast.LENGTH_LONG).show();
-					i = new Intent(this, ViewCattle.class);
+							"¡Listo! Ejemplar registrado con éxito.",
+							Toast.LENGTH_LONG).show();
+					i = new Intent(CreateCow.this, ViewCattle.class);
 					i.putExtra("FARM_ID", farmId);
 					startActivity(i);
 				}
 				if (diditwork == false) {
 					Toast.makeText(getApplicationContext(),
-							"Error! La vaca no fue creada", Toast.LENGTH_LONG)
-							.show();
+							"Error! El ejemplar no fue registrado.",
+							Toast.LENGTH_LONG).show();
 				}
 			}
 			break;
 		case R.id.ibChangeDateCreateCow:
 			showDialog(DATE_DIALOG_ID);
+			break;
+		case R.id.bCancelCreatecow:
+			Toast.makeText(getApplicationContext(), "Registro cancelado.",
+					Toast.LENGTH_LONG).show();
+			i = new Intent(CreateCow.this, ViewCattle.class);
+			i.putExtra("FARM_ID", farmId);
+			startActivity(i);
+			break;
 		}
+
 	}
 }

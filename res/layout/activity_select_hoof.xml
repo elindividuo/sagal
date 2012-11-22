@@ -8,6 +8,32 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content" >
 	    
+	    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100" >
+
+            <ImageButton
+                android:id="@+id/ibBack_SelectHoof"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="88"
+                android:src="@drawable/previousitem" />
+
+            <TextView
+                android:id="@+id/tvFarmDetailsTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="12"
+                android:text="Selecciona una pezuña"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+        </LinearLayout>
+	    
+	    
 	    <ImageView
 	        android:id="@+id/imCowHead"
 	        android:gravity="center"
