@@ -117,6 +117,10 @@ public class FootbathDetails extends Activity implements View.OnClickListener {
 			adb.show();// Se muestra el AlertDialog
 			break;
 		case R.id.bMedicine:
+			i = new Intent (FootbathDetails.this, AddMedicine.class);
+			i.putExtra("FOOTBATH_ID", id);
+			i.putExtra("FARM_ID", farmid);
+			startActivity(i);
 			break;
 		case R.id.ibBack_FootbathDetails:
 			i = new Intent(FootbathDetails.this, ViewFootbaths.class);

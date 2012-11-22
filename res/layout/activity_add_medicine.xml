@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    
+   	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/tableAddMedicineType"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" >
+
+   	    <RelativeLayout
+   	        android:layout_width="wrap_content"
+   	        android:layout_height="wrap_content" >
+
+   	        <ImageButton 
+	   	        android:id="@+id/ibBack_AddMedicine"
+	   	    	android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:src="@drawable/previousitem"/>
+
+   	    	<TextView
+   	    	    android:id="@+id/tvAddMedicineTittle"
+   	    	    android:layout_width="match_parent"
+   	    	    android:layout_height="wrap_content"
+   	    	    android:gravity="center"
+   	    	    android:text="Medicina"
+   	    	    android:textAppearance="?android:attr/textAppearanceLarge"
+   	    	    android:textStyle="bold" />
+   	    	
+   	    	<TextView 
+   	    	    android:id="@+id/tvAddMedicineFootbathName"
+   	    	    android:layout_width="match_parent"
+   	    	    android:layout_height="wrap_content"
+   	    	    android:gravity="center"
+   	    	    android:text="footbathname"
+   	    	    android:textAppearance="?android:attr/textAppearanceMedium"
+   	    	    android:layout_below="@+id/tvAddMedicineTittle"/>
+
+   	    	<TextView 
+   	    	    android:id="@+id/tvAddMedicineFootbathVol"
+   	    	    android:layout_width="match_parent"
+   	    	    android:layout_height="wrap_content"
+   	    	    android:gravity="center"
+   	    	    android:text="footbathVol"
+   	    	    android:textAppearance="?android:attr/textAppearanceMedium"
+   	    	    android:layout_below="@+id/tvAddMedicineFootbathName"/>
+   	    	
+   	    </RelativeLayout>
+		
+		<TextView />
+		
+			<TextView 
+	   	        android:id="@+id/tvAddMedicineSelect"
+	   	        android:layout_width="wrap_content"
+	   	        android:layout_height="wrap_content"
+	   	        android:text="Tipo de medicamento:"
+	   	        android:textAppearance="?android:attr/textAppearanceMedium"
+	   	        android:textStyle="bold" />
+			
+			<RadioGroup
+		        android:id="@+id/radioMedicine"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" 
+		        android:gravity="center_vertical">
+		 
+		        <RadioButton
+		            android:id="@+id/radioFormol"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Formol" 
+		            android:checked="true" />
+		 
+		        <RadioButton
+		            android:id="@+id/radioCuSO4"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="CuSO4" />
+		        
+		        <RadioButton
+		            android:id="@+id/radioHipocloritoDeSodio"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Hipoclorito de Sodio" />
+		        
+		        <RadioButton
+		            android:id="@+id/radioOTC"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="OTC" />		        		        
+ 
+    		</RadioGroup>
+
+		<TextView />
+
+		<TableRow >
+		    
+			<TextView 
+	   	        android:id="@+id/tvAddMedicineDilution"
+	   	        android:layout_width="wrap_content"
+	   	        android:layout_height="wrap_content"
+	   	        android:textAppearance="?android:attr/textAppearanceMedium"
+	   	        android:textStyle="bold"/>
+
+		
+		</TableRow>
+		
+		<TextView />
+		
+		<Button 
+		    android:id="@+id/bComputeQuantity"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Calcular cantidad de medicamento"/>
+			
+   	</TableLayout>
+    
+
+</ScrollView>

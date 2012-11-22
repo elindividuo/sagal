@@ -180,6 +180,14 @@
             </intent-filter>
         </activity>  
         
+         <activity
+            android:name=".AddMedicine"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.ADDMEDICINE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>           
     </application>
 
 </manifest>

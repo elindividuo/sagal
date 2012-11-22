@@ -123,4 +123,39 @@ private ManageFarm mf;
 		footbathDao.close();
 	}
 	
+	public double computeQuantity (double width, double deep, double height, String medicineType){
+		// http://www.metric-conversions.org/es/volumen/centimetros-cubicos-a-litros.htm
+		
+		double concentration, suitableVol;
+		if (medicineType.equals("Formol")){
+			concentration = 3;
+			suitableVol = 100;
+			return concentration * width * deep * height / suitableVol;
+		}
+		else {
+			if (medicineType.equals("CuSO4")){
+				concentration = 2;
+				suitableVol = 100;
+				return concentration * width * deep * height / suitableVol;
+			}
+			else {
+				if (medicineType.equals("Hipoclorito de Sodio")){
+					concentration = 1;
+					suitableVol = 100;
+					return concentration * width * deep * height / suitableVol;
+				}
+				else{
+					if (medicineType.equals("OTC")){
+						concentration = 5;
+						suitableVol = 1000;
+						return concentration * width * deep * height / suitableVol;
+					}
+					else
+						return 0.0;
+				}
+			}
+		}
+		
+		
+	}
 }
