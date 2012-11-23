@@ -63,8 +63,8 @@ public class InjuryRegistration extends Activity implements
 
 	// El orden de los elementos de los arreglos es igual que el de la matrizXY:
 	// 0, 1L, 1R, 2L, 2R, 3L, 3R, 4L, 4R, 5L, 5R, 6L, 6R, 10
-	boolean[] lesiones = { false, false, false, true, false, false, true,
-			false, false, true, false, false, false, false };
+	boolean[] lesiones = { false, false, false, false, false, false, false,
+			false, false, false, false, false, false, false };
 	int[] zones = { R.id.zone0, R.id.zone1L, R.id.zone1R, R.id.zone2L,
 			R.id.zone2R, R.id.zone3L, R.id.zone3R, R.id.zone4L, R.id.zone4R,
 			R.id.zone5L, R.id.zone5R, R.id.zone6L, R.id.zone6R, R.id.zone10 };
@@ -79,6 +79,7 @@ public class InjuryRegistration extends Activity implements
 
 	ArrayList<Poligono> poligonos = new ArrayList<Poligono>(); // Los poligonos
 																// de las zonas
+	int selectedZone;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,8 @@ public class InjuryRegistration extends Activity implements
 		selectInjuries = (Button) findViewById(R.id.bSelectInjuries);
 		ok = (Button) findViewById(R.id.bOkInjuryRegistration);
 		sectionNumber = (TextView) findViewById(R.id.bSectionNumber);
+		
+		selectedZone = -1;
 
 		hoof.setOnTouchListener(this);
 
@@ -119,6 +122,7 @@ public class InjuryRegistration extends Activity implements
 				showSelectInjuries();
 			}
 		});
+		
 		ok.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -175,11 +179,6 @@ public class InjuryRegistration extends Activity implements
 				Toast.LENGTH_LONG).show();
 	}
 
-	public void addNotes(View v) {
-		Intent intent = new Intent("com.tpi.sagal.ADDNOTES");
-		startActivity(intent);
-	}
-
 	public void ok(View v) {
 		Intent intent = new Intent("com.tpi.sagal.SELECTHOOF");
 		startActivity(intent);
@@ -199,8 +198,19 @@ public class InjuryRegistration extends Activity implements
 
 			// Aquí se cambia el color de la zona sólo por hacerle click, pero
 			// debe depender de las lesiones que se registren
-			if (i <= 13)
-				changeColor(i, zones[i], green[i], red[i]);
+			if (i <= 13) {
+				
+				if (selectedZone != -1) {
+					changeColor (selectedZone, zones[selectedZone], green[selectedZone], red[selectedZone]);
+				}
+				
+				if (selectedZone == i) {
+					selectedZone = -1;
+				} else {
+					changeColor(i, zones[i], green[i], red[i]);
+					selectedZone = i;
+				}
+			}
 
 			switch (i) {
 			case 0:

@@ -172,11 +172,15 @@ public class CowDaoAdapter {
 		cv.put(KEY_MOTHER, motherId);
 		cv.put(KEY_FATHER, fatherId);
 		cv.put(KEY_FARM, farmId);
-		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
+		ourDatabase.update(DATABASE_TABLE, cv, KEY_ID + "=" + id,null);
 	}
 	
 	public Cursor readCowFromFarm(int id, int fatherId, int motherId, int farmId) {
 		return ourDatabase.query(DATABASE_TABLE, columns, KEY_ID + " != " + id + " AND "+ KEY_ID + " != "+ fatherId+ " AND "+ KEY_ID + " != "+motherId+ " AND "+KEY_FARM+" = "+farmId,null,null,null,null);
+	}
+	
+	public Cursor readLastCow() {
+		return ourDatabase.query(DATABASE_TABLE, columns, KEY_ID + "= (SELECT MAX (" + KEY_ID + ") FROM " + DATABASE_TABLE + ");",null,null,null,null);
 	}
 	
 	public void updateCow(int id, String regimens, String diffDiag){

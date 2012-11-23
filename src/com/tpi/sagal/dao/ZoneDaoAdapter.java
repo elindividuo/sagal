@@ -20,7 +20,7 @@ public class ZoneDaoAdapter {
 	private static final String[] columns = { KEY_ID, KEY_NUMBER, KEY_HOOF };
 
 	private static final String ZONE_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS "+ DATABASE_TABLE+" ("+
-			KEY_ID + " INTEGER PRIMARY KEY,"+
+			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			KEY_NUMBER + " INTEGER NOT NULL,"+
 			KEY_HOOF + " INTEGER NOT NULL,"+
 			" FOREIGN KEY ("+KEY_HOOF+") REFERENCES "+DATABASE_FOREIGN_TABLE+" (_id));";
@@ -73,11 +73,10 @@ public class ZoneDaoAdapter {
 		ourHelper.close();
 	}
 		
-	public long createzone(int id, int number, int hoofId) throws SQLException{
+	public long createZone(int hoofId, int number) throws SQLException{
 		ContentValues cv = new ContentValues();
-		cv.put(KEY_ID, id);
-		cv.put(KEY_NUMBER, number);
 		cv.put(KEY_HOOF, hoofId);
+		cv.put(KEY_NUMBER, number);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 	

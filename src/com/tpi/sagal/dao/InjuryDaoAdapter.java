@@ -19,7 +19,7 @@ public class InjuryDaoAdapter {
 	private static final String[] columns = { KEY_ID, KEY_NAME, KEY_ABBREVIATION };
 
 	private static final String INJURY_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS "+ DATABASE_TABLE+" ("+
-			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			KEY_ID + " INTEGER PRIMARY KEY,"+
 			KEY_NAME + " TEXT NOT NULL,"+
 			KEY_ABBREVIATION + " TEXT);";
 	
@@ -71,8 +71,9 @@ public class InjuryDaoAdapter {
 		ourHelper.close();
 	}
 		
-	public long createInjury(String name, String abbreviation) throws SQLException{
+	public long createInjury(int id, String name, String abbreviation) throws SQLException{
 		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, id);
 		cv.put(KEY_NAME, name);
 		cv.put(KEY_ABBREVIATION, abbreviation);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);

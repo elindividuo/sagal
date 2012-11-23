@@ -6,18 +6,24 @@ import android.database.Cursor;
 import android.util.Log;
 
 import com.tpi.sagal.dao.CowDaoAdapter;
+import com.tpi.sagal.dao.HoofDaoAdapter;
+import com.tpi.sagal.dao.ZoneDaoAdapter;
 import com.tpi.sagal.entity.Cow;
 import com.tpi.sagal.entity.Farm;
 
 public class ManageCow {
 	
 	private CowDaoAdapter cowDao;
+	private HoofDaoAdapter hoofDao;
+	private ZoneDaoAdapter zoneDao;
 	private ManageFarm mf;
 	
 	public ManageCow(Context context)
 	{
 		cowDao = new CowDaoAdapter(context);
 		mf = new ManageFarm (context);
+		hoofDao = new HoofDaoAdapter(context);
+		zoneDao = new ZoneDaoAdapter(context);
 		cowDao.open();
 		cowDao.close();
 	}
@@ -25,12 +31,41 @@ public class ManageCow {
 	public void createCow(int registry, String name, String breed, String birth, String tattoo, String problems, String finalDestination, String differentialDiag, String regimens,int locomotion,int motherId, int fatherId , int farmId){
 		cowDao.open();
 		cowDao.createCow(registry, name, breed, birth, tattoo, problems, finalDestination,differentialDiag,regimens ,locomotion, motherId, fatherId, farmId);
+		Cursor cursorC = cowDao.readLastCow();
+		hoofDao.open();
+		zoneDao.open();
+		if(cursorC.moveToFirst()){
+			int cowId = cursorC.getInt(cursorC.getColumnIndex("_id"));
+			for (int i = 1; i < 5; i++) {
+				hoofDao.createHoof(cowId, i);
+				Cursor cursorH = hoofDao.readLastHoof();
+				if (cursorH.moveToFirst()) {
+					int hoofId = cursorH.getInt(cursorH.getColumnIndex("_id"));
+					for (int j = 0; j < 14; j++) {
+						zoneDao.createZone(hoofId, j);
+					}
+				}
+				cursorH.close();
+			}
+		}
+		cursorC.close();
+		zoneDao.close();
+		hoofDao.close();
 		cowDao.close();
 	}
 	
 	public void createCow(int registry, String name, String breed, String birth, String tattoo, String problems, int farmId){
 		cowDao.open();
 		cowDao.createCow(registry, name, breed, birth, tattoo, problems, farmId);
+		Cursor cursor = cowDao.readLastCow();
+		hoofDao.open();
+		if(cursor.moveToFirst()){
+			int cowId = cursor.getInt(cursor.getColumnIndex("_id"));
+			for (int i = 1; i < 5; i++) {
+				hoofDao.createHoof(cowId, i);
+			}
+		}
+		hoofDao.close();
 		cowDao.close();
 	}
 	

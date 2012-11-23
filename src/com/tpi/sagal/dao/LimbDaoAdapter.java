@@ -18,7 +18,7 @@ public class LimbDaoAdapter {
 	private static final String[] columns = { KEY_ID, KEY_NAME};
 	
 	private static final String VACCINE_TABLE_CREATE ="CREATE TABLE IF NOT EXISTS "+DATABASE_TABLE+" ("+
-			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			KEY_ID + " INTEGER PRIMARY KEY," +
 			KEY_NAME + " TEXT NOT NULL);";
 	
 	private LimbDBHelper ourHelper;
@@ -70,8 +70,9 @@ public class LimbDaoAdapter {
 		ourHelper.close();
 	}
 	
-	public long createLimb(String name) throws SQLException{
+	public long createLimb(int id, String name) throws SQLException{
 		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, id);
 		cv.put(KEY_NAME, name);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}

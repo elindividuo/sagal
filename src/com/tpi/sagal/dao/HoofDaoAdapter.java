@@ -24,10 +24,9 @@ public class HoofDaoAdapter {
 	private static final String HOOF_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS "+ DATABASE_TABLE+" ("+
 			KEY_ID + " INTEGER PRIMARY KEY,"+
 			KEY_COW + " INTEGER NOT NULL,"+
-			KEY_LIMB + " INTEGER NOT NULL,"+
+			KEY_LIMB + " INTEGER NOT NULL, " +
 			" FOREIGN KEY ("+KEY_COW+") REFERENCES "+DATABASE_FOREIGN_TABLE1+" (_id),"+
 			" FOREIGN KEY ("+KEY_LIMB+") REFERENCES "+DATABASE_FOREIGN_TABLE2+" (_id));";
-	
 	private HoofDBHelper ourHelper;
 	private final Context ourContext;
 	private SQLiteDatabase ourDatabase;
@@ -76,9 +75,8 @@ public class HoofDaoAdapter {
 		ourHelper.close();
 	}
 		
-	public long createHoof(int id, int cowId, int limbId) throws SQLException{
+	public long createHoof(int cowId, int limbId) throws SQLException{
 		ContentValues cv = new ContentValues();
-		cv.put(KEY_ID, id);
 		cv.put(KEY_COW, cowId);
 		cv.put(KEY_LIMB, limbId);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
@@ -106,5 +104,9 @@ public class HoofDaoAdapter {
 	
 	public Cursor readHoofFromCow(int id) {
 		return ourDatabase.query(DATABASE_TABLE, columns, KEY_COW + "=" + id,null,null,null,null);
+	}
+
+	public Cursor readLastHoof() {
+		return ourDatabase.query(DATABASE_TABLE, columns, KEY_ID + "= (SELECT MAX (" + KEY_ID + ") FROM " + DATABASE_TABLE + ");",null,null,null,null);
 	}
 }

@@ -19,9 +19,9 @@ public class ManageInjury {
 		injuryDao.close();
 	}
 	
-	public void createInjury(String name, String abbreviation){
+	public void createInjury(int id, String name, String abbreviation){
 		injuryDao.open();
-		injuryDao.createInjury(name, abbreviation);
+		injuryDao.createInjury(id, name, abbreviation);
 		injuryDao.close();
 	}
 	

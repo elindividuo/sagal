@@ -14,4 +14,10 @@ public class ManageLimb {
 		limbDao.close();
 	}
 	
+	public void createLimb (int idLimb, String nombre) {
+		limbDao.open();
+		limbDao.createLimb(idLimb, nombre);
+		limbDao.close();
+	}
+	
 }

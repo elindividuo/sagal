@@ -15,7 +15,6 @@ public class Zone_InjuryDaoAdapter {
 	private static final String DATABASE_FOREIGN_TABLE1 = "zone";
 	private static final String DATABASE_FOREIGN_TABLE2 = "injury";
 	
-	
 	private static final String KEY_ZONE = "zone_id";
 	private static final String KEY_INJURY = "injury_id";
 	

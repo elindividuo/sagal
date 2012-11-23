@@ -159,21 +159,28 @@ public class MainActivityViewFarms extends Activity implements
 		mv.createVaccine("LEP (Leptospirosis)");
 		mv.createVaccine("CLO (Clostridium)");
 		mv.createVaccine("RAB(Rabia)");
+		
+		ml.createLimb(1, "Miembro anterior izquierdo");
+		ml.createLimb(2, "Miembro anterior derecho");
+		ml.createLimb(3, "Miembro posterior izquierdo");
+		ml.createLimb(4, "Miembro posterior derecho");
 
-		mi.createInjury("Pezuña de Tirabuzón", "(C)");
-		mi.createInjury("Dermatitis Digital", "(D)");
-		mi.createInjury("Erosión del Talón", "(E)");
-		mi.createInjury("Gabarro o Flemón", "(F)");
-		mi.createInjury("Fisura o Grieta Horizontal", "(G)");
-		mi.createInjury("Hemorragia de la Suela", "(H)");
-		mi.createInjury("Dermatitis Interdigital", "(I)");
-		mi.createInjury("Hiperplasia Interdigital", "(K)");
-		mi.createInjury("Úlcera de Punta", "(T)");
-		mi.createInjury("Úlcera de la Suela", "(U)");
-		mi.createInjury("Fisura o Grieta Vertical", "(V)");
-		mi.createInjury("Lesión de la Línea Blanca", "(W)");
-		mi.createInjury("Fisura Axial", "(X)");
-		mi.createInjury("Suela Delgada", "(Z)");
+		mi.createInjury(1, "Pezuña de Tirabuzón", "(C)");
+		mi.createInjury(2, "Dermatitis Digital", "(D)");
+		mi.createInjury(3, "Erosión del Talón", "(E)");
+		mi.createInjury(4, "Gabarro o Flemón", "(F)");
+		mi.createInjury(5, "Fisura o Grieta Horizontal", "(G)");
+		mi.createInjury(6, "Hemorragia de la Suela", "(H)");
+		mi.createInjury(7, "Dermatitis Interdigital", "(I)");
+		mi.createInjury(8, "Hiperplasia Interdigital", "(K)");
+		mi.createInjury(9, "Úlcera de Punta", "(T)");
+		mi.createInjury(10, "Úlcera de la Suela", "(U)");
+		mi.createInjury(11, "Fisura o Grieta Vertical", "(V)");
+		mi.createInjury(12, "Lesión de la Línea Blanca", "(W)");
+		mi.createInjury(13, "Fisura Axial", "(X)");
+		mi.createInjury(14, "Suela Delgada", "(Z)");
+		
+		
 	}
 
 	@Override
