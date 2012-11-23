@@ -66,6 +66,10 @@ public class SelectChart extends Activity implements View.OnClickListener{
 			else if(chartType.equals("Lesiones encontradas")){
 				//Put code for plot injuries percentaje
 				ct = 2;
+				i = new Intent(SelectChart.this, ShowChart.class);
+				i.putExtra("CHART_TYPE", ct);
+				i.putExtra("FARM_ID", farmId);
+				startActivity(i);
 			}
 			break;
 		}

@@ -56,9 +56,9 @@ public class AddMedicine extends Activity implements View.OnClickListener{
 					Toast.makeText(AddMedicine.this,
 							"Medicamento actualizado.", Toast.LENGTH_SHORT).show();
 					String unidad = "";
-					if (medicineType.equals("Formol") || medicineType.equals("Hipoclorito de Sodio"))
+					if (medicineType.equals("Formol (3%)") || medicineType.equals("Hipoclorito de Sodio (1%)"))
 						unidad = "cc";
-					else if (medicineType.equals("CuSO4") || medicineType.equals("OTC"))
+					else if (medicineType.equals("CuSO4 (2%)") || medicineType.equals("OTC (5%)"))
 						unidad = "gr";
 					addMedicineDilution.setText("Debes agregar " + quantity + unidad + " de " + medicineType);
 				}
@@ -98,7 +98,7 @@ public class AddMedicine extends Activity implements View.OnClickListener{
 		fb = mfb.searchFootbath(footbathid);
 		footbathName.setText(fb.getName());
 		double vol = fb.getDeep()*fb.getHeight()*fb.getWidth();
-		footbathVol.setText("Volumen: " + vol);
+		footbathVol.setText("Volumen: " + vol + " cc.");
 		
 		diditwork = true;
 		computeQuantity.setOnClickListener(this);

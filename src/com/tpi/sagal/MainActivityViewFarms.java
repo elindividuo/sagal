@@ -66,7 +66,7 @@ public class MainActivityViewFarms extends Activity implements
 		mzi = new ManageZone_Injury(this);
 		mls = new ManageLocomotionScore(this);
 
-		databaseInserts();
+		//databaseInserts();
 		createFarm = (Button) findViewById(R.id.bCreateFarm_MainView);
 		listViewFarms = (ListView) findViewById(R.id.lvFarms);
 

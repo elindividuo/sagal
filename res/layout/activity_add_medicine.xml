@@ -17,8 +17,7 @@
 	   	    	android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:src="@drawable/previousitem"/>
-
-   	    	<TextView
+    	    	<TextView
    	    	    android:id="@+id/tvAddMedicineTittle"
    	    	    android:layout_width="match_parent"
    	    	    android:layout_height="wrap_content"
@@ -67,26 +66,26 @@
 		            android:id="@+id/radioFormol"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="Formol" 
+		            android:text="Formol (3%)" 
 		            android:checked="true" />
 		 
 		        <RadioButton
 		            android:id="@+id/radioCuSO4"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="CuSO4" />
+		            android:text="CuSO4 (2%)" />
 		        
 		        <RadioButton
 		            android:id="@+id/radioHipocloritoDeSodio"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="Hipoclorito de Sodio" />
+		            android:text="Hipoclorito de Sodio (1%)" />
 		        
 		        <RadioButton
 		            android:id="@+id/radioOTC"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="OTC" />		        		        
+		            android:text="OTC (5%)" />		        		        
  
     		</RadioGroup>
 

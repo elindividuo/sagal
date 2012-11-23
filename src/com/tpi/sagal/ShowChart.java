@@ -1,19 +1,27 @@
 package com.tpi.sagal;
 
-import org.achartengine.GraphicalView;
+import java.io.File;
+import java.io.FileOutputStream;
 
-import com.tpi.sagal.control.ManageFarm;
-import com.tpi.sagal.graphs.LocomotionScoringGraph;
+import org.achartengine.GraphicalView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.tpi.sagal.control.ManageFarm;
+import com.tpi.sagal.graphs.InjuryGraph;
+import com.tpi.sagal.graphs.LocomotionScoringGraph;
 
 public class ShowChart extends Activity implements View.OnClickListener{
 
@@ -21,9 +29,11 @@ public class ShowChart extends Activity implements View.OnClickListener{
 	TextView farmName;
 	LinearLayout chart;
 	Button export;
-	int chartType, farmId;
+	int chartType, farmId, index = 0;
 	ManageFarm mf;
 	Intent i;
+	GraphicalView gv;
+	Bitmap bitmap;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +53,31 @@ public class ShowChart extends Activity implements View.OnClickListener{
 			startActivity(i);
 			break;
 		case R.id.bExportChart:
+			bitmap = gv.toBitmap();
+			//Does the device have SD)
+			String status = Environment.getExternalStorageState();
+		    if (status.equals(Environment.MEDIA_MOUNTED)){
+		    	File path = Environment.getExternalStorageDirectory();
+		    	String absolutePath = path.getAbsolutePath();
+		    	try {
+		    	          FileOutputStream out = new FileOutputStream(absolutePath);
+		    	          bitmap.compress(CompressFormat.PNG, 100, out);
+		    	          out.flush();
+		    	          out.close();
+		    	      } catch(Exception e) {
+		    	    	  Toast.makeText(ShowChart.this,
+		  						"La gráfica no se pudo exportar.", Toast.LENGTH_SHORT).show();
+		    	      }
+
+		    }/*
+			try{
+				File file = new File(Environment.getExternalStorageDirectory(), "test" + index++ + ".png");
+				FileOutputStream output = new FileOutputStream(file);
+				bitmap.compress(CompressFormat.PNG, 100, output);
+			}catch(Exception e){
+				Toast.makeText(ShowChart.this,
+						"La gráfica no se pudo exportar.", Toast.LENGTH_SHORT).show();
+			}*/
 			break;
 		}
 		
@@ -71,7 +106,11 @@ public class ShowChart extends Activity implements View.OnClickListener{
 			Log.v("BLAH", "hola");
 			Log.v("BLAH", "farmId: "+farmId);
 			LocomotionScoringGraph lsg = new LocomotionScoringGraph();
-			GraphicalView gv = lsg.getView(this, farmId);
+			gv = lsg.getView(this, farmId);
+			chart.addView(gv);
+		} else if(chartType == 2){
+			InjuryGraph ig = new InjuryGraph();
+			gv = ig.getView(this, farmId);
 			chart.addView(gv);
 		}
 		

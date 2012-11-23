@@ -127,25 +127,25 @@ private ManageFarm mf;
 		// http://www.metric-conversions.org/es/volumen/centimetros-cubicos-a-litros.htm
 		
 		double concentration, suitableVol;
-		if (medicineType.equals("Formol")){
+		if (medicineType.equals("Formol (3%)")){
 			concentration = 3;
 			suitableVol = 100;
 			return concentration * width * deep * height / suitableVol;
 		}
 		else {
-			if (medicineType.equals("CuSO4")){
+			if (medicineType.equals("CuSO4 (2%)")){
 				concentration = 2;
 				suitableVol = 100;
 				return concentration * width * deep * height / suitableVol;
 			}
 			else {
-				if (medicineType.equals("Hipoclorito de Sodio")){
+				if (medicineType.equals("Hipoclorito de Sodio (1%)")){
 					concentration = 1;
 					suitableVol = 100;
 					return concentration * width * deep * height / suitableVol;
 				}
 				else{
-					if (medicineType.equals("OTC")){
+					if (medicineType.equals("OTC (5%)")){
 						concentration = 5;
 						suitableVol = 1000;
 						return concentration * width * deep * height / suitableVol;
