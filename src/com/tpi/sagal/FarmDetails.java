@@ -120,8 +120,8 @@ public class FarmDetails extends Activity implements View.OnClickListener {
 			startActivity(i);
 			break;
 		case R.id.bStatistics:
-			LocomotionScoringGraph bar = new LocomotionScoringGraph();
-			i = bar.getIntent(this, id);
+			i = new Intent(FarmDetails.this, SelectChart.class);
+			i.putExtra("FARM_ID", id);
 			startActivity(i);
 			break;
 		case R.id.bViewCattle:

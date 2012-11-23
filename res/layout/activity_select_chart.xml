@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    
+   	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/tableSelectChart"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" >
+
+   	    <RelativeLayout
+   	        android:layout_width="wrap_content"
+   	        android:layout_height="wrap_content" >
+
+   	        <ImageButton 
+	   	        android:id="@+id/ibBack_SelectChart"
+	   	    	android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:src="@drawable/previousitem"/>
+
+
+   	    	<TextView
+   	    	    android:id="@+id/tvSelectChartTitle"
+   	    	    android:layout_width="match_parent"
+   	    	    android:layout_height="wrap_content"
+   	    	    android:gravity="center"
+   	    	    android:text="Estadísticas del hato"
+   	    	    android:textAppearance="?android:attr/textAppearanceLarge"
+   	    	    android:textStyle="bold"
+   	    	    android:layout_toRightOf="@+id/ibBack_SelectChart"/>
+   	    	
+   	    	<TextView 
+   	    	    android:id="@+id/tvSelectChartFarmName"
+   	    	    android:layout_width="match_parent"
+   	    	    android:layout_height="wrap_content"
+   	    	    android:gravity="center"
+   	    	    android:text="farmname"
+   	    	    android:textAppearance="?android:attr/textAppearanceMedium"
+   	    	    android:layout_below="@+id/tvSelectChartTitle"/>
+   	    	
+   	    </RelativeLayout>
+		
+		<TextView />
+		
+			<TextView 
+	   	        android:id="@+id/tvSelectChart"
+	   	        android:layout_width="wrap_content"
+	   	        android:layout_height="wrap_content"
+	   	        android:text="Tipo de estadística:"
+	   	        android:textAppearance="?android:attr/textAppearanceMedium"
+	   	        android:textStyle="bold" />
+			
+			<RadioGroup
+		        android:id="@+id/radioChart"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content" 
+		        android:gravity="center_vertical">
+		 
+		        <RadioButton
+		            android:id="@+id/radioLocomotionScoring"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Puntaje de locomoción" 
+		            android:checked="true" />
+		 
+		        <RadioButton
+		            android:id="@+id/radioInjuries"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Lesiones encontradas" />
+
+    		</RadioGroup>
+
+		<TextView />		
+		<TextView />
+		
+		<Button 
+		    android:id="@+id/bPlot"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Graficar"/>
+			
+   	</TableLayout>
+    
+
+</ScrollView>

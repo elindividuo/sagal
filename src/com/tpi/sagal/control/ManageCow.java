@@ -3,6 +3,8 @@ package com.tpi.sagal.control;
 import java.util.ArrayList;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
+
 import com.tpi.sagal.dao.CowDaoAdapter;
 import com.tpi.sagal.entity.Cow;
 import com.tpi.sagal.entity.Farm;
@@ -111,19 +113,88 @@ public class ManageCow {
 	}
 	
 	public int[] getLocomotionScoring (int id_farm) {
-		ArrayList<Cow> cows = readAllCowFromFarm(id_farm);
+		ArrayList<Cow> cows = readCowsFromFarmLS(id_farm);
 		ArrayList<Integer> locomotionScoring = new ArrayList<Integer>();
 		for (Cow c:cows){
 			locomotionScoring.add(c.getLocomotionScoring());
 		}
-		
-		int[] ls = new int [5];
-		for (Integer i:locomotionScoring){
-			ls[i-1]++;
+		int ls[] = new int [5];
+		for (int i = 0; i<ls.length; i++)
+			ls[i] = 0;
+		//Log.v("BLAH", "id_farm" + id_farm);
+		//Log.v("BLAH", "size" + locomotionScoring.size());
+		for (int j = 0; j < locomotionScoring.size(); j++){
+			//ls[j-1]++;
+			Log.v("Locomotio Scoring ", j +" "+locomotionScoring.get(j)+"");
+			switch ((int)locomotionScoring.get(j)){
+			case 1: ls[0]++;break;
+			case 2: ls[1]++;break;
+			case 3: ls[2]++;break;
+			case 4: ls[3]++;break;
+			case 5: ls[4]++;break;
+			}
 		}
-		
+		//Log.v("BLAH", "4");
+		//Log.v("blah", ls.length+" tamaño ls");
 		return ls;
 	}
+
+	
+	public double[] getIdealLocomotionScoringFromCattle (int farm_id){
+		int cattleSize = readCowsFromFarmLS(farm_id).size();
+		Log.v("BLAH", "cattle size" + cattleSize);
+		double ls1Percent = cattleSize * 0.50;
+		double ls2Percent = cattleSize * 0.25;
+		double ls3Percent = cattleSize * 0.10;
+		double ls4Percent = cattleSize * 0.10;
+		double ls5Percent = cattleSize * 0.05;
+		
+		double [] idealLocScor = new double [5];
+		idealLocScor[0] = ls1Percent;
+		idealLocScor[1] = ls2Percent;
+		idealLocScor[2] = ls3Percent;
+		idealLocScor[3] = ls4Percent;
+		idealLocScor[4] = ls5Percent;
+		
+		return idealLocScor;
+	}	
+
+	
+	public ArrayList<Cow> readCowsFromFarmLS(int farm_id){
+		cowDao.open();
+		Cursor cursor = cowDao.readCowFromFarm(farm_id);
+		ArrayList<Cow> cows = new ArrayList<Cow>();
+		if(cursor.moveToFirst()){
+			do{
+				int cId = cursor.getInt(cursor.getColumnIndex("_id"));
+				int registry = cursor.getInt(cursor.getColumnIndex("cow_registry"));
+		        String name = cursor.getString(cursor.getColumnIndex("cow_name"));
+		        String breed = cursor.getString(cursor.getColumnIndex("cow_breed"));
+		        String birthday = cursor.getString(cursor.getColumnIndex("cow_birthday"));
+		        String tattoo = cursor.getString(cursor.getColumnIndex("cow_tattoo"));
+		        String problems = cursor.getString(cursor.getColumnIndex("cow_problems"));
+		        String regimens = cursor.getString(cursor.getColumnIndex("cow_regimens"));
+		        String diffDiag = cursor.getString(cursor.getColumnIndex("cow_dif_diag"));
+		        String finalDestination = cursor.getString(cursor.getColumnIndex("cow_finaldestination"));
+		        int motherId = cursor.getInt(cursor.getColumnIndex("cow_mother"));
+		        int fatherId = cursor.getInt(cursor.getColumnIndex("cow_father"));
+		        int locomotion = cursor.getInt(cursor.getColumnIndex("cow_locomotion"));
+		        int farmId = cursor.getInt(cursor.getColumnIndex("farm_id"));
+		        
+		        Cow father = searchCow(fatherId);
+		        Cow mother = searchCow(motherId);
+		        
+	            Farm farm = mf.searchFarm(farmId);
+	            
+	            cows.add(new Cow(cId,registry,name,breed, birthday, tattoo,father,mother,finalDestination,problems,locomotion, farm,diffDiag,regimens));
+		        
+			}while(cursor.moveToNext());
+		}
+		cursor.close();
+        cowDao.close();
+        return cows;
+	}
+	
 	
 	public ArrayList<Cow> readAllCowFromFarm(int farm_id){
 		cowDao.open();

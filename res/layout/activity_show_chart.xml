@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    
+   	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/tableShowChart"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" >
+
+   	    <RelativeLayout
+   	        android:layout_width="wrap_content"
+   	        android:layout_height="wrap_content" >
+
+   	        <ImageButton 
+	   	        android:id="@+id/ibBack_ShowChart"
+	   	    	android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:src="@drawable/previousitem"/>
+
+
+   	    	<TextView
+   	    	    android:id="@+id/tvShowChartTitle"
+   	    	    android:layout_width="match_parent"
+   	    	    android:layout_height="wrap_content"
+   	    	    android:gravity="center"
+   	    	    android:text="Estadísticas del hato"
+   	    	    android:textAppearance="?android:attr/textAppearanceLarge"
+   	    	    android:textStyle="bold"
+   	    	    android:layout_toRightOf="@+id/ibBack_ShowChart"/>
+   	    	
+   	    	<TextView 
+   	    	    android:id="@+id/tvShowChartFarmName"
+   	    	    android:layout_width="match_parent"
+   	    	    android:layout_height="wrap_content"
+   	    	    android:gravity="center"
+   	    	    android:text="farmname"
+   	    	    android:textAppearance="?android:attr/textAppearanceMedium"
+   	    	    android:layout_below="@+id/tvShowChartTitle"/>
+   	    	
+   	    </RelativeLayout>
+		
+		<TextView />
+		
+		<LinearLayout
+		    android:id="@+id/linearLayoutChart"
+		    android:layout_width="fill_parent"
+		    android:layout_height="300dp" 
+		    android:orientation="horizontal"
+		    ></LinearLayout>
+			
+
+		<TextView />		
+		<TextView />
+		
+		<Button 
+		    android:id="@+id/bExportChart"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Exportar"/>
+			
+   	</TableLayout>
+    
+
+</ScrollView>
