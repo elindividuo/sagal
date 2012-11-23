@@ -1,6 +1,9 @@
 package com.tpi.sagal;
 
+import java.util.ArrayList;
+
 import com.tpi.sagal.control.ManageCow;
+import com.tpi.sagal.control.ManageCow_Vaccine;
 import com.tpi.sagal.entity.Cow;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,6 +28,9 @@ public class CattleDetails extends Activity implements View.OnClickListener {
 	Cow c;
 	boolean diditwork;
 	ImageButton backButton;
+	ArrayList<String> existingVaccines;
+	ManageCow_Vaccine mcv;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +68,13 @@ public class CattleDetails extends Activity implements View.OnClickListener {
 			cowId = extras.getInt("COW_ID");
 			farmId = extras.getInt("FARM_ID");
 		}
-
+		mcv = new ManageCow_Vaccine(this);
 		mc = new ManageCow(this);
 		c = mc.searchCow(cowId);
 		diditwork = true;
-
+		
+		
+		
 		registry.setText("" + c.getRegistry());
 		name.setText(c.getName());
 		breed.setText(c.getBreed());
@@ -94,6 +102,7 @@ public class CattleDetails extends Activity implements View.OnClickListener {
 		bAddNotes.setOnClickListener(this);
 		backButton.setOnClickListener(this);
 		bNotes.setOnClickListener(this);
+		bVaccine.setOnClickListener(this);
 	}
 
 	@Override
@@ -186,6 +195,39 @@ public class CattleDetails extends Activity implements View.OnClickListener {
 
 			// Showing Alert Message
 			alertDialog.show();
+			break;
+			
+		case R.id.bCowVaccines_Details:
+			existingVaccines = mcv.searchCow_Vaccine(cowId);
+			String vaccines = "";
+			
+			if(!existingVaccines.isEmpty()){
+				for (String f: existingVaccines){
+					vaccines +="- "+f+"\n";
+				}	
+			}else {
+				vaccines = "Ninguna.";
+			}
+			
+			
+			AlertDialog alertDialog1 = new AlertDialog.Builder(this).create();
+
+			// Setting Dialog Title
+			alertDialog1.setTitle("Vacunas del ejemplar");
+			
+			// Setting Dialog Message
+			alertDialog1.setMessage(vaccines);
+
+			// Setting OK Button
+			alertDialog1.setButton("OK", new DialogInterface.OnClickListener() {
+				public void onClick(final DialogInterface dialog,
+						final int which) {
+				}
+			});
+
+			// Showing Alert Message
+			alertDialog1.show();
+			
 			break;
 		}
 	}

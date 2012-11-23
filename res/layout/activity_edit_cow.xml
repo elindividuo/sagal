@@ -238,6 +238,25 @@
                 android:src="@drawable/cow" />
         </LinearLayout>
 
+        <TableRow>
+
+            <TextView
+                android:id="@+id/tvCowVaccines_Edit"
+                 android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+	                android:layout_weight="33"
+                android:text="Vacunas:"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <Button
+                android:id="@+id/bCowVaccines_Edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="ok"
+                android:text="Seleccionar Vacunas" />
+        </TableRow>
+        
+        
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"

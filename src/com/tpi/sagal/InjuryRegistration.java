@@ -82,7 +82,6 @@ public class InjuryRegistration extends Activity implements
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_injury_registration);
 

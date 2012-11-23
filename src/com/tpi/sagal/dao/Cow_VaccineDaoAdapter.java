@@ -89,8 +89,16 @@ public class Cow_VaccineDaoAdapter {
 		return ourDatabase.query(DATABASE_TABLE, columns, KEY_COW + "=" + cowId+" AND "+ KEY_VACCINE + "=" +vaccineId,null,null,null,null);
 	}
 	
+	public Cursor searchCow_Vaccine(int cowId) throws SQLException{
+		return ourDatabase.query("cow join cow_has_vaccine on (cow._id = cow_has_vaccine.cow_id) join vaccine on (cow_has_vaccine.vaccine_id=vaccine._id)",new String[] {"vaccine.vaccine_name"}, KEY_COW + "=" + cowId,null,null,null,null);
+	}
+	
 	public void deleteCow_Vaccine(int cowId, int vaccineId ) throws SQLException{
 		ourDatabase.delete(DATABASE_TABLE, KEY_COW + "=" + cowId+" AND "+ KEY_VACCINE + "=" +vaccineId,null);
-	}	
+	}
 	
+	public void deleteCow_Vaccine(int cowId) throws SQLException{
+		ourDatabase.delete(DATABASE_TABLE, KEY_COW + "=" + cowId,null);
+	}	
+		
 }

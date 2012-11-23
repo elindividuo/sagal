@@ -3,10 +3,6 @@ package com.tpi.sagal;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.tpi.sagal.control.ManageCow;
-import com.tpi.sagal.entity.Cow;
-
-import datepicker.MyDatePickerDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -14,6 +10,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -22,9 +19,17 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tpi.sagal.control.ManageCow;
+import com.tpi.sagal.control.ManageCow_Vaccine;
+import com.tpi.sagal.control.ManageVaccine;
+import com.tpi.sagal.entity.Cow;
+import com.tpi.sagal.entity.Vaccine;
+
+import datepicker.MyDatePickerDialog;
+
 public class EditCow extends Activity implements View.OnClickListener {
 
-	Button ok, cancel;
+	Button ok, cancel,vaccine;
 	EditText etCowName, etCowNumber, etCowBreed, etCowTattoo, etCowProblems,
 			etCowFinalDesti;
 	Intent i;
@@ -36,8 +41,13 @@ public class EditCow extends Activity implements View.OnClickListener {
 	int cowId, farmId, idFatherCow, idMotherCow;
 	boolean diditwork;
 	ArrayList<Cow> cows;
-	ArrayList<String> cowNames;
-
+	ArrayList<String> cowNames, vaccineNames,existingVaccines;
+	ArrayList<Vaccine> vaccines;
+	ArrayList<Integer> idVaccines;
+	ManageVaccine mv;
+	ManageCow_Vaccine mcv;
+	
+	private ArrayList<CharSequence> selectedVaccines = new ArrayList<CharSequence>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,12 +57,18 @@ public class EditCow extends Activity implements View.OnClickListener {
 
 	public void initialize() {
 		mc = new ManageCow(this);
-
+		mv = new ManageVaccine(this);
+		mcv = new ManageCow_Vaccine(this);
 		diditwork = true;
 
+		vaccineNames = new ArrayList<String>();
 		cowNames = new ArrayList<String>();
+		existingVaccines = new ArrayList<String>();
 		cows = new ArrayList<Cow>();
+		vaccines = new ArrayList<Vaccine>();
+		idVaccines = new ArrayList<Integer>();
 
+		
 		final Calendar c = Calendar.getInstance();
 		year = c.get(Calendar.YEAR);
 		month = c.get(Calendar.MONTH);
@@ -64,11 +80,25 @@ public class EditCow extends Activity implements View.OnClickListener {
 			cowId = extras.getInt("COW_ID");
 			farmId = extras.getInt("FARM_ID");
 		}
+		
+		existingVaccines = mcv.searchCow_Vaccine(cowId);
 
+		if(!existingVaccines.isEmpty()){
+			final CharSequence[] items3 = existingVaccines.toArray(new CharSequence[existingVaccines.size()]);
+			
+			for (CharSequence f: items3){
+				selectedVaccines.add(f.toString());
+			}
+			
+		}
+		
+		
+		
 		cow = mc.searchCow(cowId);
 
 		ok = (Button) findViewById(R.id.bOkEditCow);
 		cancel = (Button) findViewById(R.id.bCancelEditCow);
+		vaccine =(Button) findViewById(R.id.bCowVaccines_Edit);
 
 		etCowName = (EditText) findViewById(R.id.etCowName_EditView);
 		etCowNumber = (EditText) findViewById(R.id.etCowNumber_EditView);
@@ -113,6 +143,7 @@ public class EditCow extends Activity implements View.OnClickListener {
 		changeDate.setOnClickListener(this);
 		changeFather.setOnClickListener(this);
 		changeMother.setOnClickListener(this);
+		vaccine.setOnClickListener(this);
 	}
 
 	protected Dialog onCreateDialog(int id) {
@@ -165,6 +196,22 @@ public class EditCow extends Activity implements View.OnClickListener {
 			try {
 				mc.updateCow(cowId, registry, name, breed, birth, tattoo,
 						problems, finalDest, idFatherCow, idMotherCow, farmId);
+				
+				
+				if(!selectedVaccines.isEmpty()){
+					for (CharSequence f: selectedVaccines){
+						Vaccine a = mv.searchVaccine(f.toString());
+						idVaccines.add(a.getId());	
+					}
+					mcv.deleteCow_Vaccine(cowId);
+					for (Integer f: idVaccines){
+						mcv.createCow_Vaccine(cowId, f);
+					}
+				}else{
+					mcv.deleteCow_Vaccine(cowId);
+				}
+				
+				
 			} catch (Exception e) {
 				diditwork = false;
 			} finally {
@@ -197,8 +244,6 @@ public class EditCow extends Activity implements View.OnClickListener {
 			showDialog(DATE_DIALOG_ID);
 			break;
 		case R.id.ibChangeFatherEditCow:
-			cows.clear();
-			cowNames.clear();
 			cows.clear();
 			cowNames.clear();
 			cows = mc.readCowFromFarm(cowId, idFatherCow, idMotherCow, farmId);
@@ -244,6 +289,47 @@ public class EditCow extends Activity implements View.OnClickListener {
 			AlertDialog alert1 = builder1.create();
 			alert1.show();
 			break;
+		case R.id.bCowVaccines_Edit:
+			vaccines.clear();
+			vaccineNames.clear();
+			vaccines = mv.readAllVaccines();
+			
+			for (Vaccine f : vaccines) {
+				vaccineNames.add(f.getName());
+			}
+
+			final CharSequence[] items2 = vaccineNames.toArray(new CharSequence[vaccineNames.size()]);
+			boolean[] checkedInjuries = new boolean[items2.length];
+
+			for (int i = 0; i < items2.length; i++)
+				checkedInjuries[i] = selectedVaccines.contains(items2[i]);
+
+			DialogInterface.OnMultiChoiceClickListener vaccinesDialogListener = new DialogInterface.OnMultiChoiceClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which,
+						boolean isChecked) {
+					if (isChecked){
+						selectedVaccines.add(items2[which]);
+					}else{
+						selectedVaccines.remove(items2[which]);
+					}
+				}
+			};
+
+			AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+			builder2.setTitle("Seleccionar vacunas");
+			builder2.setMultiChoiceItems(items2, checkedInjuries,
+					vaccinesDialogListener);
+			builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			});
+			AlertDialog dial = builder2.create();
+			dial.show();
+			break;
 		}
 	}
+	
 }

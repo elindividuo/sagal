@@ -49,6 +49,7 @@ public class SelectHoof extends Activity implements View.OnClickListener {
 			i.putExtra("COW_ID", cowId);
 			i.putExtra("FARM_ID", farmId);
 			startActivity(i);
+			break;
 		}
 
 		i = new Intent(SelectHoof.this, InjuryRegistration.class);

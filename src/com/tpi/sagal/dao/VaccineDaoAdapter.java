@@ -93,4 +93,8 @@ public class VaccineDaoAdapter {
 		cv.put(KEY_NAME, name);
 		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
 	}
+	
+	public Cursor searchVaccine(String name) throws SQLException{
+		return ourDatabase.query(DATABASE_TABLE, columns, KEY_NAME + "= \"" + name+"\"",null,null,null,null);
+	}
 }
