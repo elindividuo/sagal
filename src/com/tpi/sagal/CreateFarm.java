@@ -12,7 +12,7 @@ import com.tpi.sagal.control.ManageFarm;
 
 public class CreateFarm extends Activity implements View.OnClickListener {
 
-	Button ok;
+	Button ok, cancel;
 	EditText farmName, farmOwner, farmAddress;
 	Intent i;
 	ManageFarm mf;
@@ -27,12 +27,14 @@ public class CreateFarm extends Activity implements View.OnClickListener {
 
 	public void initialize() {
 		ok = (Button) findViewById(R.id.bOkCreateFarmView);
+		cancel = (Button) findViewById(R.id.bCancelCreateFarm);
 
 		farmName = (EditText) findViewById(R.id.etFarmName);
 		farmOwner = (EditText) findViewById(R.id.etFarmOwner);
 		farmAddress = (EditText) findViewById(R.id.etFarmAddress);
 
 		ok.setOnClickListener(this);
+		cancel.setOnClickListener(this);
 
 		mf = new ManageFarm(this);
 		diditwork = true;
@@ -64,6 +66,11 @@ public class CreateFarm extends Activity implements View.OnClickListener {
 				}
 			}
 			break;
+		case R.id.bCancelCreateFarm:
+			Toast.makeText(getApplicationContext(), "Registro cancelado.",
+					Toast.LENGTH_LONG).show();
+			i = new Intent(CreateFarm.this, MainActivityViewFarms.class);
+			startActivity(i);
 		}
 	}
 }

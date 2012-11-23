@@ -17,9 +17,9 @@ public class ManageVaccine {
 		vaccineDao.close();
 	}
 	
-	public void createVaccine(String name){
+	public void createVaccine(int id, String name){
 		vaccineDao.open();
-		vaccineDao.createVaccine(name);
+		vaccineDao.createVaccine(id, name);
 		vaccineDao.close();
 	}
 	

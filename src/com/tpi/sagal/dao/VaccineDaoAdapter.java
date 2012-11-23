@@ -70,8 +70,9 @@ public class VaccineDaoAdapter {
 		ourHelper.close();
 	}
 	
-	public long createVaccine(String name) throws SQLException{
+	public long createVaccine(int id, String name) throws SQLException{
 		ContentValues cv = new ContentValues();
+		cv.put(KEY_ID, id);
 		cv.put(KEY_NAME, name);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}

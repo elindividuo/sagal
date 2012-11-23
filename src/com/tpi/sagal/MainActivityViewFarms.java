@@ -66,7 +66,7 @@ public class MainActivityViewFarms extends Activity implements
 		mzi = new ManageZone_Injury(this);
 		mls = new ManageLocomotionScore(this);
 
-		//databaseInserts();
+		databaseInserts();
 		createFarm = (Button) findViewById(R.id.bCreateFarm_MainView);
 		listViewFarms = (ListView) findViewById(R.id.lvFarms);
 
@@ -100,7 +100,9 @@ public class MainActivityViewFarms extends Activity implements
 	}
 
 	private void databaseInserts() {
-		mf.createFarm("Rosales", "Nicolás Regules #61, Colonia Centro",
+/*	DATOS DE PRUEBA	
+ * 
+ * mf.createFarm("Rosales", "Nicolás Regules #61, Colonia Centro",
 				"Donardo");
 		mf.createFarm("Terranova",
 				"Calle Pedro Loza #360 esq. Angulo, Zona Centro", "Demetrio");
@@ -149,16 +151,16 @@ public class MainActivityViewFarms extends Activity implements
 		mc.createCow(111111, "Perla", "Lucerna", "1/1/1995", "TattooDesc",
 				"Decúbito permanente", "Ninguno", "Ninguno", "Ninguno", 0, 0,
 				0, 4);
-
-		mv.createVaccine("FAF (Fiebre Aftosa)");
-		mv.createVaccine("BRU (Brucella)");
-		mv.createVaccine("TRI (Triple)");
-		mv.createVaccine("CAS (Carbón Sintomático)");
-		mv.createVaccine("CRB (Complejo Respiratorio & Reproductivo Bovino)");
-		mv.createVaccine("EST (Estomatitis)");
-		mv.createVaccine("LEP (Leptospirosis)");
-		mv.createVaccine("CLO (Clostridium)");
-		mv.createVaccine("RAB(Rabia)");
+*/
+		mv.createVaccine(1,"FAF (Fiebre Aftosa)");
+		mv.createVaccine(2,"BRU (Brucella)");
+		mv.createVaccine(3,"TRI (Triple)");
+		mv.createVaccine(4, "CAS (Carbón Sintomático)");
+		mv.createVaccine(5, "CRB (Complejo Respiratorio & Reproductivo Bovino)");
+		mv.createVaccine(6, "EST (Estomatitis)");
+		mv.createVaccine(7, "LEP (Leptospirosis)");
+		mv.createVaccine(8, "CLO (Clostridium)");
+		mv.createVaccine(9, "RAB(Rabia)");
 		
 		ml.createLimb(1, "Miembro anterior izquierdo");
 		ml.createLimb(2, "Miembro anterior derecho");
