@@ -109,4 +109,10 @@ public class HoofDaoAdapter {
 	public Cursor readLastHoof() {
 		return ourDatabase.query(DATABASE_TABLE, columns, KEY_ID + "= (SELECT MAX (" + KEY_ID + ") FROM " + DATABASE_TABLE + ");",null,null,null,null);
 	}
+	
+	public Cursor readHoofFromCowAndLimb(int idcow, int idlimb) {
+		return ourDatabase.query(DATABASE_TABLE, columns, KEY_COW + "=" + idcow+ " AND "+ KEY_LIMB +"="+idlimb,null,null,null,null);
+	}
+	
+	
 }

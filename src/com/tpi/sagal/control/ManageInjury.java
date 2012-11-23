@@ -6,6 +6,7 @@ import com.tpi.sagal.dao.InjuryDaoAdapter;
 import com.tpi.sagal.entity.Cow;
 import com.tpi.sagal.entity.Farm;
 import com.tpi.sagal.entity.Injury;
+import com.tpi.sagal.entity.Vaccine;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -43,4 +44,17 @@ public class ManageInjury {
 		return injuries;
 	}
 	
+	public Injury searchInjury(String name){
+		injuryDao.open();
+		Cursor cursor = injuryDao.searchInjury(name);
+		if(cursor.moveToFirst()){
+		int id = cursor.getInt(cursor.getColumnIndex("_id"));
+		String injName = cursor.getString(cursor.getColumnIndex("injury_name"));
+		String abb = cursor.getString(cursor.getColumnIndex("injury_abbreviation"));
+		cursor.close();
+		injuryDao.close();
+		return new Injury(id,injName,abb);
+		}
+		return null;
+	}
 }

@@ -98,5 +98,9 @@ public class InjuryDaoAdapter {
 		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
 	}
 
+	public Cursor searchInjury(String name) {
+		return ourDatabase.query(DATABASE_TABLE, columns, KEY_ABBREVIATION + "= \"" + name+"\"",null,null,null,null);
+	}
+
 	
 }

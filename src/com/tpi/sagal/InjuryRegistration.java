@@ -3,6 +3,14 @@ package com.tpi.sagal;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.tpi.sagal.control.ManageHoof;
+import com.tpi.sagal.control.ManageInjury;
+import com.tpi.sagal.control.ManageLimb;
+import com.tpi.sagal.control.ManageZone;
+import com.tpi.sagal.control.ManageZone_Injury;
+import com.tpi.sagal.entity.Injury;
+import com.tpi.sagal.entity.Vaccine;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -18,23 +26,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class InjuryRegistration extends Activity implements
-		View.OnTouchListener {
+		View.OnTouchListener, View.OnClickListener {
 
-	private CharSequence[] injuries = { "(C) Pezuña de Tirabuzón",
-			"(D) Dermatitis Digital", "(E) Erosión del Talón",
-			"(F) Gabarro o Flemón", "(G) Fisura o Grieta Horizontal",
-			"(H) Hemorragia de la Suela", "(I) Dermatitis Interdigital",
-			"(K) Hiperplasia Interdigital", "(T) Úlcera de Punta",
-			"(U) Úlcera de la Suela", "(V) Fisura o Grieta Vertical",
-			"(W) Lesión de la Línea Blanca", "(X) Fisura Axial",
-			"(Z) Suela Delgada" };
+
 	private ArrayList<CharSequence> selectedInjuries = new ArrayList<CharSequence>();
 
-	Button selectInjuries, ok;
-	ImageButton hoof;
-	TextView sectionNumber;
+	Button selectInjuries;
+	ImageButton hoof, backButton;
+	TextView sectionNumber,hoofName;
 	ImageView hoofZone;
-
+	ManageInjury mi;
+	ArrayList<Injury> injuriesdb = new ArrayList<Injury>();
+	ArrayList<String> injuryNames = new ArrayList<String>();
+	ManageLimb ml;
+	ManageHoof mh;
+	ManageZone mz;
+	ManageZone_Injury mzi;
+	boolean diditwork;
+	Intent i;
+	
 	int[][] matrizXY = {
 			{ 184, 25, 174, 112, 175, 238, 214, 237, 217, 185, 217, 113, 209,
 					25 },// Zona 0
@@ -79,30 +89,53 @@ public class InjuryRegistration extends Activity implements
 
 	ArrayList<Poligono> poligonos = new ArrayList<Poligono>(); // Los poligonos
 																// de las zonas
-	int selectedZone;
+	int selectedZone, cowId, limbId,hoofId,zoneId,farmId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_injury_registration);
-
+		initialize();
+	}
+	
+	
+	public void initialize(){
+		diditwork=true;
+		
+		mh = new ManageHoof (this);
+		mi = new ManageInjury (this);
+		ml = new ManageLimb (this);
+		mz = new ManageZone(this);
+		mzi = new ManageZone_Injury(this);
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			cowId = extras.getInt("COW_ID");
+			limbId = extras.getInt("LIMB_ID");
+			farmId = extras.getInt("FARM_ID");
+		}
+		
+		
+		String limbName =ml.readLimb(limbId);
+		hoofId = mh.idHoof(cowId, limbId);
 		ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource(this,
 				R.array.hoofSections, android.R.layout.simple_spinner_item);
 		spinner_adapter
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+		backButton =(ImageButton) findViewById(R.id.ibBack_InjuryRegistration);
 		hoof = (ImageButton) findViewById(R.id.ibHoofSections);
 		selectInjuries = (Button) findViewById(R.id.bSelectInjuries);
-		ok = (Button) findViewById(R.id.bOkInjuryRegistration);
-		sectionNumber = (TextView) findViewById(R.id.bSectionNumber);
+		sectionNumber = (TextView) findViewById(R.id.tvZone);
+		hoofName = (TextView) findViewById(R.id.tvHoof);
+		
+		hoofName.setText(limbName);
 		
 		selectedZone = -1;
 
 		hoof.setOnTouchListener(this);
-
-		// Aquí se deben leer las lesiones de cada zona de la pezuña:
-		// lesiones[i] = ?
-
+		selectInjuries.setOnClickListener(this);
+		backButton.setOnClickListener(this);
+		
 		for (int i = 0; i <= 13; i++) {
 			changeColor(i, zones[i], green[i], red[i]);
 		}
@@ -114,28 +147,36 @@ public class InjuryRegistration extends Activity implements
 			}
 			poligonos.add(new Poligono(puntos));
 		}
-
-		selectInjuries.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				showSelectInjuries();
-			}
-		});
-		
-		ok.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(),
-						"¡Listo! Enfermedades registradas.", Toast.LENGTH_LONG)
-						.show();
-				ok(v);
-			}
-		});
-
 	}
+	
+	
 
 	public void showSelectInjuries() {
+		
+		injuriesdb.clear();
+		injuryNames.clear();
+		injuriesdb = mi.readAllInjuries();
+		zoneId = mz.idZone(hoofId,selectedZone);
+		
+		ArrayList<String> existingInjuries = new ArrayList<String>();
+		existingInjuries = mzi.searchZone_Injury(zoneId);
+		
+		if(!existingInjuries.isEmpty()){
+			final CharSequence[] items3 = existingInjuries.toArray(new CharSequence[existingInjuries.size()]);
+			
+			for (CharSequence f: items3){
+				selectedInjuries.add(f.toString());
+			}	
+		}
+		
+		
+		for (Injury f: injuriesdb){
+			injuryNames.add(f.getAbbreviation()+" "+f.getName());
+		}
+		
+		
+		final CharSequence[] injuries = injuryNames.toArray(new CharSequence[injuryNames.size()]);
+		
 		boolean[] checkedInjuries = new boolean[injuries.length];
 
 		for (int i = 0; i < injuries.length; i++)
@@ -145,7 +186,6 @@ public class InjuryRegistration extends Activity implements
 			@Override
 			public void onClick(DialogInterface dialog, int which,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked)
 					selectedInjuries.add(injuries[which]);
 				else
@@ -161,7 +201,37 @@ public class InjuryRegistration extends Activity implements
 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
+				ArrayList<Integer> idInjuries = new ArrayList<Integer>();
+				
+				try {
+				if(!selectedInjuries.isEmpty()){
+					for (CharSequence f: selectedInjuries){
+						Injury a = mi.searchInjury(f.toString().substring(0, 3));
+						idInjuries.add(a.getId());	
+					}
+					mzi.deleteZone_Injury(zoneId);
+					for (Integer f: idInjuries){
+						mzi.createZone_Injury(zoneId,f);
+					}
+				}else{
+					mzi.deleteZone_Injury(zoneId);
+				}
+				} catch (Exception e) {
+					diditwork = false;
+				} finally {
+					if (diditwork) {
+						Toast.makeText(getApplicationContext(),
+								"¡Listo! Enfermedades registradas.", Toast.LENGTH_LONG)
+								.show();
+						dialog.dismiss();
+					}
+					if (diditwork == false) {
+						Toast.makeText(getApplicationContext(),
+								"Error! Las enfermedades no fueron registradas",
+								Toast.LENGTH_LONG).show();
+					}
+				}
+				selectedInjuries.clear();
 			}
 		});
 		AlertDialog dial = builder.create();
@@ -179,11 +249,6 @@ public class InjuryRegistration extends Activity implements
 				Toast.LENGTH_LONG).show();
 	}
 
-	public void ok(View v) {
-		Intent intent = new Intent("com.tpi.sagal.SELECTHOOF");
-		startActivity(intent);
-	}
-
 	public boolean onTouch(View view, MotionEvent event) {
 		// int eventPadTouch = event.getAction();
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -199,7 +264,6 @@ public class InjuryRegistration extends Activity implements
 			// Aquí se cambia el color de la zona sólo por hacerle click, pero
 			// debe depender de las lesiones que se registren
 			if (i <= 13) {
-				
 				if (selectedZone != -1) {
 					changeColor (selectedZone, zones[selectedZone], green[selectedZone], red[selectedZone]);
 				}
@@ -217,40 +281,40 @@ public class InjuryRegistration extends Activity implements
 				sectionNumber.setText("CERO");
 				break;
 			case 1:
-				sectionNumber.setText("1L");
+				sectionNumber.setText("1I");
 				break;
 			case 2:
-				sectionNumber.setText("1R");
+				sectionNumber.setText("1D");
 				break;
 			case 3:
-				sectionNumber.setText("2L");
+				sectionNumber.setText("2I");
 				break;
 			case 4:
-				sectionNumber.setText("2R");
+				sectionNumber.setText("2D");
 				break;
 			case 5:
-				sectionNumber.setText("3L");
+				sectionNumber.setText("3I");
 				break;
 			case 6:
-				sectionNumber.setText("3R");
+				sectionNumber.setText("3D");
 				break;
 			case 7:
-				sectionNumber.setText("4L");
+				sectionNumber.setText("4I");
 				break;
 			case 8:
-				sectionNumber.setText("4R");
+				sectionNumber.setText("4D");
 				break;
 			case 9:
-				sectionNumber.setText("5L");
+				sectionNumber.setText("5I");
 				break;
 			case 10:
-				sectionNumber.setText("5R");
+				sectionNumber.setText("5D");
 				break;
 			case 11:
-				sectionNumber.setText("6L");
+				sectionNumber.setText("6I");
 				break;
 			case 12:
-				sectionNumber.setText("6R");
+				sectionNumber.setText("6D");
 				break;
 			case 13:
 				sectionNumber.setText("10");
@@ -273,6 +337,23 @@ public class InjuryRegistration extends Activity implements
 			hoofZone.setImageResource(green);
 			lesiones[i] = true;
 		}
+	}
+
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()){
+		case R.id.bSelectInjuries:
+			showSelectInjuries();
+			break;
+		case R.id.ibBack_InjuryRegistration: 	
+			i = new Intent(InjuryRegistration.this, SelectHoof.class);
+			i.putExtra("COW_ID", cowId);
+			i.putExtra("FARM_ID", farmId);
+			startActivity(i);
+			break;
+		}
+		
 	}
 
 }

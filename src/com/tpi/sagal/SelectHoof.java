@@ -52,18 +52,30 @@ public class SelectHoof extends Activity implements View.OnClickListener {
 			break;
 		case R.id.ibFrontLeftHoof:
 			i = new Intent(SelectHoof.this, InjuryRegistration.class);
+			i.putExtra("COW_ID", cowId);
+			i.putExtra("LIMB_ID", 1);
+			i.putExtra("FARM_ID", farmId);
 			startActivity(i);
 			break;
 		case R.id.ibFrontRightHoof:
 			i = new Intent(SelectHoof.this, InjuryRegistration.class);
+			i.putExtra("COW_ID", cowId);
+			i.putExtra("LIMB_ID", 2);
+			i.putExtra("FARM_ID", farmId);
 			startActivity(i);
 			break;
 		case R.id.ibRearLeftHoof:
 			i = new Intent(SelectHoof.this, InjuryRegistration.class);
+			i.putExtra("COW_ID", cowId);
+			i.putExtra("FARM_ID", farmId);
+			i.putExtra("LIMB_ID", 3);
 			startActivity(i);
 			break;
 		case R.id.ibRearRightHoof:
 			i = new Intent(SelectHoof.this, InjuryRegistration.class);
+			i.putExtra("COW_ID", cowId);
+			i.putExtra("LIMB_ID", 4);
+			i.putExtra("FARM_ID", farmId);
 			startActivity(i);
 			break;
 		}

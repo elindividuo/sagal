@@ -94,5 +94,9 @@ public class LimbDaoAdapter {
 		cv.put(KEY_NAME, name);
 		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
 	}
+
+	public Cursor readLimb(int idLimb) {
+		return ourDatabase.query(DATABASE_TABLE, columns, KEY_ID + " = " + idLimb,null,null,null,null);
+	}
 	
 }

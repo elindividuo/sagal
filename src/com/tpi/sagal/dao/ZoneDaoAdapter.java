@@ -103,5 +103,9 @@ public class ZoneDaoAdapter {
 	public Cursor readZoneFromHoof(int id) {
 		return ourDatabase.query(DATABASE_TABLE, columns, KEY_HOOF + "=" + id,null,null,null,null);
 	}
+
+	public Cursor readZoneFromHoof(int hoofId, int selectedZone) {
+		return ourDatabase.query(DATABASE_TABLE, columns, KEY_HOOF + "=" + hoofId+" AND "+ KEY_NUMBER+ "="+selectedZone,null,null,null,null);
+	}
 	
 }

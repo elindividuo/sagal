@@ -91,9 +91,7 @@ public class EditCow extends Activity implements View.OnClickListener {
 			}
 			
 		}
-		
-		
-		
+	
 		cow = mc.searchCow(cowId);
 
 		ok = (Button) findViewById(R.id.bOkEditCow);
@@ -176,7 +174,7 @@ public class EditCow extends Activity implements View.OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bOkEditCow:
-
+			idVaccines.clear();
 			int registry = Integer.parseInt(etCowNumber.getText().toString());
 			String name = etCowName.getText().toString();
 			String breed = etCowBreed.getText().toString();

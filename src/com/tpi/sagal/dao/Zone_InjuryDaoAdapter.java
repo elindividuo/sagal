@@ -91,7 +91,14 @@ public class Zone_InjuryDaoAdapter {
 	
 	public void deleteZone_Injury(int cowId, int vaccineId ) throws SQLException{
 		ourDatabase.delete(DATABASE_TABLE, KEY_ZONE + "=" + cowId+" AND "+ KEY_INJURY + "=" +vaccineId,null);
-	}	
+	}
+
+	public void deleteZone_Injury(int zoneId) {
+		ourDatabase.delete(DATABASE_TABLE, KEY_ZONE + "=" + zoneId,null);
+	}
 	
+	public Cursor searchZone_Injury(int zoneId) throws SQLException{
+		return ourDatabase.query("zone join zone_has_injury on (zone._id=zone_has_injury.zone_id) join injury on (zone_has_injury.injury_id = injury._id)",new String[] {"injury.injury_name","injury.injury_abbreviation"}, KEY_ZONE + "=" + zoneId,null,null,null,null);
+	}
 	
 }
