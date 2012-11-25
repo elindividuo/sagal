@@ -139,16 +139,35 @@ public class InjuryRegistration extends Activity implements
 		for (int i = 0; i <= 13; i++) {
 			changeColor(i, zones[i], green[i], red[i]);
 		}
-
+//
+//		for (int i = 0; i < matrizXY.length; i++) {
+//			ArrayList<Punto> puntos = new ArrayList<Punto>();
+//			for (int j = 0; j < matrizXY[i].length - 1; j += 2) {
+//				puntos.add(new Punto(matrizXY[i][j], matrizXY[i][j + 1]));
+//			}
+//			poligonos.add(new Poligono(puntos));
+//		}
+	}
+	
+	@Override
+	public void onWindowFocusChanged (boolean hasFocus){
+		super.onResume();
 		for (int i = 0; i < matrizXY.length; i++) {
 			ArrayList<Punto> puntos = new ArrayList<Punto>();
-			for (int j = 0; j < matrizXY[i].length - 1; j += 2) {
-				puntos.add(new Punto(matrizXY[i][j], matrizXY[i][j + 1]));
+			for (int j = 0; j < matrizXY[i].length - 1; j+=2) {
+					matrizXY[i][j] = matrizXY[i][j]*(hoof.getWidth())/400;
+					matrizXY[i][j+1] = matrizXY[i][j+1]*(hoof.getHeight())/361;
+					puntos.add(new Punto(matrizXY[i][j], matrizXY[i][j+1]));
+				
 			}
 			poligonos.add(new Poligono(puntos));
 		}
-	}
+		
 	
+	}
+
+
+
 	
 
 	public void showSelectInjuries() {
