@@ -30,7 +30,7 @@ public class CattleDetails extends Activity implements View.OnClickListener {
 	ImageButton backButton;
 	ArrayList<String> existingVaccines;
 	ManageCow_Vaccine mcv;
-	
+	String cowName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class CattleDetails extends Activity implements View.OnClickListener {
 	}
 
 	public void initialize() {
-
+		
 		registry = (TextView) findViewById(R.id.tvCowNumber_DetailsViewValue);
 		name = (TextView) findViewById(R.id.tvCowName_DetailsViewValue);
 		breed = (TextView) findViewById(R.id.tvCowBreed_DetailsViewValue);
@@ -95,6 +95,8 @@ public class CattleDetails extends Activity implements View.OnClickListener {
 			mother.setText(c.getMother().getName());
 		}
 
+		cowName = c.getName();
+		
 		bHoofInjury.setOnClickListener(this);
 		bLocomotionScoring.setOnClickListener(this);
 		bEditCowDetails.setOnClickListener(this);
@@ -123,6 +125,7 @@ public class CattleDetails extends Activity implements View.OnClickListener {
 			i = new Intent(CattleDetails.this, LocomotionScoring.class);
 			i.putExtra("COW_ID", cowId);
 			i.putExtra("FARM_ID", farmId);
+			i.putExtra("COW_NAME", cowName);
 			startActivity(i);
 			break;
 		case R.id.bEditCowDetails:

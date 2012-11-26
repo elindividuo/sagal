@@ -29,6 +29,7 @@ public class SelectChart extends Activity implements View.OnClickListener{
 	ManageFarm mf;
 	int farmId, ct;
 	boolean diditwork;
+	String charTypeForPloting;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,17 +58,17 @@ public class SelectChart extends Activity implements View.OnClickListener{
 			// Tipo de grafico que se mostrará: 1 para puntaje de locomocion y 2 para tipo de enfermedades
 			Log.v("BLAH", "Char: "+chartType);
 			if (chartType.equals("Puntaje de locomoción")){
-				ct = 1;
+				charTypeForPloting = "Puntaje de locomoción";
 				i = new Intent(SelectChart.this, ShowChart.class);
-				i.putExtra("CHART_TYPE", ct);
+				i.putExtra("CHART_TYPE", charTypeForPloting);
 				i.putExtra("FARM_ID", farmId);
 				startActivity(i);
 			}
 			else if(chartType.equals("Lesiones encontradas")){
 				//Put code for plot injuries percentaje
-				ct = 2;
+				charTypeForPloting = "Lesiones encontradas";
 				i = new Intent(SelectChart.this, ShowChart.class);
-				i.putExtra("CHART_TYPE", ct);
+				i.putExtra("CHART_TYPE", charTypeForPloting);
 				i.putExtra("FARM_ID", farmId);
 				startActivity(i);
 			}

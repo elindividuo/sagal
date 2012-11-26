@@ -1,9 +1,13 @@
 package com.tpi.sagal.graphs;
 
+import java.util.ArrayList;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.BarChart.Type;
+import org.achartengine.chart.PointStyle;
 import org.achartengine.model.CategorySeries;
+import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
@@ -14,11 +18,12 @@ import android.graphics.Color;
 import android.util.Log;
 
 import com.tpi.sagal.control.ManageCow;
+import com.tpi.sagal.control.ManageLocomotionScore;
+import com.tpi.sagal.entity.LocScoring;
 
 public class LocomotionScoringGraph extends Activity {
 
 	public GraphicalView getView (Context context, int id_farm){
-		Log.v("BLAH", "id_farm en Graph" + id_farm);
 		ManageCow mc = new ManageCow(context);
 		int[] y = new int [5];
 		double[] z = new double [5];		
@@ -82,6 +87,46 @@ public class LocomotionScoringGraph extends Activity {
 		*/
 		
 		return ChartFactory.getBarChartView(context, dataset, mRenderer, Type.DEFAULT);
+	}
+	
+	public GraphicalView getLocomotionScoringBarChartByCow(Context context, int cowId){
+		ManageLocomotionScore mls = new ManageLocomotionScore(context);
+		ArrayList<LocScoring> ls = new ArrayList<LocScoring>();
+		ls = mls.readAllLocomotionScoringByCow(cowId);
+		//Data 1
+		//Converting data into a Series Object
+		TimeSeries series = new TimeSeries("Puntaje de locomoción del ejemplar.");
+		for (int i = 0; i < ls.size(); i++)
+			series.add(i, ls.get(i).getLocomotionScoring());
+		
+		// Object that hold a collection of Series
+		// Series could be any type: CategorySeries or TimeSeries
+		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
+		dataset.addSeries(series);
+		
+		// Renders a specific serie. One series has one render
+		// Customization Serie 1 = Cattle Locomotion Scoring
+		XYSeriesRenderer renderer = new XYSeriesRenderer();
+		renderer.setColor(Color.WHITE); // Set the color of the line 
+		renderer.setPointStyle(PointStyle.POINT); // set the points to be points
+		renderer.setFillPoints(true); // fill in the points with the color selected
+		
+		// Renders all the series under a specific customization 
+		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();		
+		mRenderer.addSeriesRenderer(renderer);
+		mRenderer.setBackgroundColor(Color.BLACK); 
+		mRenderer.setApplyBackgroundColor(true);
+		mRenderer.setChartTitle("Histórico del puntaje de locomoción del ejemplar");
+		mRenderer.setXTitle("Fecha");
+		mRenderer.setYTitle("Puntaje de locomoción");
+		mRenderer.setZoomButtonsVisible(true);
+		
+		mRenderer.setXLabels(1);
+		for (int i = 0; i < ls.size(); i++)
+			mRenderer.addTextLabel(i, ls.get(i).getDate());
+
+		mRenderer.setShowCustomTextGrid(true);
+		return ChartFactory.getLineChartView(context, dataset, mRenderer);
 	}
 	
 }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LocomotionScoring extends Activity implements View.OnClickListener {
@@ -23,7 +24,8 @@ public class LocomotionScoring extends Activity implements View.OnClickListener 
 	ManageCow mc;
 	ManageLocomotionScore ml;
 	boolean diditwork;
-	String date;
+	String date, cowName;
+	TextView tvCowName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class LocomotionScoring extends Activity implements View.OnClickListener 
 	}
 
 	public void initialize() {
+		tvCowName = (TextView)findViewById(R.id.tvCowName_LocScoring);
 		diditwork = true;
 		mc = new ManageCow(this);
 		ml = new ManageLocomotionScore(this);
@@ -49,6 +52,7 @@ public class LocomotionScoring extends Activity implements View.OnClickListener 
 		if (extras != null) {
 			cowId = extras.getInt("COW_ID");
 			farmId = extras.getInt("FARM_ID");
+			cowName = extras.getString("COW_NAME");
 		}
 
 		spinnerLocScoring = (Spinner) findViewById(R.id.spinnerLocScoring);
@@ -61,6 +65,8 @@ public class LocomotionScoring extends Activity implements View.OnClickListener 
 		ok = (Button) findViewById(R.id.bOkLocScoring);
 		cancel = (Button) findViewById(R.id.bCancelLocScoring);
 
+		tvCowName.setText(cowName);
+		
 		ok.setOnClickListener(this);
 		cancel.setOnClickListener(this);
 	}

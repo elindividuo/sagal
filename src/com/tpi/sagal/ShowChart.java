@@ -29,7 +29,8 @@ public class ShowChart extends Activity implements View.OnClickListener{
 	TextView farmName;
 	LinearLayout chart;
 	Button export;
-	int chartType, farmId, index = 0;
+	int farmId, index = 0;
+	String chartType;
 	ManageFarm mf;
 	Intent i;
 	GraphicalView gv;
@@ -91,7 +92,7 @@ public class ShowChart extends Activity implements View.OnClickListener{
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null){
-			chartType = extras.getInt("CHART_TYPE");
+			chartType = extras.getString("CHART_TYPE");
 			farmId = extras.getInt("FARM_ID");
 		}
 		
@@ -102,13 +103,14 @@ public class ShowChart extends Activity implements View.OnClickListener{
 		export.setOnClickListener(this);
 		Log.v("BLAH", "charType: "+chartType);
 		// CharType = 1 for LocomotionScoring bar chart
-		if (chartType == 1){
+		if (chartType.equals("Puntaje de locomoción")){
 			Log.v("BLAH", "hola");
 			Log.v("BLAH", "farmId: "+farmId);
 			LocomotionScoringGraph lsg = new LocomotionScoringGraph();
-			gv = lsg.getView(this, farmId);
+			//gv = lsg.getView(this, farmId);
+			gv = lsg.getLocomotionScoringBarChartByCow(this, 1);
 			chart.addView(gv);
-		} else if(chartType == 2){
+		} else if(chartType.equals("Lesiones encontradas")){
 			InjuryGraph ig = new InjuryGraph();
 			gv = ig.getView(this, farmId);
 			chart.addView(gv);

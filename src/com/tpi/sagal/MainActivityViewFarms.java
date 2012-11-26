@@ -100,9 +100,9 @@ public class MainActivityViewFarms extends Activity implements
 	}
 
 	private void databaseInserts() {
-/*	DATOS DE PRUEBA	
- * 
- * mf.createFarm("Rosales", "Nicolás Regules #61, Colonia Centro",
+	//DATOS DE PRUEBA	
+ 
+  mf.createFarm("Rosales", "Nicolás Regules #61, Colonia Centro",
 				"Donardo");
 		mf.createFarm("Terranova",
 				"Calle Pedro Loza #360 esq. Angulo, Zona Centro", "Demetrio");
@@ -151,7 +151,7 @@ public class MainActivityViewFarms extends Activity implements
 		mc.createCow(111111, "Perla", "Lucerna", "1/1/1995", "TattooDesc",
 				"Decúbito permanente", "Ninguno", "Ninguno", "Ninguno", 0, 0,
 				0, 4);
-*/
+
 		mv.createVaccine(1,"FAF (Fiebre Aftosa)");
 		mv.createVaccine(2,"BRU (Brucella)");
 		mv.createVaccine(3,"TRI (Triple)");
