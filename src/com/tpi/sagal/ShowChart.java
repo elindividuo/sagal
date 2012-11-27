@@ -29,7 +29,7 @@ public class ShowChart extends Activity implements View.OnClickListener{
 	TextView farmName;
 	LinearLayout chart;
 	Button export;
-	int farmId, index = 0;
+	int farmId, cowId, index = 0;
 	String chartType;
 	ManageFarm mf;
 	Intent i;
@@ -94,6 +94,7 @@ public class ShowChart extends Activity implements View.OnClickListener{
 		if (extras != null){
 			chartType = extras.getString("CHART_TYPE");
 			farmId = extras.getInt("FARM_ID");
+			cowId = extras.getInt("COW_ID");
 		}
 		
 		mf = new ManageFarm(this);
@@ -101,18 +102,18 @@ public class ShowChart extends Activity implements View.OnClickListener{
 		
 		backButton.setOnClickListener(this);
 		export.setOnClickListener(this);
-		Log.v("BLAH", "charType: "+chartType);
-		// CharType = 1 for LocomotionScoring bar chart
-		if (chartType.equals("Puntaje de locomoción")){
-			Log.v("BLAH", "hola");
-			Log.v("BLAH", "farmId: "+farmId);
+		// Puntaje de locomoción del hato = @string/radioLocomotionScoringByFarm
+		if (chartType.equals("Puntaje de locomoción del hato")){
 			LocomotionScoringGraph lsg = new LocomotionScoringGraph();
-			//gv = lsg.getView(this, farmId);
-			gv = lsg.getLocomotionScoringBarChartByCow(this, 1);
+			gv = lsg.getLSCattleHistogram(this, farmId);
 			chart.addView(gv);
-		} else if(chartType.equals("Lesiones encontradas")){
+		} else if(chartType.equals("Lesiones encontradas en el hato")){ // Lesiones encontradas en el hato = @string/radioInjuries
 			InjuryGraph ig = new InjuryGraph();
 			gv = ig.getView(this, farmId);
+			chart.addView(gv);
+		} else if (chartType.equals("Puntaje de locomoción de un ejemplar")){ // Puntaje de locomoción de un ejemplar = @string/radioLocomotionScoringByCow
+			LocomotionScoringGraph lsg = new LocomotionScoringGraph();
+			gv = lsg.getLocomotionScoringBarChartByCow(this, cowId);
 			chart.addView(gv);
 		}
 		

@@ -1,12 +1,18 @@
 package com.tpi.sagal;
 
+import java.util.ArrayList;
+
 import org.achartengine.GraphicalView;
 
+import com.tpi.sagal.control.ManageCow;
 import com.tpi.sagal.control.ManageFarm;
+import com.tpi.sagal.entity.Cow;
 import com.tpi.sagal.entity.Farm;
 import com.tpi.sagal.graphs.LocomotionScoringGraph;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,9 +33,12 @@ public class SelectChart extends Activity implements View.OnClickListener{
 	
 	Intent i;
 	ManageFarm mf;
-	int farmId, ct;
+	ManageCow mc;
+	int farmId, ct, selectedCowId;
 	boolean diditwork;
-	String charTypeForPloting;
+	String chartTypeForPloting;
+	
+	ArrayList<Cow> cows; ArrayList<String> cowNames;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,23 +64,62 @@ public class SelectChart extends Activity implements View.OnClickListener{
 			radioChartButton = (RadioButton)findViewById(selectedId); // find the radioButton by returned id
 			String chartType = radioChartButton.getText().toString();
 			
-			// Tipo de grafico que se mostrará: 1 para puntaje de locomocion y 2 para tipo de enfermedades
+			// Tipo de grafico que se mostrará: 
+			// Puntaje de locomoción del hato = @string/radioLocomotionScoringByFarm
+			// Lesiones encontradas en el hato = @string/radioInjuries
+			// Puntaje de locomoción de un ejemplar = @string/radioLocomotionScoringByCow
 			Log.v("BLAH", "Char: "+chartType);
-			if (chartType.equals("Puntaje de locomoción")){
-				charTypeForPloting = "Puntaje de locomoción";
+			if (chartType.equals("Puntaje de locomoción del hato")){
+				chartTypeForPloting = "Puntaje de locomoción del hato";
 				i = new Intent(SelectChart.this, ShowChart.class);
-				i.putExtra("CHART_TYPE", charTypeForPloting);
+				i.putExtra("CHART_TYPE", chartTypeForPloting);
 				i.putExtra("FARM_ID", farmId);
 				startActivity(i);
 			}
-			else if(chartType.equals("Lesiones encontradas")){
-				//Put code for plot injuries percentaje
-				charTypeForPloting = "Lesiones encontradas";
+			else if(chartType.equals("Lesiones encontradas en el hato")){
+				chartTypeForPloting = "Lesiones encontradas en el hato";
 				i = new Intent(SelectChart.this, ShowChart.class);
-				i.putExtra("CHART_TYPE", charTypeForPloting);
+				i.putExtra("CHART_TYPE", chartTypeForPloting);
 				i.putExtra("FARM_ID", farmId);
 				startActivity(i);
 			}
+			else if (chartType.equals("Puntaje de locomoción de un ejemplar")){
+				chartTypeForPloting = "Puntaje de locomoción de un ejemplar";
+				////////////////////////////////////////////////////////////////////////////////////////
+				cows.clear(); cowNames.clear();
+				cows = mc.readAllCowFromFarm(farmId);
+				
+				for (Cow f : cows)
+					cowNames.add(f.getName());
+				
+				final CharSequence[] items = cowNames.toArray(new CharSequence[cowNames.size()]);
+				
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setTitle("Selecciona un ejemplar");
+				builder.setItems(items, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int item) {
+						selectedCowId = cows.get(item).getId();
+						i = new Intent(SelectChart.this, ShowChart.class);
+						i.putExtra("CHART_TYPE", chartTypeForPloting);
+						i.putExtra("FARM_ID", farmId);
+						i.putExtra("COW_ID", selectedCowId);
+						startActivity(i);
+					}
+				});
+				/*
+				builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						dialog.dismiss();
+					}
+				});
+				*/
+				AlertDialog alert = builder.create();
+				alert.show();
+				Log.v("BLAA COW ID", selectedCowId+"");
+			}
+			
 			break;
 		}
 	}
@@ -82,10 +130,15 @@ public class SelectChart extends Activity implements View.OnClickListener{
 		farmName = (TextView)findViewById(R.id.tvSelectChartFarmName);
 		radioChartSelectGroup = (RadioGroup)findViewById(R.id.radioChart);
 		
+		cows = new ArrayList<Cow>();
+		cowNames = new ArrayList<String>();
+		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null){
 			farmId = extras.getInt("FARM_ID");
 		}
+		
+		mc = new ManageCow(this);
 		
 		mf = new ManageFarm(this);
 		farmName.setText(mf.searchFarm(farmId).getName());

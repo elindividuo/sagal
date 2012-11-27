@@ -2,13 +2,18 @@ package com.tpi.sagal.control;
 
 import java.util.ArrayList;
 
+
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.util.Log;
+
+import com.tpi.sagal.R;
 import com.tpi.sagal.dao.FootbathDaoAdapter;
 import com.tpi.sagal.entity.Farm;
 import com.tpi.sagal.entity.Footbath;
 
-public class ManageFootbath {
+public class ManageFootbath{
 private FootbathDaoAdapter footbathDao;
 private ManageFarm mf;
 	
@@ -127,24 +132,29 @@ private ManageFarm mf;
 		// http://www.metric-conversions.org/es/volumen/centimetros-cubicos-a-litros.htm
 		
 		double concentration, suitableVol;
+
+		// Formol (3%) = @string/radioFormol
 		if (medicineType.equals("Formol (3%)")){
 			concentration = 3;
 			suitableVol = 100;
 			return concentration * width * deep * height / suitableVol;
 		}
 		else {
+			//CuSO4 (2%) = @string/radioCuSO4
 			if (medicineType.equals("CuSO4 (2%)")){
 				concentration = 2;
 				suitableVol = 100;
 				return concentration * width * deep * height / suitableVol;
 			}
 			else {
+				//Hipoclorito de Sodio (1%) = @string/radioHipocloritoDeSodio
 				if (medicineType.equals("Hipoclorito de Sodio (1%)")){
 					concentration = 1;
 					suitableVol = 100;
 					return concentration * width * deep * height / suitableVol;
 				}
 				else{
+					// OTC (5%) = @string/radioOTC
 					if (medicineType.equals("OTC (5%)")){
 						concentration = 5;
 						suitableVol = 1000;

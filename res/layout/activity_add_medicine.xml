@@ -66,26 +66,26 @@
 		            android:id="@+id/radioFormol"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="Formol (3%)" 
+		            android:text="@string/radioFormol" 
 		            android:checked="true" />
 		 
 		        <RadioButton
 		            android:id="@+id/radioCuSO4"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="CuSO4 (2%)" />
+		            android:text="@string/radioCuSO4" />
 		        
 		        <RadioButton
 		            android:id="@+id/radioHipocloritoDeSodio"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="Hipoclorito de Sodio (1%)" />
+		            android:text="@string/radioHipocloritoDeSodio" />
 		        
 		        <RadioButton
 		            android:id="@+id/radioOTC"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="OTC (5%)" />		        		        
+		            android:text="@string/radioOTC" />		        		        
  
     		</RadioGroup>
 

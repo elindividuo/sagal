@@ -94,6 +94,17 @@
          <string name="fecha_de_nacimiento">"Fecha de\nnacimiento: "</string>
     <string name="puntaje_de_locomocion">Puntaje de \nLocomoción:</string>
     <string name="destino_final">Destino \nFinal: </string>
+    
+    
+    <!-- Radio Buttons-->
+    <string name="radioFormol">Formol (3%)</string>
+    <string name="radioCuSO4">CuSO4 (2%)</string>
+    <string name="radioHipocloritoDeSodio">Hipoclorito de Sodio (1%)</string>
+    <string name="radioOTC">OTC (5%)</string>
+    
+    <string name="radioLocomotionScoringByFarm">Puntaje de locomoción del hato</string>
+    <string name="radioInjuries">Lesiones encontradas en el hato</string>
+    <string name="radioLocomotionScoringByCow">Puntaje de locomoción de un ejemplar</string>
 
     
 </resources>

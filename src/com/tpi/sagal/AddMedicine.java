@@ -56,9 +56,9 @@ public class AddMedicine extends Activity implements View.OnClickListener{
 					Toast.makeText(AddMedicine.this,
 							"Medicamento actualizado.", Toast.LENGTH_SHORT).show();
 					String unidad = "";
-					if (medicineType.equals("Formol (3%)") || medicineType.equals("Hipoclorito de Sodio (1%)"))
+					if (medicineType.equals(getString(R.string.radioFormol).toString()) || medicineType.equals(getString(R.string.radioHipocloritoDeSodio)))
 						unidad = "cc";
-					else if (medicineType.equals("CuSO4 (2%)") || medicineType.equals("OTC (5%)"))
+					else if (medicineType.equals(getString(R.string.radioCuSO4)) || medicineType.equals(getString(R.string.radioOTC)))
 						unidad = "gr";
 					addMedicineDilution.setText("Debes agregar " + quantity + unidad + " de " + medicineType);
 				}

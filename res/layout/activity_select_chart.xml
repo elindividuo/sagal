@@ -57,17 +57,23 @@
 		        android:gravity="center_vertical">
 		 
 		        <RadioButton
-		            android:id="@+id/radioLocomotionScoring"
+		            android:id="@+id/radioLocomotionScoringByFarm"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="Puntaje de locomoción" 
+		            android:text="@string/radioLocomotionScoringByFarm" 
 		            android:checked="true" />
+		        
+		        <RadioButton 
+		            android:id="@+id/radioLocomotionScoringByCow"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/radioLocomotionScoringByCow"/>
 		 
 		        <RadioButton
 		            android:id="@+id/radioInjuries"
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="Lesiones encontradas" />
+		            android:text="@string/radioInjuries" />
 
     		</RadioGroup>
 

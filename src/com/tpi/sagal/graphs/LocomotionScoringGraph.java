@@ -23,7 +23,7 @@ import com.tpi.sagal.entity.LocScoring;
 
 public class LocomotionScoringGraph extends Activity {
 
-	public GraphicalView getView (Context context, int id_farm){
+	public GraphicalView getLSCattleHistogram (Context context, int id_farm){
 		ManageCow mc = new ManageCow(context);
 		int[] y = new int [5];
 		double[] z = new double [5];		
@@ -68,23 +68,15 @@ public class LocomotionScoringGraph extends Activity {
 		renderer2.setColor(Color.CYAN);
 		
 		// Renders all the series under a specific customization 
-		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();		
+		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
+		mRenderer.setBackgroundColor(Color.BLACK); 
+		mRenderer.setApplyBackgroundColor(true);
 		mRenderer.addSeriesRenderer(renderer);
 		mRenderer.addSeriesRenderer(renderer2);
 		mRenderer.setChartTitle("Frecuencias de los puntajes de locomoción");
 		mRenderer.setXTitle("Puntaje de locomoción");
 		mRenderer.setYTitle("Ejemplares");
 		mRenderer.setZoomButtonsVisible(true);
-		
-		/*
-		mRenderer.setXLabels(1);
-		mRenderer.addXTextLabel(1, "Locomotion 1");
-		mRenderer.addXTextLabel(2, "Locomotion 2");
-		mRenderer.addXTextLabel(3, "Locomotion 3");
-		mRenderer.addXTextLabel(4, "Locomotion 4");
-		mRenderer.addXTextLabel(5, "Locomotion 5");
-		mRenderer.setShowCustomTextGrid(true);
-		*/
 		
 		return ChartFactory.getBarChartView(context, dataset, mRenderer, Type.DEFAULT);
 	}
