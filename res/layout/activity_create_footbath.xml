@@ -73,7 +73,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profundidad: "
+                android:text="Largo: "
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Profundidad"
+                android:hint="Largo"
                 android:inputType="numberDecimal" />
         </TableRow>
 
@@ -94,7 +94,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Altura: "
+                android:text="Alto: "
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -102,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Altura"
+                android:hint="Alto"
                 android:inputType="numberDecimal" />
         </TableRow>
 

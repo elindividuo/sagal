@@ -69,6 +69,19 @@ public class ManageCow {
 		cowDao.close();
 	}
 	
+	public int findRegistry(int registry, int farmId){
+		cowDao.open();
+		Cursor cursor = cowDao.findregistry(registry, farmId);
+		if(cursor.moveToFirst()){
+			int cowRegistry = cursor.getInt(cursor.getColumnIndex("cow_registry"));
+	        cursor.close();
+	        cowDao.close();
+	        return cowRegistry;
+		}
+		return 0;		
+	}
+	
+	
 	public ArrayList<Cow> readAllCow(){
 		cowDao.open();
 		Cursor cursor = cowDao.readCow();

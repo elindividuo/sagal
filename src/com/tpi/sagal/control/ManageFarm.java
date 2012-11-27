@@ -37,7 +37,6 @@ public class ManageFarm {
               
                farms.add( new Farm(id, name, address, ownerName));             
 			} while ( cursor.moveToNext());
-
        }
        cursor.close();
        farmDao.close();

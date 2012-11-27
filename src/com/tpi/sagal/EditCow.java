@@ -29,7 +29,7 @@ import datepicker.MyDatePickerDialog;
 
 public class EditCow extends Activity implements View.OnClickListener {
 
-	Button ok, cancel,vaccine;
+	Button ok, cancel, vaccine;
 	EditText etCowName, etCowNumber, etCowBreed, etCowTattoo, etCowProblems,
 			etCowFinalDesti;
 	Intent i;
@@ -41,13 +41,15 @@ public class EditCow extends Activity implements View.OnClickListener {
 	int cowId, farmId, idFatherCow, idMotherCow;
 	boolean diditwork;
 	ArrayList<Cow> cows;
-	ArrayList<String> cowNames, vaccineNames,existingVaccines;
+	ArrayList<String> cowNames, vaccineNames, existingVaccines;
 	ArrayList<Vaccine> vaccines;
 	ArrayList<Integer> idVaccines;
 	ManageVaccine mv;
 	ManageCow_Vaccine mcv;
-	
+	Cow cow;
+
 	private ArrayList<CharSequence> selectedVaccines = new ArrayList<CharSequence>();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,35 +70,35 @@ public class EditCow extends Activity implements View.OnClickListener {
 		vaccines = new ArrayList<Vaccine>();
 		idVaccines = new ArrayList<Integer>();
 
-		
 		final Calendar c = Calendar.getInstance();
 		year = c.get(Calendar.YEAR);
 		month = c.get(Calendar.MONTH);
 		day = c.get(Calendar.DAY_OF_MONTH);
 
-		Cow cow = new Cow();
+		cow = new Cow();
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			cowId = extras.getInt("COW_ID");
 			farmId = extras.getInt("FARM_ID");
 		}
-		
+
 		existingVaccines = mcv.searchCow_Vaccine(cowId);
 
-		if(!existingVaccines.isEmpty()){
-			final CharSequence[] items3 = existingVaccines.toArray(new CharSequence[existingVaccines.size()]);
-			
-			for (CharSequence f: items3){
+		if (!existingVaccines.isEmpty()) {
+			final CharSequence[] items3 = existingVaccines
+					.toArray(new CharSequence[existingVaccines.size()]);
+
+			for (CharSequence f : items3) {
 				selectedVaccines.add(f.toString());
 			}
-			
+
 		}
-	
+
 		cow = mc.searchCow(cowId);
 
 		ok = (Button) findViewById(R.id.bOkEditCow);
 		cancel = (Button) findViewById(R.id.bCancelEditCow);
-		vaccine =(Button) findViewById(R.id.bCowVaccines_Edit);
+		vaccine = (Button) findViewById(R.id.bCowVaccines_Edit);
 
 		etCowName = (EditText) findViewById(R.id.etCowName_EditView);
 		etCowNumber = (EditText) findViewById(R.id.etCowNumber_EditView);
@@ -170,62 +172,129 @@ public class EditCow extends Activity implements View.OnClickListener {
 		}
 	};
 
+	public boolean checkValues() {
+		boolean control = true;
+		if (etCowNumber.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Registro", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		if (etCowName.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Nombre", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		if (etCowBreed.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Raza", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+
+		}
+		if (etCowTattoo.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Tatuaje", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+
+		}
+		if (cowBirth.getText().toString().trim().equals("dd/mm/aaaa")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Fecha de Nacimiento",
+					Toast.LENGTH_LONG).show();
+			return control = false;
+
+		}
+		if (etCowProblems.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Problemas", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		if (Integer.parseInt(etCowNumber.getText().toString()) == mc
+				.findRegistry(
+						Integer.parseInt(etCowNumber.getText().toString()),
+						farmId)
+				&& Integer.parseInt(etCowNumber.getText().toString()) != cow
+						.getRegistry()) {
+			Toast.makeText(
+					getApplicationContext(),
+					"Ya existe un ejemplar con ese número de registro en esta hacienda",
+					Toast.LENGTH_LONG).show();
+			return control = false;
+		}
+		return control;
+	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bOkEditCow:
-			idVaccines.clear();
-			int registry = Integer.parseInt(etCowNumber.getText().toString());
-			String name = etCowName.getText().toString();
-			String breed = etCowBreed.getText().toString();
-			String tattoo = etCowTattoo.getText().toString();
-			String problems = etCowProblems.getText().toString();
-			String finalDest = etCowFinalDesti.getText().toString();
-			String birth = cowBirth.getText().toString();
+			if (checkValues()) {
+				idVaccines.clear();
+				int registry = Integer.parseInt(etCowNumber.getText()
+						.toString());
+				String name = etCowName.getText().toString();
+				String breed = etCowBreed.getText().toString();
+				String tattoo = etCowTattoo.getText().toString();
+				String problems = etCowProblems.getText().toString();
+				String finalDest = "";
+				String birth = cowBirth.getText().toString();
 
-			if (cowFather.getText().equals("Ninguno Asignado")) {
-				idFatherCow = 0;
-			}
-
-			if (cowMother.getText().equals("Ninguno Asignado")) {
-				idMotherCow = 0;
-			}
-
-			try {
-				mc.updateCow(cowId, registry, name, breed, birth, tattoo,
-						problems, finalDest, idFatherCow, idMotherCow, farmId);
-				
-				
-				if(!selectedVaccines.isEmpty()){
-					for (CharSequence f: selectedVaccines){
-						Vaccine a = mv.searchVaccine(f.toString());
-						idVaccines.add(a.getId());	
-					}
-					mcv.deleteCow_Vaccine(cowId);
-					for (Integer f: idVaccines){
-						mcv.createCow_Vaccine(cowId, f);
-					}
-				}else{
-					mcv.deleteCow_Vaccine(cowId);
+				if (cowFather.getText().equals("Ninguno Asignado")) {
+					idFatherCow = 0;
 				}
-				
-				
-			} catch (Exception e) {
-				diditwork = false;
-			} finally {
-				if (diditwork) {
-					Toast.makeText(getApplicationContext(),
-							"¡Listo! Ejemplar editado.", Toast.LENGTH_LONG)
-							.show();
-					i = new Intent(EditCow.this, CattleDetails.class);
-					i.putExtra("FARM_ID", farmId);
-					i.putExtra("COW_ID", cowId);
-					startActivity(i);
+
+				if (cowMother.getText().equals("Ninguno Asignado")) {
+					idMotherCow = 0;
 				}
-				if (diditwork == false) {
-					Toast.makeText(getApplicationContext(),
-							"Error! El ejemplar no fue editado",
-							Toast.LENGTH_LONG).show();
+
+				if (etCowFinalDesti.getText().toString().trim().equals("")) {
+					finalDest = "Ninguno";
+				} else {
+					finalDest = etCowFinalDesti.getText().toString();
+				}
+
+				try {
+					mc.updateCow(cowId, registry, name, breed, birth, tattoo,
+							problems, finalDest, idFatherCow, idMotherCow,
+							farmId);
+
+					if (!selectedVaccines.isEmpty()) {
+						for (CharSequence f : selectedVaccines) {
+							Vaccine a = mv.searchVaccine(f.toString());
+							idVaccines.add(a.getId());
+						}
+						mcv.deleteCow_Vaccine(cowId);
+						for (Integer f : idVaccines) {
+							mcv.createCow_Vaccine(cowId, f);
+						}
+					} else {
+						mcv.deleteCow_Vaccine(cowId);
+					}
+
+				} catch (Exception e) {
+					diditwork = false;
+				} finally {
+					if (diditwork) {
+						Toast.makeText(getApplicationContext(),
+								"¡Listo! Ejemplar editado.", Toast.LENGTH_LONG)
+								.show();
+						i = new Intent(EditCow.this, CattleDetails.class);
+						i.putExtra("FARM_ID", farmId);
+						i.putExtra("COW_ID", cowId);
+						startActivity(i);
+					}
+					if (diditwork == false) {
+						Toast.makeText(getApplicationContext(),
+								"Error! El ejemplar no fue editado",
+								Toast.LENGTH_LONG).show();
+					}
 				}
 			}
 			break;
@@ -291,12 +360,13 @@ public class EditCow extends Activity implements View.OnClickListener {
 			vaccines.clear();
 			vaccineNames.clear();
 			vaccines = mv.readAllVaccines();
-			
+
 			for (Vaccine f : vaccines) {
 				vaccineNames.add(f.getName());
 			}
 
-			final CharSequence[] items2 = vaccineNames.toArray(new CharSequence[vaccineNames.size()]);
+			final CharSequence[] items2 = vaccineNames
+					.toArray(new CharSequence[vaccineNames.size()]);
 			boolean[] checkedInjuries = new boolean[items2.length];
 
 			for (int i = 0; i < items2.length; i++)
@@ -306,9 +376,9 @@ public class EditCow extends Activity implements View.OnClickListener {
 				@Override
 				public void onClick(DialogInterface dialog, int which,
 						boolean isChecked) {
-					if (isChecked){
+					if (isChecked) {
 						selectedVaccines.add(items2[which]);
-					}else{
+					} else {
 						selectedVaccines.remove(items2[which]);
 					}
 				}
@@ -318,16 +388,17 @@ public class EditCow extends Activity implements View.OnClickListener {
 			builder2.setTitle("Seleccionar vacunas");
 			builder2.setMultiChoiceItems(items2, checkedInjuries,
 					vaccinesDialogListener);
-			builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-				}
-			});
+			builder2.setPositiveButton("OK",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					});
 			AlertDialog dial = builder2.create();
 			dial.show();
 			break;
 		}
 	}
-	
+
 }

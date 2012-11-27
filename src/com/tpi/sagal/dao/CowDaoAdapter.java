@@ -195,5 +195,10 @@ public class CowDaoAdapter {
 		cv.put(KEY_LOCOMOTION, locomotionScore);
 		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
 	}
+
+	public Cursor findregistry(int registry, int farmId) {
+		return ourDatabase.query(DATABASE_TABLE, columns, KEY_REGISTRY + " = " + registry + " AND "+ KEY_FARM + " = "+ farmId,null,null,null,null);
+		
+	}
 	
 }

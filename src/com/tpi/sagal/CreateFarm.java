@@ -40,29 +40,61 @@ public class CreateFarm extends Activity implements View.OnClickListener {
 		diditwork = true;
 	}
 
+	public boolean checkValues() {
+		boolean control = true;
+
+		if (farmOwner.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Propietario",
+					Toast.LENGTH_LONG).show();
+			return control = false;
+		}
+		
+
+		if (farmName.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Nombre", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+
+		if (farmAddress.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Dirección", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		return control;
+	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bOkCreateFarmView:
-			String name = farmName.getText().toString();
-			String address = farmAddress.getText().toString();
-			String owner = farmOwner.getText().toString();
-			try {
-				mf.createFarm(name, address, owner);
-			} catch (Exception e) {
-				diditwork = false;
-			} finally {
-				if (diditwork) {
-					Toast.makeText(getApplicationContext(),
-							"¡Listo! Hacienda registrada con éxito.",
-							Toast.LENGTH_LONG).show();
-					i = new Intent(CreateFarm.this, MainActivityViewFarms.class);
-					startActivity(i);
-				}
-				if (diditwork == false) {
-					Toast.makeText(getApplicationContext(),
-							"Error! La hacienda no fue registrada.",
-							Toast.LENGTH_LONG).show();
+			if (checkValues()) {
+				String name = farmName.getText().toString();
+				String address = farmAddress.getText().toString();
+				String owner = farmOwner.getText().toString();
+				try {
+					mf.createFarm(name, address, owner);
+				} catch (Exception e) {
+					diditwork = false;
+				} finally {
+					if (diditwork) {
+						Toast.makeText(getApplicationContext(),
+								"¡Listo! Hacienda registrada con éxito.",
+								Toast.LENGTH_LONG).show();
+						i = new Intent(CreateFarm.this,
+								MainActivityViewFarms.class);
+						startActivity(i);
+					}
+					if (diditwork == false) {
+						Toast.makeText(getApplicationContext(),
+								"Error! La hacienda no fue registrada.",
+								Toast.LENGTH_LONG).show();
+					}
 				}
 			}
 			break;

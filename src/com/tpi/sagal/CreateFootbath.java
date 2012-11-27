@@ -48,31 +48,69 @@ public class CreateFootbath extends Activity implements View.OnClickListener {
 		diditwork = true;
 	}
 
+	public boolean checkValues() {
+		boolean control = true;
+
+		if (fbName.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Nombre", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		if (fbWidth.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Ancho", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		if (fbDeep.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Largo", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		if (fbHeight.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Alto", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		return control;
+	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bOkCreateFootbathView:
-			String name = fbName.getText().toString();
-			double width = Double.parseDouble(fbWidth.getText().toString());
-			double deep = Double.parseDouble(fbDeep.getText().toString());
-			double height = Double.parseDouble(fbHeight.getText().toString());
-			try {
-				mft.createFootbath(name, width, deep, height, "Ninguno", 0, id);
-			} catch (Exception e) {
-				diditwork = false;
-			} finally {
-				if (diditwork) {
-					Toast.makeText(getApplicationContext(),
-							"¡Listo! Pediluvio registrado con éxito.",
-							Toast.LENGTH_LONG).show();
-					i = new Intent(CreateFootbath.this, ViewFootbaths.class);
-					i.putExtra("FARM_ID", id);
-					startActivity(i);
-				}
-				if (diditwork == false) {
-					Toast.makeText(getApplicationContext(),
-							"Error! El pediluvio no fue registrado.",
-							Toast.LENGTH_LONG).show();
+			if (checkValues()) {
+				String name = fbName.getText().toString();
+				double width = Double.parseDouble(fbWidth.getText().toString());
+				double deep = Double.parseDouble(fbDeep.getText().toString());
+				double height = Double.parseDouble(fbHeight.getText()
+						.toString());
+				try {
+					mft.createFootbath(name, width, deep, height, "Ninguno", 0,
+							id);
+				} catch (Exception e) {
+					diditwork = false;
+				} finally {
+					if (diditwork) {
+						Toast.makeText(getApplicationContext(),
+								"¡Listo! Pediluvio registrado con éxito.",
+								Toast.LENGTH_LONG).show();
+						i = new Intent(CreateFootbath.this, ViewFootbaths.class);
+						i.putExtra("FARM_ID", id);
+						startActivity(i);
+					}
+					if (diditwork == false) {
+						Toast.makeText(getApplicationContext(),
+								"Error! El pediluvio no fue registrado.",
+								Toast.LENGTH_LONG).show();
+					}
 				}
 			}
 			break;

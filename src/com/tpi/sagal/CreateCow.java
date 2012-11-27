@@ -100,34 +100,95 @@ public class CreateCow extends Activity implements View.OnClickListener {
 		}
 	};
 
+	public boolean checkValues(){
+		boolean control =true;
+		if(cowId.getText().toString().trim().equals("")){
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Registro",
+					Toast.LENGTH_LONG).show();
+			return control = false;
+		}
+				
+		if(cowName.getText().toString().trim().equals("")){
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Nombre",
+					Toast.LENGTH_LONG).show();
+			return control = false;
+		}
+
+		if (cowBreed.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Raza",
+					Toast.LENGTH_LONG).show();
+			return control = false;
+
+		}
+		if (cowTattoo.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Tatuaje",
+					Toast.LENGTH_LONG).show();
+			return control = false;
+
+		}
+		if (cowBirth.getText().toString().trim().equals("dd/mm/aaaa")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Fecha de Nacimiento",
+					Toast.LENGTH_LONG).show();
+			return control = false;
+
+		}
+		if (cowProblems.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Problemas",
+					Toast.LENGTH_LONG).show();
+			return control = false;
+		}
+		
+		
+		if(Integer.parseInt(cowId.getText().toString())==mc.findRegistry(Integer.parseInt(cowId.getText().toString()),farmId)){
+			Toast.makeText(getApplicationContext(),
+					"Ya existe un ejemplar con ese número de registro en esta hacienda",
+					Toast.LENGTH_LONG).show();
+			return control = false;
+			
+			
+		}
+		return control;
+	}
+	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bOkCreateCow:
-			String name = cowName.getText().toString();
-			int registry = Integer.parseInt(cowId.getText().toString());
-			String breed = cowBreed.getText().toString();
-			String tattoo = cowTattoo.getText().toString();
-			String birth = cowBirth.getText().toString();
-			String problems = cowProblems.getText().toString();
-			try {
-				mc.createCow(registry, name, breed, birth, tattoo, problems,
-						"Ninguno", "Ninguno", "Ninguno", 0, 0, 0, farmId);
-			} catch (Exception e) {
-				diditwork = false;
-			} finally {
-				if (diditwork) {
-					Toast.makeText(getApplicationContext(),
-							"¡Listo! Ejemplar registrado con éxito.",
-							Toast.LENGTH_LONG).show();
-					i = new Intent(CreateCow.this, ViewCattle.class);
-					i.putExtra("FARM_ID", farmId);
-					startActivity(i);
-				}
-				if (diditwork == false) {
-					Toast.makeText(getApplicationContext(),
-							"Error! El ejemplar no fue registrado.",
-							Toast.LENGTH_LONG).show();
+			
+			if (checkValues()) {
+				String name = cowName.getText().toString();
+				int registry = Integer.parseInt(cowId.getText().toString());
+				String breed = cowBreed.getText().toString();
+				String tattoo = cowTattoo.getText().toString();
+				String birth = cowBirth.getText().toString();
+				String problems = cowProblems.getText().toString();
+				
+				try {
+					mc.createCow(registry, name, breed, birth, tattoo,
+							problems, "Ninguno", "Ninguno", "Ninguno", 0, 0, 0,
+							farmId);
+				} catch (Exception e) {
+					diditwork = false;
+				} finally {
+					if (diditwork) {
+						Toast.makeText(getApplicationContext(),
+								"¡Listo! Ejemplar registrado con éxito.",
+								Toast.LENGTH_LONG).show();
+						i = new Intent(CreateCow.this, ViewCattle.class);
+						i.putExtra("FARM_ID", farmId);
+						startActivity(i);
+					}
+					if (diditwork == false) {
+						Toast.makeText(getApplicationContext(),
+								"Error! El ejemplar no fue registrado.",
+								Toast.LENGTH_LONG).show();
+					}
 				}
 			}
 			break;

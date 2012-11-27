@@ -56,31 +56,68 @@ public class EditFootbath extends Activity implements View.OnClickListener {
 		cancelButton.setOnClickListener(this);
 	}
 
+	public boolean checkValues() {
+		boolean control = true;
+
+		if (fbName.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Nombre", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		if (fbWidth.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Ancho", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		if (fbDeep.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Largo", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		if (fbHeight.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Alto", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
+		return control;
+	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bOkFootbathEdit:
-			String name = fbName.getText().toString();
-			double width = Double.parseDouble(fbWidth.getText().toString());
-			double deep = Double.parseDouble(fbDeep.getText().toString());
-			double height = Double.parseDouble(fbHeight.getText().toString());
-			try {
-				mft.updateFootbath(id, name, width, deep, height);
-			} catch (Exception e) {
-				diditwork = false;
-			} finally {
-				if (diditwork) {
-					Toast.makeText(getApplicationContext(),
-							"¡Listo! Pediluvio Editado.", Toast.LENGTH_LONG)
-							.show();
-					i = new Intent(this, FootbathDetails.class);
-					i.putExtra("FOOTBATH_ID", id);
-					startActivity(i);
-				}
-				if (diditwork == false) {
-					Toast.makeText(getApplicationContext(),
-							"Error! El pediluvio no fue editado",
-							Toast.LENGTH_LONG).show();
+			if (checkValues()) {
+				String name = fbName.getText().toString();
+				double width = Double.parseDouble(fbWidth.getText().toString());
+				double deep = Double.parseDouble(fbDeep.getText().toString());
+				double height = Double.parseDouble(fbHeight.getText()
+						.toString());
+				try {
+					mft.updateFootbath(id, name, width, deep, height);
+				} catch (Exception e) {
+					diditwork = false;
+				} finally {
+					if (diditwork) {
+						Toast.makeText(getApplicationContext(),
+								"¡Listo! Pediluvio Editado.", Toast.LENGTH_LONG)
+								.show();
+						i = new Intent(this, FootbathDetails.class);
+						i.putExtra("FOOTBATH_ID", id);
+						startActivity(i);
+					}
+					if (diditwork == false) {
+						Toast.makeText(getApplicationContext(),
+								"Error! El pediluvio no fue editado",
+								Toast.LENGTH_LONG).show();
+					}
 				}
 			}
 			break;
