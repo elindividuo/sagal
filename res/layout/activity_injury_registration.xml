@@ -175,7 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvHoof"
             android:layout_centerHorizontal="true"
-            android:text="Zona: Ninguna seleccinada"
+            android:text="Zona: Ninguna seleccionada"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>

@@ -12,22 +12,25 @@ import com.tpi.sagal.R;
 import com.tpi.sagal.dao.FootbathDaoAdapter;
 import com.tpi.sagal.entity.Farm;
 import com.tpi.sagal.entity.Footbath;
+import com.tpi.sagal.entity.Medicine;
 
 public class ManageFootbath{
 private FootbathDaoAdapter footbathDao;
 private ManageFarm mf;
+private ManageMedicine mm;
 	
 	public ManageFootbath(Context context)
 	{
 		footbathDao = new FootbathDaoAdapter(context);
 		mf = new ManageFarm(context);
+		mm = new ManageMedicine(context);
 		footbathDao.open();
 		footbathDao.close();
 }
 	
-	public void createFootbath(String name, double width, double deep, double height, String medicine, double quantity, int farmId){
+	public void createFootbath(String name, double width, double deep, double height, double quantity, int farmId, int medicineId){
 		footbathDao.open();
-		footbathDao.createFootbath(name, width, deep, height, medicine, quantity, farmId);
+		footbathDao.createFootbath(name, width, deep, height, quantity, farmId, medicineId);
 		footbathDao.close();
 	}
 	
@@ -50,12 +53,13 @@ private ManageFarm mf;
                double width = cursor.getDouble(cursor.getColumnIndex("footbath_width"));
                double deep = cursor.getDouble(cursor.getColumnIndex("footbath_deep"));
                double height = cursor.getDouble(cursor.getColumnIndex("footbath_height"));
-               String medicine = cursor.getString(cursor.getColumnIndex("footbath_medicine_type"));
+               int medicine_id = cursor.getInt(cursor.getColumnIndex("medicine_id"));
                double quantity = cursor.getDouble(cursor.getColumnIndex("footbath_medicine_quantity"));
                int farm_id = cursor.getInt(cursor.getColumnIndex("farm_id"));
                Farm farm = mf.searchFarm(farm_id);
+               Medicine medicine = mm.searchMedicine(medicine_id);
                
-               Footbaths.add( new Footbath(id, name, width, deep, height, medicine, quantity, farm));             
+               Footbaths.add( new Footbath(id, name, width, deep, height, quantity, farm, medicine));             
 			} while ( cursor.moveToNext());
 
        }
@@ -76,12 +80,13 @@ private ManageFarm mf;
                double width = cursor.getDouble(cursor.getColumnIndex("footbath_width"));
                double deep = cursor.getDouble(cursor.getColumnIndex("footbath_deep"));
                double height = cursor.getDouble(cursor.getColumnIndex("footbath_height"));
-               String medicine = cursor.getString(cursor.getColumnIndex("footbath_medicine_type"));
+               int medicine_id = cursor.getInt(cursor.getColumnIndex("medicine_id"));
                double quantity = cursor.getDouble(cursor.getColumnIndex("footbath_medicine_quantity"));
                int farm_id = cursor.getInt(cursor.getColumnIndex("farm_id"));
                Farm farm = mf.searchFarm(farm_id);
+               Medicine medicine = mm.searchMedicine(medicine_id);
                
-               Footbaths.add( new Footbath(fid, name, width, deep, height, medicine, quantity, farm));             
+               Footbaths.add( new Footbath(id, name, width, deep, height, quantity, farm, medicine));          
 			} while ( cursor.moveToNext());
 
        }
@@ -99,13 +104,14 @@ private ManageFarm mf;
             double width = cursor.getDouble(cursor.getColumnIndex("footbath_width"));
             double deep = cursor.getDouble(cursor.getColumnIndex("footbath_deep"));
             double height = cursor.getDouble(cursor.getColumnIndex("footbath_height"));
-            String medicine = cursor.getString(cursor.getColumnIndex("footbath_medicine_type"));
+            int medicine_id = cursor.getInt(cursor.getColumnIndex("medicine_id"));
             double quantity = cursor.getDouble(cursor.getColumnIndex("footbath_medicine_quantity"));
 	        int farm_id = cursor.getInt(cursor.getColumnIndex("farm_id"));
             cursor.close();
 	        footbathDao.close();
             Farm farm = mf.searchFarm(farm_id);          
-	        return new Footbath(fid, name, width, deep, height, medicine, quantity,farm);
+            Medicine medicine = mm.searchMedicine(medicine_id);
+	        return new Footbath(fid, name, width, deep, height, quantity, farm, medicine);
 		}
 		return null;
 	}

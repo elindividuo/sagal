@@ -13,16 +13,17 @@ public class FootbathDaoAdapter {
 	private static final int DATABASE_VERSION = 1;
 	private static final String DATABASE_TABLE = "footbath";
 	private static final String DATABASE_FOREIGN_TABLE = "farm";
+	private static final String DATABASE_FOREIGN_TABLE1 = "medicine";
 	
 	private static final String KEY_ID = "_id";
 	private static final String KEY_NAME ="footbath_name";
 	private static final String KEY_WIDTH ="footbath_width";
 	private static final String KEY_DEEP ="footbath_deep";
 	private static final String KEY_HEIGHT ="footbath_height";
-	private static final String KEY_MEDICINE ="footbath_medicine_type";
 	private static final String KEY_QUANTITY ="footbath_medicine_quantity";
 	private static final String KEY_FARM ="farm_id";
-	private static final String[] columns = {KEY_ID,KEY_NAME,KEY_WIDTH, KEY_DEEP, KEY_HEIGHT, KEY_MEDICINE, KEY_QUANTITY,KEY_FARM};
+	private static final String KEY_MEDICINE ="medicine_id";
+	private static final String[] columns = {KEY_ID,KEY_NAME,KEY_WIDTH, KEY_DEEP, KEY_HEIGHT, KEY_QUANTITY,KEY_FARM, KEY_MEDICINE};
 	
 	private static final String FOOTBATH_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS " + DATABASE_TABLE +" (" +
 			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -30,9 +31,10 @@ public class FootbathDaoAdapter {
 			KEY_WIDTH + " DOUBLE NOT NULL," +
 			KEY_DEEP + " DOUBLE NOT NULL," +
 			KEY_HEIGHT + " DOUBLE NOT NULL," +
-			KEY_MEDICINE + " TEXT," +
 			KEY_QUANTITY + " DOUBLE," +
 			KEY_FARM + " INTEGER NOT NULL,"+
+			KEY_MEDICINE + " INTEGER," +
+			" FOREIGN KEY ("+KEY_MEDICINE+") REFERENCES "+DATABASE_FOREIGN_TABLE1+" (_id),"+
 			" FOREIGN KEY ("+KEY_FARM+") REFERENCES "+DATABASE_FOREIGN_TABLE+" (_id));";
 
 	
@@ -86,15 +88,15 @@ public class FootbathDaoAdapter {
 		ourHelper.close();
 	}
 		
-	public long createFootbath(String name, double width, double deep, double height, String medicine, double quantity, int farmId) throws SQLException{
+	public long createFootbath(String name, double width, double deep, double height, double quantity, int farmId, int idMedicine) throws SQLException{
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, name);
 		cv.put(KEY_WIDTH, width);
 		cv.put(KEY_DEEP, deep);
 		cv.put(KEY_HEIGHT, height);
-		cv.put(KEY_MEDICINE, medicine);
 		cv.put(KEY_QUANTITY, quantity);
 		cv.put(KEY_FARM, farmId);
+		cv.put(KEY_MEDICINE, idMedicine);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 	

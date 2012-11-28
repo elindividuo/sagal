@@ -190,7 +190,7 @@ public class InjuryRegistration extends Activity implements
 		
 		
 		for (Injury f: injuriesdb){
-			injuryNames.add(f.getAbbreviation()+" "+f.getName());
+			injuryNames.add(f.getName());
 		}
 		
 		
@@ -225,7 +225,7 @@ public class InjuryRegistration extends Activity implements
 				try {
 				if(!selectedInjuries.isEmpty()){
 					for (CharSequence f: selectedInjuries){
-						Injury a = mi.searchInjury(f.toString().substring(0, 3));
+						Injury a = mi.searchInjury(f.toString());
 						idInjuries.add(a.getId());	
 					}
 					mzi.deleteZone_Injury(zoneId);
@@ -372,9 +372,7 @@ public class InjuryRegistration extends Activity implements
 			startActivity(i);
 			break;
 		}
-		
 	}
-
 }
 
 class Arista implements Comparable {

@@ -98,4 +98,10 @@ public class VaccineDaoAdapter {
 	public Cursor searchVaccine(String name) throws SQLException{
 		return ourDatabase.query(DATABASE_TABLE, columns, KEY_NAME + "= \"" + name+"\"",null,null,null,null);
 	}
+
+	public long createVaccine(String name) throws SQLException{
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_NAME, name);
+		return ourDatabase.insert(DATABASE_TABLE, null, cv);		
+	}
 }

@@ -4,16 +4,17 @@ public class Injury {
 
 	int id;
 	String name;
-	String abbreviation;
+	int infectious;
 	
+
 	public Injury(){
 		
 	}
 	
-	public Injury(int id, String name, String abbreviation) {
+	public Injury(int id, String name, int infectious) {
 		this.id = id;
 		this.name = name;
-		this.abbreviation = abbreviation;
+		this.infectious=infectious;
 	}
 	
 	public int getId() {
@@ -28,11 +29,12 @@ public class Injury {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAbbreviation() {
-		return abbreviation;
+	public int getInfectious() {
+		return infectious;
 	}
-	public void setAbbreviation(String abbreviation) {
-		this.abbreviation = abbreviation;
+
+	public void setInfectious(int infectious) {
+		this.infectious = infectious;
 	}
-	
+
 }

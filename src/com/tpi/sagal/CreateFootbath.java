@@ -93,8 +93,8 @@ public class CreateFootbath extends Activity implements View.OnClickListener {
 				double height = Double.parseDouble(fbHeight.getText()
 						.toString());
 				try {
-					mft.createFootbath(name, width, deep, height, "Ninguno", 0,
-							id);
+					mft.createFootbath(name, width, deep, height, 0,
+							id, 0);
 				} catch (Exception e) {
 					diditwork = false;
 				} finally {

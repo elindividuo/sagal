@@ -20,7 +20,14 @@
         android:layout_height="0dp"
         android:layout_weight="2.00" >
     </ListView>
-    
+     <Button
+        android:id="@+id/bManageSystem_MainView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="Administrar sistema"
+        android:onClick="createFarm"
+        />
         <Button
         android:id="@+id/bCreateFarm_MainView"
         android:layout_width="match_parent"

@@ -36,9 +36,7 @@ public class ManageZone_Injury {
 		if (cursor.moveToFirst()) {
 			do {
 				String name = cursor.getString(cursor.getColumnIndex("injury_name"));
-				String abb = cursor.getString(cursor.getColumnIndex("injury_abbreviation"));
-				String inj = abb + " "+ name;
-				injuries.add(inj);
+				injuries.add(name);
 			} while (cursor.moveToNext());
 
 		}

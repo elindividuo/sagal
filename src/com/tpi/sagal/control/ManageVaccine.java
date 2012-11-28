@@ -23,6 +23,11 @@ public class ManageVaccine {
 		vaccineDao.close();
 	}
 	
+	public void createVaccine(String name){
+		vaccineDao.open();
+		vaccineDao.createVaccine(name);
+		vaccineDao.close();
+	}
 	public ArrayList<Vaccine> readAllVaccines(){
 		vaccineDao.open();
 		Cursor cursor = vaccineDao.readVaccine();
@@ -52,5 +57,30 @@ public class ManageVaccine {
 		return new Vaccine(id,vacName);
 		}
 		return null;
+	}
+	
+	public void deleteVaccine(int id){
+		vaccineDao.open();
+		vaccineDao.deleteVaccine(id);
+		vaccineDao.close();
+	}
+
+	public Vaccine searchVaccine(int vaccineId) {
+		vaccineDao.open();
+		Cursor cursor = vaccineDao.searchVaccine(vaccineId);
+		if(cursor.moveToFirst()){
+		int id = cursor.getInt(cursor.getColumnIndex("_id"));
+		String vacName = cursor.getString(cursor.getColumnIndex("vaccine_name"));
+		cursor.close();
+		vaccineDao.close();
+		return new Vaccine(id,vacName);
+		}
+		return null;
+	}
+	
+	public void updateVaccine(int vaccineId, String name){
+		vaccineDao.open();
+		vaccineDao.updateVaccine(vaccineId, name);
+		vaccineDao.close();
 	}
 }

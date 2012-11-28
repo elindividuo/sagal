@@ -7,24 +7,40 @@ public class Footbath {
 	double width;
 	double deep;
 	double height;
-	String medicineType;
 	double medicineQuantity;
 	Farm farm;
+	Medicine medicine;
 	
 	public Footbath(){
 		
 	}
 	
-	public Footbath(int id, String name, double width, double deep, double height, String medicineType, double quantity, Farm farm) {
+	public Footbath(int id, String name, double width, double deep, double height, double quantity, Farm farm, Medicine medicine) {
 		this.id = id;
 		this.name = name;
 		this.width = width;
 		this.deep = deep;
 		this.height = height;
-		this.medicineType = medicineType;
 		this.medicineQuantity = quantity;
 		this.farm= farm;
+		this.medicine = medicine;
 	}
+	public double getMedicineQuantity() {
+		return medicineQuantity;
+	}
+
+	public void setMedicineQuantity(double medicineQuantity) {
+		this.medicineQuantity = medicineQuantity;
+	}
+
+	public Medicine getMedicine() {
+		return medicine;
+	}
+
+	public void setMedicine(Medicine medicine) {
+		this.medicine = medicine;
+	}
+
 	public Farm getFarm() {
 		return farm;
 	}
@@ -61,12 +77,7 @@ public class Footbath {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getMedicineType() {
-		return medicineType;
-	}
-	public void setMedicineType(String medicineType) {
-		this.medicineType = medicineType;
-	}
+
 	public int getId() {
 		return id;
 	}

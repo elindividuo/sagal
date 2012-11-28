@@ -20,12 +20,17 @@ public class ManageInjury {
 		injuryDao.close();
 	}
 	
-	public void createInjury(int id, String name, String abbreviation){
+	public void createInjury(int id, String name, int inf){
 		injuryDao.open();
-		injuryDao.createInjury(id, name, abbreviation);
+		injuryDao.createInjury(id, name, inf);
 		injuryDao.close();
 	}
 	
+	public void createInjury(String name, int inf){
+		injuryDao.open();
+		injuryDao.createInjury(name, inf);
+		injuryDao.close();
+	}
 	public ArrayList<Injury> readAllInjuries(){
 		injuryDao.open();
 		Cursor cursor = injuryDao.readInjury();
@@ -35,8 +40,8 @@ public class ManageInjury {
 			{
 				int id = cursor.getInt(cursor.getColumnIndex("_id"));
 				String name = cursor.getString(cursor.getColumnIndex("injury_name"));
-				String abb = cursor.getString(cursor.getColumnIndex("injury_abbreviation"));
-				injuries.add(new Injury(id, name, abb));
+				int inf = cursor.getInt(cursor.getColumnIndex("injury_infectious"));
+				injuries.add(new Injury(id, name,inf));
 			} while ( cursor.moveToNext());
 		}
 		cursor.close();
@@ -50,10 +55,36 @@ public class ManageInjury {
 		if(cursor.moveToFirst()){
 		int id = cursor.getInt(cursor.getColumnIndex("_id"));
 		String injName = cursor.getString(cursor.getColumnIndex("injury_name"));
-		String abb = cursor.getString(cursor.getColumnIndex("injury_abbreviation"));
+		int inf = cursor.getInt(cursor.getColumnIndex("injury_infectious"));
 		cursor.close();
 		injuryDao.close();
-		return new Injury(id,injName,abb);
+		return new Injury(id,injName,inf);
+		}
+		return null;
+	}
+	
+	public void deleteInjury (int id){
+		injuryDao.open();
+		injuryDao.deleteInjury(id);
+		injuryDao.close();
+	}
+	
+	public void updateInjury (int id, String name, int infec){
+		injuryDao.open();
+		injuryDao.updateInjury(id, name, infec);
+		injuryDao.close();
+	}
+
+	public Injury searchInjury(int injuryId) {
+		injuryDao.open();
+		Cursor cursor = injuryDao.searchInjury(injuryId);
+		if(cursor.moveToFirst()){
+		int id = cursor.getInt(cursor.getColumnIndex("_id"));
+		String injName = cursor.getString(cursor.getColumnIndex("injury_name"));
+		int inf = cursor.getInt(cursor.getColumnIndex("injury_infectious"));
+		cursor.close();
+		injuryDao.close();
+		return new Injury(id,injName,inf);
 		}
 		return null;
 	}

@@ -2,6 +2,8 @@ package com.tpi.sagal;
 
 import java.util.ArrayList;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +21,7 @@ import com.tpi.sagal.control.ManageHoof;
 import com.tpi.sagal.control.ManageInjury;
 import com.tpi.sagal.control.ManageLimb;
 import com.tpi.sagal.control.ManageLocomotionScore;
+import com.tpi.sagal.control.ManageMedicine;
 import com.tpi.sagal.control.ManageVaccine;
 import com.tpi.sagal.control.ManageZone;
 import com.tpi.sagal.control.ManageZone_Injury;
@@ -30,7 +33,7 @@ public class MainActivityViewFarms extends Activity implements
 	ArrayList<Farm> farms;
 	ArrayList<String> farmNames;
 	ListView listViewFarms;
-	Button createFarm;
+	Button createFarm, manageSystem;
 	Intent i;
 	ManageFarm mf;
 	ManageCow mc;
@@ -43,8 +46,13 @@ public class MainActivityViewFarms extends Activity implements
 	ManageInjury mi;
 	ManageZone_Injury mzi;
 	ManageLocomotionScore mls;
+	ManageMedicine mm;
 
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+
+	private CharSequence[] options = { "Vacunas",
+			"Medicamentos",
+			"Lesiones"};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -65,9 +73,11 @@ public class MainActivityViewFarms extends Activity implements
 		mi = new ManageInjury(this);
 		mzi = new ManageZone_Injury(this);
 		mls = new ManageLocomotionScore(this);
+		mm = new ManageMedicine(this);
 
-		//databaseInserts();
+		databaseInserts();
 		createFarm = (Button) findViewById(R.id.bCreateFarm_MainView);
+		manageSystem = (Button) findViewById(R.id.bManageSystem_MainView);
 		listViewFarms = (ListView) findViewById(R.id.lvFarms);
 
 		farms = new ArrayList<Farm>();
@@ -82,7 +92,9 @@ public class MainActivityViewFarms extends Activity implements
 		listViewFarms.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_2, android.R.id.text1,
 				farmNames));
+		
 		createFarm.setOnClickListener(this);
+		manageSystem.setOnClickListener(this);
 
 		listViewFarms.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -100,89 +112,92 @@ public class MainActivityViewFarms extends Activity implements
 	}
 
 	private void databaseInserts() {
-	//DATOS DE PRUEBA	
- 
-  mf.createFarm("Rosales", "Nicolás Regules #61, Colonia Centro",
-				"Donardo");
-		mf.createFarm("Terranova",
-				"Calle Pedro Loza #360 esq. Angulo, Zona Centro", "Demetrio");
-		mf.createFarm("Los Sauces",
-				"Carretera Guadalajara - Tala – Etzatlán Km. 58", "Selena");
-		mf.createFarm("Rio Grande", "Fco. I. Madero #84 esq. Agustín Yánez",
-				"Franchesca");
+		// DATOS DE PRUEBA
 
-		mfb.createFootbath("PediluvioA", 60, 200, 4, 1);
-		mfb.createFootbath("PediluvioB", 70, 214, 5, 1);
-		mfb.createFootbath("PediluvioC", 80, 190, 4.5, 2);
-		mfb.createFootbath("PediluvioD", 90, 150, 4.2, 2);
-		mfb.createFootbath("PediluvioE", 100, 180, 3.5, 3);
-		mfb.createFootbath("PediluvioF", 60, 175, 5.5, 3);
-		mfb.createFootbath("PediluvioG", 70, 165, 4, 4);
+//		mf.createFarm("Rosales", "Nicolás Regules #61, Colonia Centro",
+//				"Donardo");
+//		mf.createFarm("Terranova",
+//				"Calle Pedro Loza #360 esq. Angulo, Zona Centro", "Demetrio");
+//		mf.createFarm("Los Sauces",
+//				"Carretera Guadalajara - Tala – Etzatlán Km. 58", "Selena");
+//		mf.createFarm("Rio Grande", "Fco. I. Madero #84 esq. Agustín Yánez",
+//				"Franchesca");
+//
+//		mfb.createFootbath("PediluvioA", 60, 200, 4, 1);
+//		mfb.createFootbath("PediluvioB", 70, 214, 5, 1);
+//		mfb.createFootbath("PediluvioC", 80, 190, 4.5, 2);
+//		mfb.createFootbath("PediluvioD", 90, 150, 4.2, 2);
+//		mfb.createFootbath("PediluvioE", 100, 180, 3.5, 3);
+//		mfb.createFootbath("PediluvioF", 60, 175, 5.5, 3);
+//		mfb.createFootbath("PediluvioG", 70, 165, 4, 4);
+//
+//		mc.createCow(111111, "Pecas", "Blanco Ojinegro", "1/1/1992",
+//				"TattooDesc", "Disminución en la producción de leche",
+//				"Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 1);
+//		mc.createCow(111111, "Lulu", "Caqueteño", "1/1/1993", "TattooDesc",
+//				"Dolor", "Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 1);
+//		mc.createCow(111111, "Negra", "Chino Santandereano", "1/1/1994",
+//				"TattooDesc", "Anorexia", "Ninguno", "Ninguno", "Ninguno", 0,
+//				0, 0, 1);
+//		mc.createCow(111111, "Alegría", "Costeño con Cuernos", "1/1/1995",
+//				"TattooDesc", "Decúbito permanente", "Ninguno", "Ninguno",
+//				"Ninguno", 0, 0, 0, 2);
+//		mc.createCow(111111, "Duquesa", "Harton del valle", "1/1/1996",
+//				"TattooDesc", "Disminución en la producción de leche",
+//				"Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 2);
+//		mc.createCow(111111, "Paquita", "Lucerna", "1/1/1997", "TattooDesc",
+//				"Dolor", "Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 2);
+//		mc.createCow(111111, "Lola", "Romosinuano", "1/1/1998", "TattooDesc",
+//				"Anorexia", "Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 3);
+//		mc.createCow(111111, "Clarabella", "Sanmartinero", "1/1/1999",
+//				"TattooDesc", "Decúbito permanente", "Ninguno", "Ninguno",
+//				"Ninguno", 0, 0, 0, 3);
+//		mc.createCow(111111, "Castaña", "Velazquez", "1/1/1991", "TattooDesc",
+//				"Disminución en la producción de leche", "Ninguno", "Ninguno",
+//				"Ninguno", 0, 0, 0, 3);
+//		mc.createCow(111111, "Margarita", "Blanco Ojinegro", "1/1/1990",
+//				"TattooDesc", "Dolor", "Ninguno", "Ninguno", "Ninguno", 0, 0,
+//				0, 4);
+//		mc.createCow(111111, "Reina", "Caqueteño", "1/1/1991", "TattooDesc",
+//				"Anorexia", "Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 4);
+//		mc.createCow(111111, "Perla", "Lucerna", "1/1/1995", "TattooDesc",
+//				"Decúbito permanente", "Ninguno", "Ninguno", "Ninguno", 0, 0,
+//				0, 4);
 
-		mc.createCow(111111, "Pecas", "Blanco Ojinegro", "1/1/1992",
-				"TattooDesc", "Disminución en la producción de leche",
-				"Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 1);
-		mc.createCow(111111, "Lulu", "Caqueteño", "1/1/1993", "TattooDesc",
-				"Dolor", "Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 1);
-		mc.createCow(111111, "Negra", "Chino Santandereano", "1/1/1994",
-				"TattooDesc", "Anorexia", "Ninguno", "Ninguno", "Ninguno", 0,
-				0, 0, 1);
-		mc.createCow(111111, "Alegría", "Costeño con Cuernos", "1/1/1995",
-				"TattooDesc", "Decúbito permanente", "Ninguno", "Ninguno",
-				"Ninguno", 0, 0, 0, 2);
-		mc.createCow(111111, "Duquesa", "Harton del valle", "1/1/1996",
-				"TattooDesc", "Disminución en la producción de leche",
-				"Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 2);
-		mc.createCow(111111, "Paquita", "Lucerna", "1/1/1997", "TattooDesc",
-				"Dolor", "Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 2);
-		mc.createCow(111111, "Lola", "Romosinuano", "1/1/1998", "TattooDesc",
-				"Anorexia", "Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 3);
-		mc.createCow(111111, "Clarabella", "Sanmartinero", "1/1/1999",
-				"TattooDesc", "Decúbito permanente", "Ninguno", "Ninguno",
-				"Ninguno", 0, 0, 0, 3);
-		mc.createCow(111111, "Castaña", "Velazquez", "1/1/1991", "TattooDesc",
-				"Disminución en la producción de leche", "Ninguno", "Ninguno",
-				"Ninguno", 0, 0, 0, 3);
-		mc.createCow(111111, "Margarita", "Blanco Ojinegro", "1/1/1990",
-				"TattooDesc", "Dolor", "Ninguno", "Ninguno", "Ninguno", 0, 0,
-				0, 4);
-		mc.createCow(111111, "Reina", "Caqueteño", "1/1/1991", "TattooDesc",
-				"Anorexia", "Ninguno", "Ninguno", "Ninguno", 0, 0, 0, 4);
-		mc.createCow(111111, "Perla", "Lucerna", "1/1/1995", "TattooDesc",
-				"Decúbito permanente", "Ninguno", "Ninguno", "Ninguno", 0, 0,
-				0, 4);
-
-		mv.createVaccine(1,"FAF (Fiebre Aftosa)");
-		mv.createVaccine(2,"BRU (Brucella)");
-		mv.createVaccine(3,"TRI (Triple)");
+		mv.createVaccine(1, "FAF (Fiebre Aftosa)");
+		mv.createVaccine(2, "BRU (Brucella)");
+		mv.createVaccine(3, "TRI (Triple)");
 		mv.createVaccine(4, "CAS (Carbón Sintomático)");
 		mv.createVaccine(5, "CRB (Complejo Respiratorio & Reproductivo Bovino)");
 		mv.createVaccine(6, "EST (Estomatitis)");
 		mv.createVaccine(7, "LEP (Leptospirosis)");
 		mv.createVaccine(8, "CLO (Clostridium)");
 		mv.createVaccine(9, "RAB(Rabia)");
-		
+
 		ml.createLimb(1, "Miembro anterior izquierdo");
 		ml.createLimb(2, "Miembro anterior derecho");
 		ml.createLimb(3, "Miembro posterior izquierdo");
 		ml.createLimb(4, "Miembro posterior derecho");
 
-		mi.createInjury(1, "Pezuña de Tirabuzón", "(C)");
-		mi.createInjury(2, "Dermatitis Digital", "(D)");
-		mi.createInjury(3, "Erosión del Talón", "(E)");
-		mi.createInjury(4, "Gabarro o Flemón", "(F)");
-		mi.createInjury(5, "Fisura o Grieta Horizontal", "(G)");
-		mi.createInjury(6, "Hemorragia de la Suela", "(H)");
-		mi.createInjury(7, "Dermatitis Interdigital", "(I)");
-		mi.createInjury(8, "Hiperplasia Interdigital", "(K)");
-		mi.createInjury(9, "Úlcera de Punta", "(T)");
-		mi.createInjury(10, "Úlcera de la Suela", "(U)");
-		mi.createInjury(11, "Fisura o Grieta Vertical", "(V)");
-		mi.createInjury(12, "Lesión de la Línea Blanca", "(W)");
-		mi.createInjury(13, "Fisura Axial", "(X)");
-		mi.createInjury(14, "Suela Delgada", "(Z)");
+		mi.createInjury(1, "(C) Pezuña de Tirabuzón",0);
+		mi.createInjury(2, "(D) Dermatitis Digital",1);
+		mi.createInjury(3, "(E) Erosión del Talón",1);
+		mi.createInjury(4, "(F) Gabarro o Flemón",1);
+		mi.createInjury(5, "(G) Fisura o Grieta Horizontal",0);
+		mi.createInjury(6, "(H) Hemorragia de la Suela",0);
+		mi.createInjury(7, "(I) Dermatitis Interdigital",1);
+		mi.createInjury(8, "(K) Hiperplasia Interdigital",0);
+		mi.createInjury(9, "(T) Úlcera de Punta",0);
+		mi.createInjury(10, "(U) Úlcera de la Suela",0);
+		mi.createInjury(11, "(V) Fisura o Grieta Vertical",0);
+		mi.createInjury(12, "(W) Lesión de la Línea Blanca",0);
+		mi.createInjury(13, "(X) Fisura Axial",0);
+		mi.createInjury(14, "(Z) Suela Delgada",0);
 		
-		
+		mm.createMedicine(1, "Formol",3.0);
+		mm.createMedicine(2, "CuSO4", 2.0);
+		mm.createMedicine(3, "Hipoclorito de Sodio", 1.0);
+		mm.createMedicine(4, "OTC", 5.0);
 	}
 
 	@Override
@@ -196,8 +211,33 @@ public class MainActivityViewFarms extends Activity implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bCreateFarm_MainView:
-			i = new Intent("com.tpi.sagal.CREATEFARM");
+			i = new Intent(MainActivityViewFarms.this,CreateFarm.class);
 			startActivity(i);
+			break;
+		case R.id.bManageSystem_MainView:
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Selecciona lo que deseas administrar");
+			builder.setItems(options, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int item) {
+					switch (item){
+					case 0:
+						i = new Intent(MainActivityViewFarms.this,ViewVaccines.class);
+						startActivity(i);
+						break;
+					case 1:
+						i = new Intent(MainActivityViewFarms.this,ViewMedicines.class);
+						startActivity(i);
+						break;
+					case 2:
+						i = new Intent(MainActivityViewFarms.this,ViewInjuries.class);
+						startActivity(i);
+						break;
+					}
+				}
+			});
+			AlertDialog alert = builder.create();
+			alert.show();
 			break;
 		}
 	}

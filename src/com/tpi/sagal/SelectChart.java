@@ -42,7 +42,6 @@ public class SelectChart extends Activity implements View.OnClickListener{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_chart);
 		initialize();
@@ -50,7 +49,6 @@ public class SelectChart extends Activity implements View.OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()){
 		case R.id.ibBack_SelectChart:
 			i = new Intent(SelectChart.this, FarmDetails.class);

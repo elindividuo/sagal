@@ -98,7 +98,7 @@ public class Zone_InjuryDaoAdapter {
 	}
 	
 	public Cursor searchZone_Injury(int zoneId) throws SQLException{
-		return ourDatabase.query("zone join zone_has_injury on (zone._id=zone_has_injury.zone_id) join injury on (zone_has_injury.injury_id = injury._id)",new String[] {"injury.injury_name","injury.injury_abbreviation"}, KEY_ZONE + "=" + zoneId,null,null,null,null);
+		return ourDatabase.query("zone join zone_has_injury on (zone._id=zone_has_injury.zone_id) join injury on (zone_has_injury.injury_id = injury._id)",new String[] {"injury.injury_name"}, KEY_ZONE + "=" + zoneId,null,null,null,null);
 	}
 	
 }

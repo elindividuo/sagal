@@ -205,7 +205,88 @@
                 <action android:name="com.tpi.sagal.SHOWCHART" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>        
+        </activity>
+        
+        <activity
+            android:name=".ViewMedicines"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.VIEWMEDICINES" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".CreateMedicine"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.CREATEMEDICINE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".ViewVaccines"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.VIEWVACCINES" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".CreateVaccine"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.CREATEVACCINE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".ViewInjuries"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.VIEWINJURIES" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".CreateInjury"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.CREATEINJURY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".EditVaccine"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.EDITVACCINE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".EditMedicine"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.EDITMEDICINE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name=".EditInjury"
+            android:label="@string/title_activity_main_activity_view_farms" >
+            <intent-filter>
+                <action android:name="com.tpi.sagal.EDITINJURY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
