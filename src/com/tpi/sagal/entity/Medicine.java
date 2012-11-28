@@ -4,18 +4,20 @@ public class Medicine {
 	int id;
 	String name;
 	Double concentration;
-	
-	
+	String unit;
+
+
 	public Medicine(){
 		
 	}
 	
 	
-	public Medicine(int id, String name, Double concentration) {
+	public Medicine(int id, String name, Double concentration, String unit) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.concentration = concentration;
+		this.unit = unit;
 	}
 	public int getId() {
 		return id;
@@ -35,5 +37,12 @@ public class Medicine {
 	public void setConcentration(Double concentration) {
 		this.concentration = concentration;
 	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
 	
 }

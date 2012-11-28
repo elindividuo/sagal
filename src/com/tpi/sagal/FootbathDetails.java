@@ -65,10 +65,12 @@ public class FootbathDetails extends Activity implements View.OnClickListener {
 		fbHeight.setText("" + fb.getHeight());
 		if (fb.getMedicine()==null){
 			fbMedicine.setText("Ninguno");
+			fbQuantity.setText("" + fb.getQuantity());
 		}else{
 			fbMedicine.setText(fb.getMedicine().getName());
+			fbQuantity.setText("" + fb.getQuantity()+fb.getMedicine().getUnit());
 		}
-		fbQuantity.setText("" + fb.getQuantity());
+		
 		farmid = fb.getFarm().getId();
 	}
 

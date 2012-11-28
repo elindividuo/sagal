@@ -122,9 +122,9 @@ private ManageMedicine mm;
 		footbathDao.close();
 	}
 	
-	public void updateFootbath(int id, String name, double width, double deep, double height, String medicine, double quantity){
+	public void updateFootbath(int id, String name, double width, double deep, double height, double quantity,int idMedicine){
 		footbathDao.open();
-		footbathDao.updateFootbath(id, name, width, deep, height, medicine, quantity);
+		footbathDao.updateFootbath(id, name, width, deep, height, quantity,idMedicine);
 		footbathDao.close();
 	}
 	
@@ -134,44 +134,50 @@ private ManageMedicine mm;
 		footbathDao.close();
 	}
 	
-	public double computeQuantity (double width, double deep, double height, String medicineType){
-		// http://www.metric-conversions.org/es/volumen/centimetros-cubicos-a-litros.htm
-		
-		double concentration, suitableVol;
-
-		// Formol (3%) = @string/radioFormol
-		if (medicineType.equals("Formol (3%)")){
-			concentration = 3;
-			suitableVol = 100;
-			return concentration * width * deep * height / suitableVol;
-		}
-		else {
-			//CuSO4 (2%) = @string/radioCuSO4
-			if (medicineType.equals("CuSO4 (2%)")){
-				concentration = 2;
-				suitableVol = 100;
-				return concentration * width * deep * height / suitableVol;
-			}
-			else {
-				//Hipoclorito de Sodio (1%) = @string/radioHipocloritoDeSodio
-				if (medicineType.equals("Hipoclorito de Sodio (1%)")){
-					concentration = 1;
-					suitableVol = 100;
-					return concentration * width * deep * height / suitableVol;
-				}
-				else{
-					// OTC (5%) = @string/radioOTC
-					if (medicineType.equals("OTC (5%)")){
-						concentration = 5;
-						suitableVol = 1000;
-						return concentration * width * deep * height / suitableVol;
-					}
-					else
-						return 0.0;
-				}
-			}
-		}
-		
-		
+	
+	
+	public double computeQuantity (double width, double deep, double height, double concentration){
+		return concentration*width*deep*height/100;
 	}
+	
+//	public double computeQuantity (double width, double deep, double height, String medicineType){
+//		// http://www.metric-conversions.org/es/volumen/centimetros-cubicos-a-litros.htm
+//		
+//		double concentration, suitableVol;
+//
+//		// Formol (3%) = @string/radioFormol
+//		if (medicineType.equals("Formol (3%)")){
+//			concentration = 3;
+//			suitableVol = 100;
+//			return concentration * width * deep * height / suitableVol;
+//		}
+//		else {
+//			//CuSO4 (2%) = @string/radioCuSO4
+//			if (medicineType.equals("CuSO4 (2%)")){
+//				concentration = 2;
+//				suitableVol = 100;
+//				return concentration * width * deep * height / suitableVol;
+//			}
+//			else {
+//				//Hipoclorito de Sodio (1%) = @string/radioHipocloritoDeSodio
+//				if (medicineType.equals("Hipoclorito de Sodio (1%)")){
+//					concentration = 1;
+//					suitableVol = 100;
+//					return concentration * width * deep * height / suitableVol;
+//				}
+//				else{
+//					// OTC (5%) = @string/radioOTC
+//					if (medicineType.equals("OTC (5%)")){
+//						concentration = 5;
+//						suitableVol = 1000;
+//						return concentration * width * deep * height / suitableVol;
+//					}
+//					else
+//						return 0.0;
+//				}
+//			}
+//		}
+//		
+//		
+//	}
 }

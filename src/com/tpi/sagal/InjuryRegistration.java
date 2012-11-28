@@ -166,10 +166,6 @@ public class InjuryRegistration extends Activity implements
 	
 	}
 
-
-
-	
-
 	public void showSelectInjuries() {
 		
 		injuriesdb.clear();
@@ -214,7 +210,7 @@ public class InjuryRegistration extends Activity implements
 		};
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Agregar enfermedades: ");
+		builder.setTitle("Agregar lesiones: ");
 		builder.setMultiChoiceItems(injuries, checkedInjuries,
 				injuriesDialogListener);
 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {

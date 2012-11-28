@@ -52,45 +52,35 @@
 	   	        android:id="@+id/tvAddMedicineSelect"
 	   	        android:layout_width="wrap_content"
 	   	        android:layout_height="wrap_content"
-	   	        android:text="Tipo de medicamento:"
+	   	        android:text="Tipo de medicina:"
 	   	        android:textAppearance="?android:attr/textAppearanceMedium"
 	   	        android:textStyle="bold" />
-			
-			<RadioGroup
-		        android:id="@+id/radioMedicine"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" 
-		        android:gravity="center_vertical">
-		 
-		        <RadioButton
-		            android:id="@+id/radioFormol"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/radioFormol" 
-		            android:checked="true" />
-		 
-		        <RadioButton
-		            android:id="@+id/radioCuSO4"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/radioCuSO4" />
-		        
-		        <RadioButton
-		            android:id="@+id/radioHipocloritoDeSodio"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/radioHipocloritoDeSodio" />
-		        
-		        <RadioButton
-		            android:id="@+id/radioOTC"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/radioOTC" />		        		        
- 
-    		</RadioGroup>
 
-		<TextView />
+		<LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100" >
 
+
+            <TextView
+                android:id="@+id/tvMedicine"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="2dp"
+				android:gravity="center"
+                android:layout_weight="15"
+                android:text="Seleccionar medicina..."
+                android:width="100dp" />
+
+            <ImageButton
+                android:id="@+id/ibChangeMedicine"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="85"
+                android:src="@drawable/health" />
+        </LinearLayout>
+		
 		<TableRow >
 		    
 			<TextView 
@@ -109,7 +99,7 @@
 		    android:id="@+id/bComputeQuantity"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:text="Calcular cantidad de medicamento"/>
+		    android:text="Calcular cantidad de medicina"/>
 			
    	</TableLayout>
     

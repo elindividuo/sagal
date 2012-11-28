@@ -122,13 +122,13 @@ public class FootbathDaoAdapter {
 		ourDatabase.delete(DATABASE_TABLE, KEY_ID + "=" + id,null);
 	}
 	
-	public void updateFootbath(int id, String name, double width, double deep, double height, String medicine, double quantity) throws SQLException{
+	public void updateFootbath(int id, String name, double width, double deep, double height, double quantity, int idMedicine) throws SQLException{
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, name);
 		cv.put(KEY_WIDTH, width);
 		cv.put(KEY_DEEP, deep);
 		cv.put(KEY_HEIGHT, height);
-		cv.put(KEY_MEDICINE, medicine);
+		cv.put(KEY_MEDICINE, idMedicine);
 		cv.put(KEY_QUANTITY, quantity);
 		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
 	}

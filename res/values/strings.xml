@@ -90,7 +90,7 @@
     </string-array>
     <string name="tvFarmEditTitle">Editar Hacienda</string>
     <string name="tvCreateFootbathTitle">Registrar Pediluvio</string>
-    <string name="cantidad">"Cantidad de \nmedicamento: "</string>
+    <string name="cantidad">"Cantidad de \nmedicina: "</string>
          <string name="fecha_de_nacimiento">"Fecha de\nnacimiento: "</string>
     <string name="puntaje_de_locomocion">Puntaje de \nLocomoción:</string>
     <string name="destino_final">Destino \nFinal: </string>

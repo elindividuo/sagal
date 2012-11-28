@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class EditMedicine extends Activity implements View.OnClickListener{
 
 	Button ok, cancel;
-	EditText name, concentration;
+	EditText name, concentration, unit;
 	ManageMedicine mm;
 	boolean diditwork;
 	int medicineId;
@@ -43,10 +43,11 @@ public class EditMedicine extends Activity implements View.OnClickListener{
 		cancel= (Button) findViewById(R.id.bCancelEditMedicineView);
 		name= (EditText) findViewById(R.id.etMedicineNameEdit);
 		concentration= (EditText) findViewById(R.id.etMedicineConcentrationEdit);
-		
+		unit = (EditText) findViewById(R.id.etMedicineUnitEdit);
 		
 		name.setText(med.getName());
 		concentration.setText(""+med.getConcentration());
+		unit.setText(med.getUnit());
 		
 		ok.setOnClickListener(this);
 		cancel.setOnClickListener(this);
@@ -68,6 +69,14 @@ public class EditMedicine extends Activity implements View.OnClickListener{
 					.show();
 			return control = false;
 		}
+		
+		if (unit.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Unidad", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
+
 
 		return control;
 	}
@@ -79,9 +88,9 @@ public class EditMedicine extends Activity implements View.OnClickListener{
 			if (checkValues()) {
 				String mName = name.getText().toString();
 				double mConcent = Double.parseDouble(concentration.getText().toString());
-
+				String mUnit = unit.getText().toString();
 				try {
-					mm.udpdateMedicine(medicineId, mName, mConcent);
+					mm.udpdateMedicine(medicineId, mName, mConcent,mUnit);
 				} catch (Exception e) {
 					diditwork = false;
 				} finally {

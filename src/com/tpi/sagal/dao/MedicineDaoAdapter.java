@@ -16,13 +16,15 @@ public class MedicineDaoAdapter {
 	private static final String KEY_ID = "_id";
 	private static final String KEY_NAME = "medicine_name";
 	private static final String KEY_CONCENTRATION = "medicine_concentration";
+	private static final String KEY_UNIT = "medicine_unit";
 
-	private static final String[] columns = { KEY_ID, KEY_NAME, KEY_CONCENTRATION};
+	private static final String[] columns = { KEY_ID, KEY_NAME, KEY_CONCENTRATION, KEY_UNIT};
 	
 	private static final String MEDICINE_TABLE_CREATE ="CREATE TABLE IF NOT EXISTS "+DATABASE_TABLE+" ("+
 			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			KEY_NAME + " TEXT NOT NULL,"+
-			KEY_CONCENTRATION + " DOUBLE NOT NULL);";
+			KEY_CONCENTRATION + " DOUBLE NOT NULL,"+
+			KEY_UNIT + " TEXT NOT NULL);";
 	
 	private MedicineDBHelper ourHelper;
 	private final Context ourContext;
@@ -73,19 +75,21 @@ public class MedicineDaoAdapter {
 		ourHelper.close();
 	}
 	
-	public long createMedicine(int id, String name, double concentration) throws SQLException{
+	public long createMedicine(int id, String name, double concentration, String unit) throws SQLException{
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_ID, id);
 		cv.put(KEY_NAME, name);
 		cv.put(KEY_CONCENTRATION, concentration);
+		cv.put(KEY_UNIT, unit);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 	
 	
-	public long createMedicine(String name, double concentration) throws SQLException{
+	public long createMedicine(String name, double concentration, String unit) throws SQLException{
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, name);
 		cv.put(KEY_CONCENTRATION, concentration);
+		cv.put(KEY_UNIT, unit);
 		return ourDatabase.insert(DATABASE_TABLE, null, cv);
 	}
 
@@ -100,21 +104,16 @@ public class MedicineDaoAdapter {
 	public void deleteMedicine(int id) throws SQLException{
 		ourDatabase.delete(DATABASE_TABLE, KEY_ID + "=" + id,null);
 	}
-	
-	public void updateMedicine(int id, String name) throws SQLException{
-		ContentValues cv = new ContentValues();
-		cv.put(KEY_NAME, name);
-		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
-	}
-	
+		
 	public Cursor searchMedicine(String name) throws SQLException{
 		return ourDatabase.query(DATABASE_TABLE, columns, KEY_NAME + "= \"" + name+"\"",null,null,null,null);
 	}
 
-	public void updateMedicine(int id, String name, double concentration) {
+	public void updateMedicine(int id, String name, double concentration, String unit) {
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_NAME, name);
 		cv.put(KEY_CONCENTRATION, concentration);
+		cv.put(KEY_UNIT, unit);
 		ourDatabase.update(DATABASE_TABLE,cv, KEY_ID + "=" + id,null);
 	}
 }

@@ -17,15 +17,15 @@ private MedicineDaoAdapter medicineDao;
 		medicineDao.close();
 	}
 	
-	public void createMedicine(int id, String name, Double concentration){
+	public void createMedicine(int id, String name, Double concentration, String unit){
 		medicineDao.open();
-		medicineDao.createMedicine(id, name,concentration);
+		medicineDao.createMedicine(id, name,concentration, unit);
 		medicineDao.close();
 	}
 	
-	public void createMedicine( String name, Double concentration){
+	public void createMedicine( String name, Double concentration, String unit){
 		medicineDao.open();
-		medicineDao.createMedicine(name, concentration);
+		medicineDao.createMedicine(name, concentration, unit);
 		medicineDao.close();
 	}
 	
@@ -39,7 +39,8 @@ private MedicineDaoAdapter medicineDao;
 				int id = cursor.getInt(cursor.getColumnIndex("_id"));
 				String name = cursor.getString(cursor.getColumnIndex("medicine_name"));
 				Double concen = cursor.getDouble(cursor.getColumnIndex("medicine_concentration"));
-				medicines.add(new Medicine(id, name,concen));
+				String unit = cursor.getString(cursor.getColumnIndex("medicine_unit"));
+				medicines.add(new Medicine(id, name,concen,unit));
 			} while (cursor.moveToNext());
 		}
 		cursor.close();
@@ -54,9 +55,10 @@ private MedicineDaoAdapter medicineDao;
 		int id = cursor.getInt(cursor.getColumnIndex("_id"));
 		String medName = cursor.getString(cursor.getColumnIndex("medicine_name"));
 		Double concen = cursor.getDouble(cursor.getColumnIndex("medicine_concentration"));
+		String unit = cursor.getString(cursor.getColumnIndex("medicine_unit"));
 		cursor.close();
 		medicineDao.close();
-		return new Medicine(id,medName, concen);
+		return new Medicine(id,medName, concen, unit);
 		}
 		return null;
 	}
@@ -68,9 +70,10 @@ private MedicineDaoAdapter medicineDao;
 		int id = cursor.getInt(cursor.getColumnIndex("_id"));
 		String medName = cursor.getString(cursor.getColumnIndex("medicine_name"));
 		Double concen = cursor.getDouble(cursor.getColumnIndex("medicine_concentration"));
+		String unit = cursor.getString(cursor.getColumnIndex("medicine_unit"));
 		cursor.close();
 		medicineDao.close();
-		return new Medicine(id,medName, concen);
+		return new Medicine(id,medName, concen, unit);
 		}
 		return null;
 	}
@@ -81,9 +84,9 @@ private MedicineDaoAdapter medicineDao;
 		medicineDao.close();
 	}
 	
-	public void udpdateMedicine (int id, String name, double concentration){
+	public void udpdateMedicine (int id, String name, double concentration, String unit){
 		medicineDao.open();
-		medicineDao.updateMedicine(id, name,concentration);
+		medicineDao.updateMedicine(id, name,concentration, unit);
 		medicineDao.close();
 	}
 }

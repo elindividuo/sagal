@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.tpi.sagal.control.ManageCow;
 import com.tpi.sagal.control.ManageCow_Vaccine;
 import com.tpi.sagal.control.ManageFarm;
@@ -51,7 +54,7 @@ public class MainActivityViewFarms extends Activity implements
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
 	private CharSequence[] options = { "Vacunas",
-			"Medicamentos",
+			"Medicinas",
 			"Lesiones"};
 
 	@Override
@@ -164,40 +167,41 @@ public class MainActivityViewFarms extends Activity implements
 //				"Decúbito permanente", "Ninguno", "Ninguno", "Ninguno", 0, 0,
 //				0, 4);
 
-		mv.createVaccine(1, "FAF (Fiebre Aftosa)");
-		mv.createVaccine(2, "BRU (Brucella)");
-		mv.createVaccine(3, "TRI (Triple)");
-		mv.createVaccine(4, "CAS (Carbón Sintomático)");
-		mv.createVaccine(5, "CRB (Complejo Respiratorio & Reproductivo Bovino)");
-		mv.createVaccine(6, "EST (Estomatitis)");
-		mv.createVaccine(7, "LEP (Leptospirosis)");
-		mv.createVaccine(8, "CLO (Clostridium)");
-		mv.createVaccine(9, "RAB(Rabia)");
+			mv.createVaccine(1, "FAF (Fiebre Aftosa)");
+			mv.createVaccine(2, "BRU (Brucella)");
+			mv.createVaccine(3, "TRI (Triple)");
+			mv.createVaccine(4, "CAS (Carbón Sintomático)");
+			mv.createVaccine(5, "CRB (Complejo Respiratorio & Reproductivo Bovino)");
+			mv.createVaccine(6, "EST (Estomatitis)");
+			mv.createVaccine(7, "LEP (Leptospirosis)");
+			mv.createVaccine(8, "CLO (Clostridium)");
+			mv.createVaccine(9, "RAB(Rabia)");
 
-		ml.createLimb(1, "Miembro anterior izquierdo");
-		ml.createLimb(2, "Miembro anterior derecho");
-		ml.createLimb(3, "Miembro posterior izquierdo");
-		ml.createLimb(4, "Miembro posterior derecho");
+			ml.createLimb(1, "Miembro anterior izquierdo");
+			ml.createLimb(2, "Miembro anterior derecho");
+			ml.createLimb(3, "Miembro posterior izquierdo");
+			ml.createLimb(4, "Miembro posterior derecho");
 
-		mi.createInjury(1, "(C) Pezuña de Tirabuzón",0);
-		mi.createInjury(2, "(D) Dermatitis Digital",1);
-		mi.createInjury(3, "(E) Erosión del Talón",1);
-		mi.createInjury(4, "(F) Gabarro o Flemón",1);
-		mi.createInjury(5, "(G) Fisura o Grieta Horizontal",0);
-		mi.createInjury(6, "(H) Hemorragia de la Suela",0);
-		mi.createInjury(7, "(I) Dermatitis Interdigital",1);
-		mi.createInjury(8, "(K) Hiperplasia Interdigital",0);
-		mi.createInjury(9, "(T) Úlcera de Punta",0);
-		mi.createInjury(10, "(U) Úlcera de la Suela",0);
-		mi.createInjury(11, "(V) Fisura o Grieta Vertical",0);
-		mi.createInjury(12, "(W) Lesión de la Línea Blanca",0);
-		mi.createInjury(13, "(X) Fisura Axial",0);
-		mi.createInjury(14, "(Z) Suela Delgada",0);
-		
-		mm.createMedicine(1, "Formol",3.0);
-		mm.createMedicine(2, "CuSO4", 2.0);
-		mm.createMedicine(3, "Hipoclorito de Sodio", 1.0);
-		mm.createMedicine(4, "OTC", 5.0);
+			mi.createInjury(1, "(C) Pezuña de Tirabuzón",0);
+			mi.createInjury(2, "(D) Dermatitis Digital",1);
+			mi.createInjury(3, "(E) Erosión del Talón",1);
+			mi.createInjury(4, "(F) Gabarro o Flemón",1);
+			mi.createInjury(5, "(G) Fisura o Grieta Horizontal",0);
+			mi.createInjury(6, "(H) Hemorragia de la Suela",0);
+			mi.createInjury(7, "(I) Dermatitis Interdigital",1);
+			mi.createInjury(8, "(K) Hiperplasia Interdigital",0);
+			mi.createInjury(9, "(T) Úlcera de Punta",0);
+			mi.createInjury(10, "(U) Úlcera de la Suela",0);
+			mi.createInjury(11, "(V) Fisura o Grieta Vertical",0);
+			mi.createInjury(12, "(W) Lesión de la Línea Blanca",0);
+			mi.createInjury(13, "(X) Fisura Axial",0);
+			mi.createInjury(14, "(Z) Suela Delgada",0);
+			
+			mm.createMedicine(1, "Formol",3.0,"cc");
+			mm.createMedicine(2, "CuSO4", 2.0, "gr");
+			mm.createMedicine(3, "Hipoclorito de Sodio", 1.0,"cc");
+			mm.createMedicine(4, "OTC", 5.0,"gr");
+
 	}
 
 	@Override

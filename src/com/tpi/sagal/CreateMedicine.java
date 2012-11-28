@@ -14,7 +14,7 @@ public class CreateMedicine extends Activity implements View.OnClickListener{
 	Button ok, cancel;
 	boolean diditwork;
 	Intent i;
-	EditText medName, medConcent;
+	EditText medName, medConcent, medUnit;
 	ManageMedicine mm;
 	
 	@Override
@@ -32,7 +32,7 @@ public class CreateMedicine extends Activity implements View.OnClickListener{
 		cancel = (Button) findViewById(R.id.bCancelCreateMedicineView);
 		medName = (EditText) findViewById(R.id.etMedicineName);
 		medConcent = (EditText) findViewById(R.id.etMedicineConcentration);
-
+		medUnit = (EditText) findViewById(R.id.etMedicineUnit);
 		ok.setOnClickListener(this);
 		cancel.setOnClickListener(this);
 
@@ -54,6 +54,13 @@ public class CreateMedicine extends Activity implements View.OnClickListener{
 					.show();
 			return control = false;
 		}
+		
+		if (medUnit.getText().toString().trim().equals("")) {
+			Toast.makeText(getApplicationContext(),
+					"Olvidaste llenar el campo de Unidad", Toast.LENGTH_LONG)
+					.show();
+			return control = false;
+		}
 
 		return control;
 	}
@@ -65,9 +72,10 @@ public class CreateMedicine extends Activity implements View.OnClickListener{
 			if (checkValues()) {
 				String name = medName.getText().toString();
 				double concent = Double.parseDouble(medConcent.getText().toString());
+				String unit = medUnit.getText().toString();
 
 				try {
-					mm.createMedicine(name, concent);
+					mm.createMedicine(name, concent, unit);
 				} catch (Exception e) {
 					diditwork = false;
 				} finally {
